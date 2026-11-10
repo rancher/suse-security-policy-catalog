@@ -1,0 +1,5449 @@
+apiVersion: v1
+entries:
+  affinity-node-selector:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Affinity Node Selector
+      kubewarden/mutation: "false"
+      kubewarden/resources: CronJob, DaemonSet, Deployment, Job, Pod, StatefulSet
+      kubewarden/rules: |
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - cronjobs
+          - jobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - daemonsets
+          - deployments
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.7
+    created: "2026-11-10T10:20:27.765997736Z"
+    description: 'This Policy allows setting a key and value for `nodeSelector` when
+      assigning pods to nodes.   `nodeSelector` is a field of PodSpec. It specifies
+      a map of key-value pairs. For the pod to be eligible to scheduled on a node,
+      the node must have each of the indicated key-value pairs as labels (it can have
+      additional labels as well).  '
+    digest: 31f87b950e6a548a42a29733b684728a92dc32fd5213cf569437873fa16a2f1d
+    home: https://github.com/kubewarden/policies
+    name: affinity-node-selector
+    sources:
+    - ghcr.io/kubewarden/policies/affinity-node-selector:v1.0.7
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/affinity-node-selector-1.0.7/affinity-node-selector-1.0.7.tgz
+    version: 1.0.7
+  allow-privilege-escalation-psp:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Allow Privilege Escalation PSP
+      kubewarden/mutation: "true"
+      kubewarden/resources: Deployment,Replicaset,Statefulset,Daemonset,Replicationcontroller,Job,Cronjob,Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.15
+    created: "2026-11-10T10:20:28.469316646Z"
+    description: Replacement for the Kubernetes Pod Security Policy that controls
+      the allowance of privilege escalation in containers and init containers of a
+      pod
+    digest: 3d8acb146bc1137aeccce8aea73da915006c96dc6940f32e8710998ade523036
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - PSP
+    - privilege escalation
+    name: allow-privilege-escalation-psp
+    sources:
+    - ghcr.io/kubewarden/policies/allow-privilege-escalation-psp:v1.0.15
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/allow-privilege-escalation-psp-1.0.15/allow-privilege-escalation-psp-1.0.15.tgz
+    version: 1.0.15
+  allowed-fsgroups-psp:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Allowed Fs Groups PSP
+      kubewarden/mutation: "true"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.14
+    created: "2026-11-10T10:20:28.666209098Z"
+    description: Replacement for the Kubernetes Pod Security Policy that controls
+      the usage of fsGroups in the pod security context
+    digest: 0730eb6a30fd70ca30d09d4901e98d595564d46ed9ba0561ed5d0476933d4341
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - psp
+    - container
+    - runtime
+    name: allowed-fsgroups-psp
+    sources:
+    - ghcr.io/kubewarden/policies/allowed-fsgroups-psp:v1.0.14
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/allowed-fsgroups-psp-1.0.14/allowed-fsgroups-psp-1.0.14.tgz
+    version: 1.0.14
+  allowed-proc-mount-types-psp:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Allowed Proc Mount Types PSP
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.17
+    created: "2026-11-10T10:20:28.88754764Z"
+    description: Replacement for the Kubernetes Pod Security Policy that controls
+      the usage of /proc mount types
+    digest: 1fe756172058a91da0b6f67842a536ce54ec599c8763664adead0d0692bd7cd8
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - psp
+    - container
+    - runtime
+    name: allowed-proc-mount-types-psp
+    sources:
+    - ghcr.io/kubewarden/policies/allowed-proc-mount-types-psp:v1.0.17
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/allowed-proc-mount-types-psp-1.0.17/allowed-proc-mount-types-psp-1.0.17.tgz
+    version: 1.0.17
+  annotations:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Annotations
+      kubewarden/mutation: "false"
+      kubewarden/resources: '*'
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 0.1.13
+    created: "2026-11-10T10:20:29.071900291Z"
+    description: A policy that validates annotations of Kubernetes' resources
+    digest: f1a204a517a75be2772a7a522c2504d01f5c10b4dd022080d73e7fa3d47a4738
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - annotations
+    name: annotations
+    sources:
+    - ghcr.io/kubewarden/policies/annotations:v0.1.13
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/annotations-0.1.13/annotations-0.1.13.tgz
+    version: 0.1.13
+  bucket-approved-region:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Bucket Approved Region
+      kubewarden/mutation: "false"
+      kubewarden/resources: Bucket
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - buckets
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:29.313952359Z"
+    description: Bucket region must be one of the approved regions.
+    digest: 7149bc73de17b93a1ef3c7c54825fcc0c14da63972c91d09fc2105236f2d3a63
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: bucket-approved-region
+    sources:
+    - ghcr.io/kubewarden/policies/bucket-approved-region:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/bucket-approved-region-1.0.5/bucket-approved-region-1.0.5.tgz
+    version: 1.0.5
+  bucket-endpoint-domain:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Bucket Endpoint Domain
+      kubewarden/mutation: "false"
+      kubewarden/resources: Bucket
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - buckets
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:29.506207226Z"
+    description: Bucket endpoint domain must be one of the trusted domains.
+    digest: e3181cb8ce4571ac8d440eba72bf8bf3b1d759322276d4b380f168369f51a582
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: bucket-endpoint-domain
+    sources:
+    - ghcr.io/kubewarden/policies/bucket-endpoint-domain:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/bucket-endpoint-domain-1.0.5/bucket-endpoint-domain-1.0.5.tgz
+    version: 1.0.5
+  bucket-insecure-connections:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Bucket Insecure Connections
+      kubewarden/mutation: "false"
+      kubewarden/resources: Bucket
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - buckets
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:29.691758105Z"
+    description: Ensure that Bucket objects do not use insecure connections
+    digest: 522bef27e7717612646f9ad04fd2fa0e741fedad9195ed98a9bedcd54841e040
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: bucket-insecure-connections
+    sources:
+    - ghcr.io/kubewarden/policies/bucket-insecure-connections:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/bucket-insecure-connections-1.0.5/bucket-insecure-connections-1.0.5.tgz
+    version: 1.0.5
+  capabilities-psp:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Capabilities PSP
+      kubewarden/mutation: "true"
+      kubewarden/resources: Pod,Deployment,ReplicaSet,StatefulSet,DaemonSet,Job,CronJob,ReplicationController
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+    apiVersion: v1
+    appVersion: 1.0.15
+    created: "2026-11-10T10:20:29.96403363Z"
+    description: Replacement for the Kubernetes Pod Security Policy that controls
+      the usage of capabilities
+    digest: 7095a691c9eaed93d1e2367ffb43f4ef3d27973c976d32ffcc6100fa3f9d1cfa
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - psp
+    - container
+    - capability
+    - capabilities
+    name: capabilities-psp
+    sources:
+    - ghcr.io/kubewarden/policies/capabilities-psp:v1.0.15
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/capabilities-psp-1.0.15/capabilities-psp-1.0.15.tgz
+    version: 1.0.15
+  cel-policy:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: v1
+          kind: Namespace
+      kubewarden/displayName: CEL Policy
+      kubewarden/mutation: "false"
+      kubewarden/resources: Any
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+          - UPDATE
+          - DELETE
+    apiVersion: v1
+    appVersion: 1.6.5
+    created: "2026-11-10T10:20:30.176387557Z"
+    description: A policy that evaluates CEL expressions
+    digest: 02861d272f2a7dbcece101c9afedf0ec71993806edc1199874f68a1a9e16fbd9
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - compliance
+    - CEL
+    - ValidatingAdmissionPolicy
+    - Common Expression Language
+    name: cel-policy
+    sources:
+    - ghcr.io/kubewarden/policies/cel-policy:v1.6.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/cel-policy-1.6.5/cel-policy-1.6.5.tgz
+    version: 1.6.5
+  container-block-sysctl:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Container Block Sysctls
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:30.450452844Z"
+    description: 'Setting sysctls can allow containers unauthorized escalated privileges
+      to a Kubernetes node.  '
+    digest: b1a48745b14faa1d054850041ea301be6db26ac981b39ee3df5a2b1db992a4be
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - pci-dss
+    - cis-benchmark
+    - mitre-attack
+    - nist800-190
+    - gdpr
+    - default
+    name: container-block-sysctl
+    sources:
+    - ghcr.io/kubewarden/policies/container-block-sysctl:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/container-block-sysctl-1.0.5/container-block-sysctl-1.0.5.tgz
+    version: 1.0.5
+  container-block-sysctl.cve-2022-0811:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Container Block Sysctls CVE-2022-0811
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:30.730148566Z"
+    description: 'Setting sysctls can allow containers unauthorized escalated privileges
+      to a Kubernetes node.  '
+    digest: 08e64e8ac100bb3dfe032f7c1f1f7a25bf17811a21be61fe08f52561d2c0208a
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - pci-dss
+    - cis-benchmark
+    - mitre-attack
+    - nist800-190
+    - gdpr
+    - default
+    name: container-block-sysctl.cve-2022-0811
+    sources:
+    - ghcr.io/kubewarden/policies/container-block-sysctl.cve-2022-0811:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/container-block-sysctl.cve-2022-0811-1.0.5/container-block-sysctl.cve-2022-0811-1.0.5.tgz
+    version: 1.0.5
+  container-resources:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Container Resources
+      kubewarden/mutation: "true"
+      kubewarden/resources: Pod, Replicationcontroller, Deployments, Replicaset, Statefulset,
+        Daemonset, Job, Cronjob
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.3.8
+    created: "2026-11-10T10:20:31.081609543Z"
+    description: Policy is designed to enforce constraints on the resource requirements
+      of Kubernetes containers
+    digest: 35d016d95454a26e0bbde4955f46459da39414fa1f7c39fdf70b260b2936b7aa
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - container
+    - resources
+    name: container-resources
+    sources:
+    - ghcr.io/kubewarden/policies/container-resources:v1.3.8
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/container-resources-1.3.8/container-resources-1.3.8.tgz
+    version: 1.3.8
+  container-running-as-root:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Container Running As Root
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.6
+    created: "2026-11-10T10:20:31.440349197Z"
+    description: 'Running as root gives the container full access to all resources
+      in the VM it is running on. Containers should not run with such access rights
+      unless required by design. This Policy enforces that the `securityContext.runAsNonRoot`
+      attribute is set to `true`.  '
+    digest: 7be792266d517e3e66808cf35d4a62c9f1c60c18f281ff87125c2be729d59175
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - pci-dss
+    - cis-benchmark
+    - mitre-attack
+    - nist800-190
+    - gdpr
+    - default
+    name: container-running-as-root
+    sources:
+    - ghcr.io/kubewarden/policies/container-running-as-root:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/container-running-as-root-1.0.6/container-running-as-root-1.0.6.tgz
+    version: 1.0.6
+  container-running-as-user:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Container Running As User
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.6
+    created: "2026-11-10T10:20:31.708777439Z"
+    description: 'Containers has a feature in which you specify the ID of the user
+      which all processes in the container will run with. This Policy enforces that
+      the `securityContext.runAsUser` attribute is set to a uid greater than root
+      uid. Running as root user gives the container full access to all resources in
+      the VM it is running on. Containers should not run with such access rights unless
+      required by design.  '
+    digest: 28c3783c7674a49877d0c79869d8971977bd801e5e77f76a9178773702bacf03
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - pci-dss
+    - cis-benchmark
+    - mitre-attack
+    - nist800-190
+    - gdpr
+    - default
+    name: container-running-as-user
+    sources:
+    - ghcr.io/kubewarden/policies/container-running-as-user:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/container-running-as-user-1.0.6/container-running-as-user-1.0.6.tgz
+    version: 1.0.6
+  containers-block-specific-image-names:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Containers Block Specific Image Names
+      kubewarden/mutation: "false"
+      kubewarden/resources: CronJob, DaemonSet, Deployment, Job, Pod, StatefulSet
+      kubewarden/rules: |
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - cronjobs
+          - jobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - daemonsets
+          - deployments
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:32.007994885Z"
+    description: 'This Policy prohibits images with certain image names from being
+      deployed by specifying a list of unapproved names.  '
+    digest: d4c2369542b54786d18a7883df727b195ec2a5f118efa5b33233719507df04b6
+    home: https://github.com/kubewarden/policies
+    name: containers-block-specific-image-names
+    sources:
+    - ghcr.io/kubewarden/policies/containers-block-specific-image-names:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/containers-block-specific-image-names-1.0.5/containers-block-specific-image-names-1.0.5.tgz
+    version: 1.0.5
+  containers-block-ssh-port:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Containers Block Ssh Port
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.6
+    created: "2026-11-10T10:20:32.279141593Z"
+    description: 'This Policy checks if the container is exposing ssh port. '
+    digest: 1968b43e260563f1f2f4fe3cf53b63f49e53087bcf9927e7468832b215afbcd3
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - pci-dss
+    name: containers-block-ssh-port
+    sources:
+    - ghcr.io/kubewarden/policies/containers-block-ssh-port:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/containers-block-ssh-port-1.0.6/containers-block-ssh-port-1.0.6.tgz
+    version: 1.0.6
+  containers-missing-security-context:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Containers Missing Security Context
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, Pod, ReplicationController, ReplicaSet,
+        DaemonSet, StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:32.557242187Z"
+    description: 'This Policy checks if the container is missing securityContext while
+      there is no securityContext defined on the Pod level as well. The security settings
+      that are specified on the Pod level apply to all containers in the Pod. '
+    digest: 115f02ce824164b3822be0c5da3242b9e9f2c78e69fde2344f72b7dd94aa169f
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - pci-dss
+    - cis-benchmark
+    - mitre-attack
+    - nist800-190
+    - gdpr
+    - default
+    name: containers-missing-security-context
+    sources:
+    - ghcr.io/kubewarden/policies/containers-missing-security-context:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/containers-missing-security-context-1.0.5/containers-missing-security-context-1.0.5.tgz
+    version: 1.0.5
+  containers-should-not-run-in-namespace:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Containers Should Not Run In Namespace
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod, Deployment, Job, ReplicationController, ReplicaSet,
+        DaemonSet, StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:32.849589816Z"
+    description: 'This Policy ensure workloads are not running in a specified namespace.  '
+    digest: ec86d2b5497204008291cd9aabfdc70ba66f87d744ddf3bccde6b80da91fe18c
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - cis-benchmark
+    - soc2-type1
+    name: containers-should-not-run-in-namespace
+    sources:
+    - ghcr.io/kubewarden/policies/containers-should-not-run-in-namespace:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/containers-should-not-run-in-namespace-1.0.5/containers-should-not-run-in-namespace-1.0.5.tgz
+    version: 1.0.5
+  deprecated-api-versions:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Deprecated API Versions
+      kubewarden/mutation: "false"
+      kubewarden/resources: '*'
+      kubewarden/rules: |
+        - apiGroups:
+          - admissionregistration.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - apiextensions.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - apiregistration.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1beta1
+          - v1beta2
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - audit.k8s.io
+          apiVersions:
+          - v1alpha1
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - authentication.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - autoscaling
+          apiVersions:
+          - v2beta1
+          - v2beta2
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - certificates.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - coordination.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - discovery.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - events.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - extensions
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - flowcontrol.apiserver.k8s.io
+          apiVersions:
+          - v1beta1
+          - v1beta2
+          - v1beta3
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - networking.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - node.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - policy
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          apiVersions:
+          - v1alpha1
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - scheduling.k8s.io
+          apiVersions:
+          - v1alpha1
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - storage.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+    apiVersion: v1
+    appVersion: 1.0.13
+    created: "2026-11-10T10:20:33.199788568Z"
+    description: Find deprecated and removed Kubernetes resources
+    digest: 890ce8aa0e09ac005736d87ad839207e9da90f0ce73704dbc1578c86f2d9e18e
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - compliance
+    - deprecated API
+    name: deprecated-api-versions
+    sources:
+    - ghcr.io/kubewarden/policies/deprecated-api-versions:v1.0.13
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/deprecated-api-versions-1.0.13/deprecated-api-versions-1.0.13.tgz
+    version: 1.0.13
+  disallow-service-loadbalancer:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Disallow Service Loadbalancer
+      kubewarden/mutation: "false"
+      kubewarden/resources: Service
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - services
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.16
+    created: "2026-11-10T10:20:33.507339148Z"
+    description: A policy that prevents the creation of Service resources of type
+      `LoadBalancer`
+    digest: a5cd9b76898eba44135e4eeb4ada1723b18c7b56ffc6a59310f4410430e01828
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - service
+    name: disallow-service-loadbalancer
+    sources:
+    - ghcr.io/kubewarden/policies/disallow-service-loadbalancer:v1.0.16
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/disallow-service-loadbalancer-1.0.16/disallow-service-loadbalancer-1.0.16.tgz
+    version: 1.0.16
+  disallow-service-nodeport:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Disallow Service Nodeport
+      kubewarden/mutation: "false"
+      kubewarden/resources: Service
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - services
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.9
+    created: "2026-11-10T10:20:33.84551802Z"
+    description: A policy that prevents the creation of Service resources of type
+      `NodePort`
+    digest: e3e582b6f80602ff2ef75631056ce5183cab64e22b0bdac434a9b3a4d7b7945c
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - service
+    name: disallow-service-nodeport
+    sources:
+    - ghcr.io/kubewarden/policies/disallow-service-nodeport:v1.0.9
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/disallow-service-nodeport-1.0.9/disallow-service-nodeport-1.0.9.tgz
+    version: 1.0.9
+  do-not-expose-admission-controller-webhook-services:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: networking.k8s.io/v1
+          kind: Ingress
+        - apiVersion: v1
+          kind: Service
+      kubewarden/displayName: Do not expose admission controller webhook services
+      kubewarden/mutation: "false"
+      kubewarden/registry: ghcr.io
+      kubewarden/repository: kubewarden/policies/do-not-expose-admission-controller-webhook-services
+      kubewarden/resources: ValidatingWebhookConfiguration, MutatingWebhookConfiguration
+      kubewarden/rules: |
+        - apiGroups:
+          - admissionregistration.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - validatingwebhookconfigurations
+          - mutatingwebhookconfigurations
+          operations:
+          - CREATE
+          - UPDATE
+      kubewarden/tag: v1.1.8
+    apiVersion: v1
+    appVersion: 1.1.8
+    created: "2026-11-10T10:20:34.137901767Z"
+    description: A policy that detects webhook services used by admission controllers
+      that are accidentally exposed outside of the cluster
+    digest: e3896ede7ce953f38eb7f97dac172446a6acd6c3715d17fe5cad70d9890bbf70
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - webhooks
+    name: do-not-expose-admission-controller-webhook-services
+    sources:
+    - ghcr.io/kubewarden/policies/do-not-expose-admission-controller-webhook-services:v1.1.8
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/do-not-expose-admission-controller-webhook-services-1.1.8/do-not-expose-admission-controller-webhook-services-1.1.8.tgz
+    version: 1.1.8
+  echo:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Echo
+      kubewarden/mutation: "false"
+      kubewarden/resources: '*'
+      kubewarden/rules: |
+        - apiGroups:
+          - '*'
+          apiVersions:
+          - '*'
+          resources:
+          - '*'
+          operations:
+          - CREATE
+          - UPDATE
+          - DELETE
+          - CONNECT
+    apiVersion: v1
+    appVersion: 0.1.21
+    created: "2026-11-10T10:20:34.437900064Z"
+    description: A policy that echoes back Kubernetes' AdmissionReview - useful for
+      Policy Authors
+    digest: 98a6e233644589142a3fdcf9b17ae6a6e035d4626ad0978ddfa2c1dd3d59ce8a
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - developer
+    name: echo
+    sources:
+    - ghcr.io/kubewarden/policies/echo:v0.1.21
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/echo-0.1.21/echo-0.1.21.tgz
+    version: 0.1.21
+  env-variable-secrets-scanner:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Environment Variable Secrets Scanner
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod,Deployment,Replicaset,Statefulset,Daemonset,Replicationcontroller,Job,Cronjob
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.17
+    created: "2026-11-10T10:20:34.747216716Z"
+    description: Policy that inspects env vars and rejects a request if a secret was
+      found
+    digest: 6f16074d46a3b32679ee62d96d5e8b0514f7e447d6edc52c3d2219e50a425b27
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - secrets
+    - api keys
+    - tokens
+    - secret leak
+    - confidential data
+    - confidential data leak
+    name: env-variable-secrets-scanner
+    sources:
+    - ghcr.io/kubewarden/policies/env-variable-secrets-scanner:v1.0.17
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/env-variable-secrets-scanner-1.0.17/env-variable-secrets-scanner-1.0.17.tgz
+    version: 1.0.17
+  environment-variable-policy:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Environment Variable Policy
+      kubewarden/mutation: "false"
+      kubewarden/registry: ghcr.io
+      kubewarden/repository: kubewarden/policies/environment-variable-policy
+      kubewarden/resources: Deployment,Replicaset,Statefulset,Daemonset,Replicationcontroller,Job,Cronjob,Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+      kubewarden/tag: v3.0.6
+    apiVersion: v1
+    appVersion: 3.0.6
+    created: "2026-11-10T10:20:35.016653228Z"
+    description: A Kubewarden Policy that controls the usage of environment variables
+    digest: 351a7bc91d48f0429e5d6b52f48cbbf2ad1eed272389bd2da1a88b5d9206a95a
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - deployment
+    - replicaset
+    - statefulset
+    - daemonset
+    - replicationcontroller
+    - job
+    - cronjob
+    - pod
+    - container
+    - environment-variables
+    name: environment-variable-policy
+    sources:
+    - ghcr.io/kubewarden/policies/environment-variable-policy:v3.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/environment-variable-policy-3.0.6/environment-variable-policy-3.0.6.tgz
+    version: 3.0.6
+  flexvolume-drivers-psp:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Flexvolume Drivers Psp
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.19
+    created: "2026-11-10T10:20:35.300907544Z"
+    description: Replacement for the Kubernetes Pod Security Policy that controls
+      the allowed `flexVolume` drivers
+    digest: 6d4c7d1a6d513bb5096f437001598cad0f15acf86015aa536efa62cbbd9e90f4
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - psp
+    - container
+    - runtime
+    - flex volume
+    - flex
+    name: flexvolume-drivers-psp
+    sources:
+    - ghcr.io/kubewarden/policies/flexvolume-drivers-psp:v1.0.19
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/flexvolume-drivers-psp-1.0.19/flexvolume-drivers-psp-1.0.19.tgz
+    version: 1.0.19
+  gitrepository-ignore-suffixes:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: GitRepository Ignore Suffixes
+      kubewarden/mutation: "false"
+      kubewarden/resources: GitRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - gitrepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:35.568555728Z"
+    description: GitRepository resources must include specific suffixes in the spec.ignore
+      field which determines the files to be ignored before making a commit.
+    digest: 3ccc37a8f31a82baed5737a87171b5f9ae96ec6cf7283fad08f307bdfdf2cf6e
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: gitrepository-ignore-suffixes
+    sources:
+    - ghcr.io/kubewarden/policies/gitrepository-ignore-suffixes:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/gitrepository-ignore-suffixes-1.0.5/gitrepository-ignore-suffixes-1.0.5.tgz
+    version: 1.0.5
+  gitrepository-organization-domains:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: GitRepository Organization Domains
+      kubewarden/mutation: "false"
+      kubewarden/resources: GitRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - gitrepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:35.856604607Z"
+    description: GitRepository resources must only be from allowed organization domains.
+    digest: 86218a9710422c85a1267c55a6fd7ea219f2655fd1e7e3151c8fa1f03832ecee
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: gitrepository-organization-domains
+    sources:
+    - ghcr.io/kubewarden/policies/gitrepository-organization-domains:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/gitrepository-organization-domains-1.0.5/gitrepository-organization-domains-1.0.5.tgz
+    version: 1.0.5
+  gitrepository-specific-branch:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: GitRepository Specific Branch
+      kubewarden/mutation: "false"
+      kubewarden/resources: GitRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - gitrepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:36.15852612Z"
+    description: GitRepository resources must reference a specific branch, e.g. 'main'.
+    digest: c1c595f13a65aad704ca346a0370e4368c20786e640e6f00e0860566d64d6cfa
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: gitrepository-specific-branch
+    sources:
+    - ghcr.io/kubewarden/policies/gitrepository-specific-branch:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/gitrepository-specific-branch-1.0.5/gitrepository-specific-branch-1.0.5.tgz
+    version: 1.0.5
+  gitrepository-untrusted-domains:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: GitRepository Untrusted Domains
+      kubewarden/mutation: "false"
+      kubewarden/resources: GitRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - gitrepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:36.460202036Z"
+    description: GitRepository resources must not use targets from untrusted domains.
+    digest: daeca7fab1f27b4e8c488105a1c1324def0838061a997177b78a01a1a6cfee7c
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: gitrepository-untrusted-domains
+    sources:
+    - ghcr.io/kubewarden/policies/gitrepository-untrusted-domains:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/gitrepository-untrusted-domains-1.0.5/gitrepository-untrusted-domains-1.0.5.tgz
+    version: 1.0.5
+  helm-chart-cosign-verification:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: HelmChart Cosign Verification
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmChart
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - helmcharts
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:36.700367376Z"
+    description: HelmChart objects must provide cosign verification and reference
+      a secret containing the Cosign public keys of trusted authors
+    digest: 6eb17a5f2cbb29104ec9545558c62961e9102138f2d68ac2abfc3b2fbfc38f7c
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: helm-chart-cosign-verification
+    sources:
+    - ghcr.io/kubewarden/policies/helm-chart-cosign-verification:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-chart-cosign-verification-1.0.5/helm-chart-cosign-verification-1.0.5.tgz
+    version: 1.0.5
+  helm-chart-values-files-format:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: HelmChart Values File Format
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmChart
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - helmcharts
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:37.06341715Z"
+    description: 'HelmChart must reference values files in the following format: ''xxx=values.yaml''.'
+    digest: e30660b929c35575e4378f25e62e3e028e6d05f54c4ea572d1118cc95d86240f
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: helm-chart-values-files-format
+    sources:
+    - ghcr.io/kubewarden/policies/helm-chart-values-files-format:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-chart-values-files-format-1.0.5/helm-chart-values-files-format-1.0.5.tgz
+    version: 1.0.5
+  helm-release-max-history:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Max History
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.6
+    created: "2026-11-10T10:20:37.396690371Z"
+    description: HelmRelease maxHistory cannot exceed the specified value.
+    digest: fe096970d35e590832fc175f7fcf8aecfe58c1464a9c57f286b0924d65ea511d
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: helm-release-max-history
+    sources:
+    - ghcr.io/kubewarden/policies/helm-release-max-history:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-max-history-1.0.6/helm-release-max-history-1.0.6.tgz
+    version: 1.0.6
+  helm-release-namespace-match:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Namespace Match
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:37.666004888Z"
+    description: HelmRelease storageNamespace and targetNamespace must match.
+    digest: 538165438e2ce89c43eef51fee8666901f82b7b0080ee690890b14a8915bb6d6
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: helm-release-namespace-match
+    sources:
+    - ghcr.io/kubewarden/policies/helm-release-namespace-match:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-namespace-match-1.0.5/helm-release-namespace-match-1.0.5.tgz
+    version: 1.0.5
+  helm-release-post-renderer:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Post Renderer
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:37.908567839Z"
+    description: HelmRelease must not have post-renderers enabled.
+    digest: af6a2ca6d04fc65e8284a59d7cb61e7d01f0688fc2971bf34426eb379ac84822
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: helm-release-post-renderer
+    sources:
+    - ghcr.io/kubewarden/policies/helm-release-post-renderer:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-post-renderer-1.0.5/helm-release-post-renderer-1.0.5.tgz
+    version: 1.0.5
+  helm-release-remediation-retries:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Remediation Retries
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.6
+    created: "2026-11-10T10:20:38.238496743Z"
+    description: HelmRelease remediation retries must be within the specified lower
+      and upper bounds.
+    digest: bb93c583bb48bef11bf8e3ec0dd4e9085b101f623e8746d598e1b09fc780e6af
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: helm-release-remediation-retries
+    sources:
+    - ghcr.io/kubewarden/policies/helm-release-remediation-retries:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-remediation-retries-1.0.6/helm-release-remediation-retries-1.0.6.tgz
+    version: 1.0.6
+  helm-release-rollback:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Rollback Should Be Disabled
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:38.997810438Z"
+    description: The rollback feature of a HelmRelease should be disabled.
+    digest: 754959afcb7368d228108534518a506867f8b2f73ebf7f6305477a0acdb0752b
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: helm-release-rollback
+    sources:
+    - ghcr.io/kubewarden/policies/helm-release-rollback:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-rollback-1.0.5/helm-release-rollback-1.0.5.tgz
+    version: 1.0.5
+  helm-release-service-account-name:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Service Account Name
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:39.350443351Z"
+    description: HelmRelease serviceAccountName must contain a value from parameters.service_account_names
+    digest: 3fe472f2685e45b438717056c0906d06a392d846a8ad273c1d085679ac06dd0b
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: helm-release-service-account-name
+    sources:
+    - ghcr.io/kubewarden/policies/helm-release-service-account-name:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-service-account-name-1.0.5/helm-release-service-account-name-1.0.5.tgz
+    version: 1.0.5
+  helm-release-storage-namespace:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Storage Namespace
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:39.818706067Z"
+    description: HelmRelease storageNamespace must contain a value from storage_namespaces.
+    digest: bfcd6dbcb2e6c5757737b9cf243cb8ae34709f2849e7ac65d0248322dad1b93a
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: helm-release-storage-namespace
+    sources:
+    - ghcr.io/kubewarden/policies/helm-release-storage-namespace:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-storage-namespace-1.0.5/helm-release-storage-namespace-1.0.5.tgz
+    version: 1.0.5
+  helm-release-target-namespace:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Target Namespace
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:40.074385652Z"
+    description: HelmRelease targetNamespace must be one of the allowed targetNamespace
+      list.
+    digest: 800cdcc592254072b8acfc7368b25bd2df6dcdfb08ed79f210bd31b5d6a51499
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: helm-release-target-namespace
+    sources:
+    - ghcr.io/kubewarden/policies/helm-release-target-namespace:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-target-namespace-1.0.5/helm-release-target-namespace-1.0.5.tgz
+    version: 1.0.5
+  helm-release-values-from-configmaps:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Values From
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:40.364969072Z"
+    description: HelmRelease valuesFrom must use correctly configured ConfigMaps.
+    digest: f35beaa073fc5bfd508e46463e1fc8c7308112f415c578db152dacd99bcab051
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: helm-release-values-from-configmaps
+    sources:
+    - ghcr.io/kubewarden/policies/helm-release-values-from-configmaps:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-values-from-configmaps-1.0.5/helm-release-values-from-configmaps-1.0.5.tgz
+    version: 1.0.5
+  helm-repo-type:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Repo Type Should Be OCI
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - helmrepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:40.752451081Z"
+    description: The type of a Helm repository should be OCI.
+    digest: f372c5891f1e69a2bfd55045a7a332f48b13b021ee7538b58e91ca0e5d9d2a80
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: helm-repo-type
+    sources:
+    - ghcr.io/kubewarden/policies/helm-repo-type:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-repo-type-1.0.5/helm-repo-type-1.0.5.tgz
+    version: 1.0.5
+  helm-repo-url:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Repo URL Should Be in Organisation Domain
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - helmrepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:41.218600194Z"
+    description: The URL of a Helm repository should only be from the specified organisation
+      domain.
+    digest: 218e6b1a8096426adcf875b6c71cfb78eb10fa16eca295bdde8ae2a6e5f8aec4
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: helm-repo-url
+    sources:
+    - ghcr.io/kubewarden/policies/helm-repo-url:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-repo-url-1.0.5/helm-repo-url-1.0.5.tgz
+    version: 1.0.5
+  high-risk-service-account:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: High Risk Service Account
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 0.1.11
+    created: "2026-11-10T10:20:41.516662783Z"
+    description: Policy to prevent the usage of serviceaccount with too many permissions
+    digest: e37cb5ce662d8c910b715caebb53eca7a438ca293b9141ce131691cab9ef8eab
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - pod
+    - security
+    - serviceaccount
+    name: high-risk-service-account
+    sources:
+    - ghcr.io/kubewarden/policies/high-risk-service-account:v0.1.11
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/high-risk-service-account-0.1.11/high-risk-service-account-0.1.11.tgz
+    version: 0.1.11
+  host-namespaces-psp:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Host Namespaces PSP
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.1.13
+    created: "2026-11-10T10:20:41.836322134Z"
+    description: A Kubewarden policy that controls the usage of host namespaces
+    digest: b7020e6dc9e6b3a39f38d4f55ad7573ff4ea748933ebd4bea011fcf9fe8b41c4
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - psp
+    - container
+    - network
+    name: host-namespaces-psp
+    sources:
+    - ghcr.io/kubewarden/policies/host-namespaces-psp:v1.1.13
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/host-namespaces-psp-1.1.13/host-namespaces-psp-1.1.13.tgz
+    version: 1.1.13
+  hostpaths-psp:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Hostpaths PSP
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.1.12
+    created: "2026-11-10T10:20:42.070274521Z"
+    description: A Pod Security Policy that controls usage of hostPath volumes
+    digest: bdae5c4035bd33dd7eb8ac94e23b22c9311bb7a725e9c06430770a68e69437d4
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - psp
+    - hostpaths
+    - pod
+    name: hostpaths-psp
+    sources:
+    - ghcr.io/kubewarden/policies/hostpaths-psp:v1.1.12
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/hostpaths-psp-1.1.12/hostpaths-psp-1.1.12.tgz
+    version: 1.1.12
+  image-cve-policy:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: storage.sbomscanner.kubewarden.io/v1alpha1
+          kind: VulnerabilityReport
+      kubewarden/displayName: image-cve
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod, ReplicaSet, Deployment, DaemonSet, StatefulSet, Job,
+        CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 0.6.6
+    created: "2026-11-10T10:20:42.433464341Z"
+    description: Validate workloads based on the vulnerabilities of the images they
+      make use of
+    digest: d87cc13eb4e1408f4736832f4276f08cd51b45a37a24a13ab6431b52c0360f7f
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - pod
+    - cool policy
+    - kubewarden
+    name: image-cve-policy
+    sources:
+    - ghcr.io/kubewarden/policies/image-cve-policy:v0.6.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/image-cve-policy-0.6.6/image-cve-policy-0.6.6.tgz
+    version: 0.6.6
+  ingress-policy:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Ingress Policy
+      kubewarden/mutation: "false"
+      kubewarden/resources: Ingress
+      kubewarden/rules: |
+        - apiGroups:
+          - networking.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - ingresses
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.13
+    created: "2026-11-10T10:20:42.708068834Z"
+    description: Enforce requirements on Ingress resources
+    digest: 1fce5b4296b254b5f227223b95ea4ab5e4bd88665d45780a532608238df1efdc
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - ingress
+    name: ingress-policy
+    sources:
+    - ghcr.io/kubewarden/policies/ingress:v1.0.13
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ingress-policy-1.0.13/ingress-policy-1.0.13.tgz
+    version: 1.0.13
+  ingress-unique-host:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: networking.k8s.io/v1
+          kind: Ingress
+      kubewarden/displayName: Unique Ingress host
+      kubewarden/mutation: "false"
+      kubewarden/resources: Ingress
+      kubewarden/rules: |
+        - apiGroups:
+          - networking.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - ingresses
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.14
+    created: "2026-11-10T10:20:42.952111532Z"
+    description: Requires all Ingress rule hosts to be unique
+    digest: 0d37f5719f78a65bbff0a9bc1f92b2bb9897a5d5efc42ad0d1329e3d6cc6c93e
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - ingress
+    - kubewarden
+    name: ingress-unique-host
+    sources:
+    - ghcr.io/kubewarden/policies/unique-ingress-policy:v1.0.14
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ingress-unique-host-1.0.14/ingress-unique-host-1.0.14.tgz
+    version: 1.0.14
+  istio-gateway-approved-hosts:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Istio Gateway Approved Hosts
+      kubewarden/mutation: "false"
+      kubewarden/resources: Gateway
+      kubewarden/rules: |
+        - apiGroups:
+          - networking.istio.io
+          apiVersions:
+          - v1
+          resources:
+          - gateways
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:43.182812627Z"
+    description: '### Istio Gateway Approved Hosts This ensures you are only serving
+      traffic for approved hostnames.  '
+    digest: 4b8364e667f8e44c8f30de3643f4bd3e75733a51c49932c5e24ae9952f580a89
+    home: https://github.com/kubewarden/policies
+    name: istio-gateway-approved-hosts
+    sources:
+    - ghcr.io/kubewarden/policies/istio-gateway-approved-hosts:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/istio-gateway-approved-hosts-1.0.5/istio-gateway-approved-hosts-1.0.5.tgz
+    version: 1.0.5
+  istio-injected-namespaces:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Istio Injected Namespaces
+      kubewarden/mutation: "false"
+      kubewarden/resources: Namespace
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - namespaces
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:43.44360678Z"
+    description: '# Istio-Injected Namespaces Specify namespaces you would like to
+      be labeld with `istio-injected: enabled`. Namespaces with this label with automatically
+      deploy a Istio sidecar with each pod.  '
+    digest: 1e02bd4fbac1ae73a632bb3487fb3db1e46e3c828f6e113cba8ba38c89433a39
+    home: https://github.com/kubewarden/policies
+    name: istio-injected-namespaces
+    sources:
+    - ghcr.io/kubewarden/policies/istio-injected-namespaces:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/istio-injected-namespaces-1.0.5/istio-injected-namespaces-1.0.5.tgz
+    version: 1.0.5
+  kustomization-decryption-provider:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Decryption Provider
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:43.734325908Z"
+    description: Spec.decryption.provider must be set to one of decryption_providers.
+    digest: f14e498fc261498e18633a1bca6e2d44b51d04d54fe44b0dcc8f2ee446f48052
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: kustomization-decryption-provider
+    sources:
+    - ghcr.io/kubewarden/policies/kustomization-decryption-provider:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-decryption-provider-1.0.5/kustomization-decryption-provider-1.0.5.tgz
+    version: 1.0.5
+  kustomization-excluded-paths:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Excluded Paths
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:43.984820323Z"
+    description: spec.path cannot be one of excludedPathsList[]
+    digest: 4fc50a0fca1f1806f5550c5fe02330a70824a2a7831dafe7c6084a9fd430b5e0
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: kustomization-excluded-paths
+    sources:
+    - ghcr.io/kubewarden/policies/kustomization-excluded-paths:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-excluded-paths-1.0.5/kustomization-excluded-paths-1.0.5.tgz
+    version: 1.0.5
+  kustomization-image-tag-standards:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Image Tag Standards
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:44.272211651Z"
+    description: spec.Images must comply with image tag/semver reference standards.
+    digest: d4ba7912de4c4cff32c18af99b6d4e71aa993af3552d84df8290f9e16f440aa6
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: kustomization-image-tag-standards
+    sources:
+    - ghcr.io/kubewarden/policies/kustomization-image-tag-standards:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-image-tag-standards-1.0.5/kustomization-image-tag-standards-1.0.5.tgz
+    version: 1.0.5
+  kustomization-images-requirement:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Images Requirement
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:44.528560612Z"
+    description: The 'spec.images' field in a Kustomization object must be enabled
+      or disabled based on the policy input images_required.
+    digest: 229f1ec11a27c9b396550c63283659b01789a4dce74dd55c160530793dbb06ae
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: kustomization-images-requirement
+    sources:
+    - ghcr.io/kubewarden/policies/kustomization-images-requirement:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-images-requirement-1.0.5/kustomization-images-requirement-1.0.5.tgz
+    version: 1.0.5
+  kustomization-patches-requirement:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Patches
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:44.880966632Z"
+    description: Kustomization patches should be enabled or disabled based on input.
+    digest: 9549770ba7cc8b64345bafbc7efa79bf178bf2e7112fc9b1b3cbdf6358950221
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: kustomization-patches-requirement
+    sources:
+    - ghcr.io/kubewarden/policies/kustomization-patches-requirement:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-patches-requirement-1.0.5/kustomization-patches-requirement-1.0.5.tgz
+    version: 1.0.5
+  kustomization-prune:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Prune
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:45.139741944Z"
+    description: The 'spec.prune' field in the Kustomization object must be set according
+      to the input parameter 'prune'.
+    digest: b82f6b6b774ce6ac461b5bbc062260657bef54aee1dafda780634a3960f2afe4
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: kustomization-prune
+    sources:
+    - ghcr.io/kubewarden/policies/kustomization-prune:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-prune-1.0.5/kustomization-prune-1.0.5.tgz
+    version: 1.0.5
+  kustomization-target-namespace:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Target Namespace
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.6
+    created: "2026-11-10T10:20:45.479489672Z"
+    description: Kustomization targetNamespace must be one of the allowed targetNamespace
+      list.
+    digest: fb0991721b769e94cace9db8fbd7df50e5e287cab1f0ff8d7db007a82ee16645
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: kustomization-target-namespace
+    sources:
+    - ghcr.io/kubewarden/policies/kustomization-target-namespace:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-target-namespace-1.0.6/kustomization-target-namespace-1.0.6.tgz
+    version: 1.0.6
+  kustomization-var-substitution:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Var Substitution
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:45.748662249Z"
+    description: The property 'spec.postBuild.substitute.var_substitution_enabled'
+      must be disabled.
+    digest: 5c7609df28dc7fa9adc8355dbb3e85c39136b276353dfe20a048429fa6f1e521
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: kustomization-var-substitution
+    sources:
+    - ghcr.io/kubewarden/policies/kustomization-var-substitution:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-var-substitution-1.0.5/kustomization-var-substitution-1.0.5.tgz
+    version: 1.0.5
+  kyverno-dsl:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kyverno DSL policy
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 0.1.13
+    created: "2026-11-10T10:20:46.074507838Z"
+    description: An experimental Kubewarden policy that runs Kyverno policies
+    digest: 00de638fabd6ebe07d2ecf12aecda26f5e4f5ea1f3fcbcdb5cbbcf3edc4f8195
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - psp
+    - container
+    - runtime
+    name: kyverno-dsl
+    sources:
+    - ghcr.io/kubewarden/policies/kyverno-dsl:v0.1.13
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kyverno-dsl-0.1.13/kyverno-dsl-0.1.13.tgz
+    version: 0.1.13
+  labels:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Labels
+      kubewarden/mutation: "false"
+      kubewarden/resources: '*'
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 0.1.12
+    created: "2026-11-10T10:20:46.410185192Z"
+    description: A policy that validates labels of Kubernetes' resources
+    digest: d22d1081c5ee49ce6549b6144c8ba7e1b8ec6f22df10a09e13381cb073d1944b
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - labels
+    name: labels
+    sources:
+    - ghcr.io/kubewarden/policies/labels:v0.1.12
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/labels-0.1.12/labels-0.1.12.tgz
+    version: 0.1.12
+  metadata-missing-label-and-value:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Metadata Missing Label And Value
+      kubewarden/mutation: "false"
+      kubewarden/resources: DaemonSet, Deployment, Job, StatefulSet
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - daemonsets
+          - deployments
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:46.860451252Z"
+    description: 'Custom labels can help enforce organizational standards for each
+      artifact deployed. This Policy ensures a key and value are set in the entity''s
+      `metadata.labels` path. The Policy detects the presence of the following:   ###
+      label A label key of your choosing.   ### value A label value of your choosing. '
+    digest: 909b264f7da504a63d7b0896edd9e6427661f59e44792574483ec3080de416d2
+    home: https://github.com/kubewarden/policies
+    name: metadata-missing-label-and-value
+    sources:
+    - ghcr.io/kubewarden/policies/metadata-missing-label-and-value:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/metadata-missing-label-and-value-1.0.5/metadata-missing-label-and-value-1.0.5.tgz
+    version: 1.0.5
+  missing-kubernetes-app-component-label:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Missing Kubernetes App Component Label
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:47.124054945Z"
+    description: 'Custom labels can help enforce organizational standards for each
+      artifact deployed. This Policy ensure a custom label key is set in the entity''s
+      `metadata`. The Policy detects the presence of the following:   ### owner A
+      label key of `owner` will help identify who the owner of this entity is.   ###
+      app.kubernetes.io/name The name of the application   ### app.kubernetes.io/instance
+      A unique name identifying the instance of an application     ### app.kubernetes.io/version
+      The current version of the application (e.g., a semantic version, revision hash,
+      etc.)  ### app.kubernetes.io/part-of The name of a higher level application
+      this one is part of   ### app.kubernetes.io/managed-by The tool being used to
+      manage the operation of an application   ### app.kubernetes.io/created-by The
+      controller/user who created this resource  '
+    digest: 108b68e06f81e8734f660380f0e4e3a8b8998f40089e0c4d647098384278c0e0
+    home: https://github.com/kubewarden/policies
+    name: missing-kubernetes-app-component-label
+    sources:
+    - ghcr.io/kubewarden/policies/missing-kubernetes-app-component-label:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/missing-kubernetes-app-component-label-1.0.5/missing-kubernetes-app-component-label-1.0.5.tgz
+    version: 1.0.5
+  missing-kubernetes-app-created-by-label:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Missing Kubernetes App Created By Label
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:47.426344467Z"
+    description: 'Custom labels can help enforce organizational standards for each
+      artifact deployed. This Policy ensure a custom label key is set in the entity''s
+      `metadata`. The Policy detects the presence of the following:   ### owner A
+      label key of `owner` will help identify who the owner of this entity is.   ###
+      app.kubernetes.io/name The name of the application   ### app.kubernetes.io/instance
+      A unique name identifying the instance of an application     ### app.kubernetes.io/version
+      The current version of the application (e.g., a semantic version, revision hash,
+      etc.)  ### app.kubernetes.io/part-of The name of a higher level application
+      this one is part of   ### app.kubernetes.io/managed-by The tool being used to
+      manage the operation of an application   ### app.kubernetes.io/created-by The
+      controller/user who created this resource  '
+    digest: 6ea65bd06cc297fb21f07eb881e891a20673e133c38f84664f2849a0a0a66e0a
+    home: https://github.com/kubewarden/policies
+    name: missing-kubernetes-app-created-by-label
+    sources:
+    - ghcr.io/kubewarden/policies/missing-kubernetes-app-created-by-label:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/missing-kubernetes-app-created-by-label-1.0.5/missing-kubernetes-app-created-by-label-1.0.5.tgz
+    version: 1.0.5
+  missing-kubernetes-app-instance-label:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Missing Kubernetes App Instance Label
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:47.755772367Z"
+    description: 'Custom labels can help enforce organizational standards for each
+      artifact deployed. This Policy ensure a custom label key is set in the entity''s
+      `metadata`. The Policy detects the presence of the following:   ### owner A
+      label key of `owner` will help identify who the owner of this entity is.   ###
+      app.kubernetes.io/name The name of the application   ### app.kubernetes.io/instance
+      A unique name identifying the instance of an application     ### app.kubernetes.io/version
+      The current version of the application (e.g., a semantic version, revision hash,
+      etc.)  ### app.kubernetes.io/part-of The name of a higher level application
+      this one is part of   ### app.kubernetes.io/managed-by The tool being used to
+      manage the operation of an application   ### app.kubernetes.io/created-by The
+      controller/user who created this resource '
+    digest: 40de60360cc7b2cc42f6bd9f860c35d9b66f09a5158c7db85e93c08aa2134e7e
+    home: https://github.com/kubewarden/policies
+    name: missing-kubernetes-app-instance-label
+    sources:
+    - ghcr.io/kubewarden/policies/missing-kubernetes-app-instance-label:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/missing-kubernetes-app-instance-label-1.0.5/missing-kubernetes-app-instance-label-1.0.5.tgz
+    version: 1.0.5
+  missing-kubernetes-app-label:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Missing Kubernetes App Label
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:47.989616325Z"
+    description: 'Custom labels can help enforce organizational standards for each
+      artifact deployed. This Policy ensure a custom label key is set in the entity''s
+      `metadata`. The Policy detects the presence of the following:   ### owner A
+      label key of `owner` will help identify who the owner of this entity is.   ###
+      app.kubernetes.io/name The name of the application   ### app.kubernetes.io/instance
+      A unique name identifying the instance of an application     ### app.kubernetes.io/version
+      The current version of the application (e.g., a semantic version, revision hash,
+      etc.)  ### app.kubernetes.io/part-of The name of a higher level application
+      this one is part of   ### app.kubernetes.io/managed-by The tool being used to
+      manage the operation of an application   ### app.kubernetes.io/created-by The
+      controller/user who created this resource '
+    digest: 6c3750916e4af76d2b53a10963d051c67794d24afb03ae33c087f81a36a2e571
+    home: https://github.com/kubewarden/policies
+    name: missing-kubernetes-app-label
+    sources:
+    - ghcr.io/kubewarden/policies/missing-kubernetes-app-label:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/missing-kubernetes-app-label-1.0.5/missing-kubernetes-app-label-1.0.5.tgz
+    version: 1.0.5
+  missing-kubernetes-app-managed-by-label:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Missing Kubernetes App Managed By Label
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:48.243560401Z"
+    description: 'Custom labels can help enforce organizational standards for each
+      artifact deployed. This Policy ensure a custom label key is set in the entity''s
+      `metadata`. The Policy detects the presence of the following:   ### owner A
+      label key of `owner` will help identify who the owner of this entity is.   ###
+      app.kubernetes.io/name The name of the application   ### app.kubernetes.io/instance
+      A unique name identifying the instance of an application     ### app.kubernetes.io/version
+      The current version of the application (e.g., a semantic version, revision hash,
+      etc.)  ### app.kubernetes.io/part-of The name of a higher level application
+      this one is part of   ### app.kubernetes.io/managed-by The tool being used to
+      manage the operation of an application   ### app.kubernetes.io/created-by The
+      controller/user who created this resource  '
+    digest: fb7739888c31d7c02f5c0bf68c4b0eab19a24fee4fa55176c6e4c679c2250e12
+    home: https://github.com/kubewarden/policies
+    name: missing-kubernetes-app-managed-by-label
+    sources:
+    - ghcr.io/kubewarden/policies/missing-kubernetes-app-managed-by-label:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/missing-kubernetes-app-managed-by-label-1.0.5/missing-kubernetes-app-managed-by-label-1.0.5.tgz
+    version: 1.0.5
+  missing-kubernetes-app-part-of-label:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Missing Kubernetes App Part Of Label
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:48.705796289Z"
+    description: 'Custom labels can help enforce organizational standards for each
+      artifact deployed. This Policy ensure a custom label key is set in the entity''s
+      `metadata`. The Policy detects the presence of the following:   ### owner A
+      label key of `owner` will help identify who the owner of this entity is.   ###
+      app.kubernetes.io/name The name of the application   ### app.kubernetes.io/instance
+      A unique name identifying the instance of an application     ### app.kubernetes.io/version
+      The current version of the application (e.g., a semantic version, revision hash,
+      etc.)  ### app.kubernetes.io/part-of The name of a higher level application
+      this one is part of   ### app.kubernetes.io/managed-by The tool being used to
+      manage the operation of an application   ### app.kubernetes.io/created-by The
+      controller/user who created this resource  '
+    digest: 552950de838a6de51326a9cd3ad104cd60a0e4b6016cc425cbbeb1fb920a8159
+    home: https://github.com/kubewarden/policies
+    name: missing-kubernetes-app-part-of-label
+    sources:
+    - ghcr.io/kubewarden/policies/missing-kubernetes-app-part-of-label:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/missing-kubernetes-app-part-of-label-1.0.5/missing-kubernetes-app-part-of-label-1.0.5.tgz
+    version: 1.0.5
+  missing-kubernetes-app-version-label:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Missing Kubernetes App Version Label
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:49.016286548Z"
+    description: 'Custom labels can help enforce organizational standards for each
+      artifact deployed. This Policy ensure a custom label key is set in the entity''s
+      `metadata`. The Policy detects the presence of the following:   ### owner A
+      label key of `owner` will help identify who the owner of this entity is.   ###
+      app.kubernetes.io/name The name of the application   ### app.kubernetes.io/instance
+      A unique name identifying the instance of an application     ### app.kubernetes.io/version
+      The current version of the application (e.g., a semantic version, revision hash,
+      etc.)  ### app.kubernetes.io/part-of The name of a higher level application
+      this one is part of   ### app.kubernetes.io/managed-by The tool being used to
+      manage the operation of an application   ### app.kubernetes.io/created-by The
+      controller/user who created this resource  '
+    digest: bbbba96b72069e672dd6aea637d68c8667c783ba037f787e8fe706b9f3311edc
+    home: https://github.com/kubewarden/policies
+    name: missing-kubernetes-app-version-label
+    sources:
+    - ghcr.io/kubewarden/policies/missing-kubernetes-app-version-label:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/missing-kubernetes-app-version-label-1.0.5/missing-kubernetes-app-version-label-1.0.5.tgz
+    version: 1.0.5
+  missing-owner-label:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Missing Owner Label
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:49.385548992Z"
+    description: 'Custom labels can help enforce organizational standards for each
+      artifact deployed. This Policy ensure a custom label key is set in the entity''s
+      `metadata`. The Policy detects the presence of the following:   ### owner A
+      label key of `owner` will help identify who the owner of this entity is.   ###
+      app.kubernetes.io/name The name of the application   ### app.kubernetes.io/instance
+      A unique name identifying the instance of an application     ### app.kubernetes.io/version
+      The current version of the application (e.g., a semantic version, revision hash,
+      etc.)  ### app.kubernetes.io/part-of The name of a higher level application
+      this one is part of   ### app.kubernetes.io/managed-by The tool being used to
+      manage the operation of an application   ### app.kubernetes.io/created-by The
+      controller/user who created this resource  '
+    digest: e2a99d30e8dc83845df9337c083a241ed8fad8abfc278732e6f67dbf19200794
+    home: https://github.com/kubewarden/policies
+    name: missing-owner-label
+    sources:
+    - ghcr.io/kubewarden/policies/missing-owner-label:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/missing-owner-label-1.0.5/missing-owner-label-1.0.5.tgz
+    version: 1.0.5
+  namespace-label-propagator-policy:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: v1
+          kind: Namespace
+      kubewarden/displayName: Namespace label propagator
+      kubewarden/mutation: "true"
+      kubewarden/resources: Pod, ReplicationController, Deployment, ReplicaSet, StatefulSet,
+        DaemonSet, Job, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.14
+    created: "2026-11-10T10:20:49.67941828Z"
+    description: Kubewarden policy designed to automatically propagate labels defined
+      in a Kubernetes namespace to the associated resources within that namespace
+    digest: a7e852b042acaa7800e70e9406f924fce91af6d6835c8e6f059e209f48c5fe3d
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - policy
+    - kubewarden
+    - namespace
+    - label
+    name: namespace-label-propagator-policy
+    sources:
+    - ghcr.io/kubewarden/policies/namespace-label-propagator:v1.0.14
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/namespace-label-propagator-policy-1.0.14/namespace-label-propagator-policy-1.0.14.tgz
+    version: 1.0.14
+  namespace-pod-quota:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Namespace Pod Quota
+      kubewarden/mutation: "false"
+      kubewarden/resources: ResourceQuota
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - resourcequotas
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.6
+    created: "2026-11-10T10:20:50.016031832Z"
+    description: 'When using a pod quota ensure setting the proper value for the quantity
+      of pods you wish to have in your namespace.  '
+    digest: ed5a521151bcf20fe34eab76f71215b1e7430b81199435ea49e21f949a6772b4
+    home: https://github.com/kubewarden/policies
+    name: namespace-pod-quota
+    sources:
+    - ghcr.io/kubewarden/policies/namespace-pod-quota:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/namespace-pod-quota-1.0.6/namespace-pod-quota-1.0.6.tgz
+    version: 1.0.6
+  namespace-resources-limitrange:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Namespace Resources Limitrange
+      kubewarden/mutation: "false"
+      kubewarden/resources: LimitRange
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - limitranges
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:50.310729261Z"
+    description: 'When setting up default CPU and Memory values for your namespace,
+      this policy will check if both requests and limits are set. This policy checks
+      for the following:  | Resource Setting | Resource Type  | |---|---| |  default
+      | cpu  | |  default  | memory  | |  defaultRequest |  cpu | |  defaultRequest
+      | memory  | |  min | memory  | |  min | cpu  | |  max | cpu | |  max | memory  | '
+    digest: 860bb1af938c24778fe26baa8cf261b25d2fe31bb564cd56b7e0c567e0711c6c
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - soc2-type1
+    name: namespace-resources-limitrange
+    sources:
+    - ghcr.io/kubewarden/policies/namespace-resources-limitrange:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/namespace-resources-limitrange-1.0.5/namespace-resources-limitrange-1.0.5.tgz
+    version: 1.0.5
+  network-allow-egress-traffic-from-namespace-to-another:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Network Allow Egress Traffic From Namespace To Another
+      kubewarden/mutation: "false"
+      kubewarden/resources: NetworkPolicy
+      kubewarden/rules: |
+        - apiGroups:
+          - networking.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - networkpolicies
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:50.616041742Z"
+    description: 'If you are using a CNI that allows for Network Policies, you can
+      use this Policy to allow Egress traffic from one namespace to another.  By default,
+      if no policies exist in a namespace, then all ingress and egress traffic is
+      allowed to and from pods in that namespace.  '
+    digest: 771b589e7e5141f48a64a9718d5bda25f6b9a6ae2a3ec4e4f13c2db6b4eaa46e
+    home: https://github.com/kubewarden/policies
+    name: network-allow-egress-traffic-from-namespace-to-another
+    sources:
+    - ghcr.io/kubewarden/policies/network-allow-egress-traffic-from-namespace-to-another:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/network-allow-egress-traffic-from-namespace-to-another-1.0.5/network-allow-egress-traffic-from-namespace-to-another-1.0.5.tgz
+    version: 1.0.5
+  network-allow-ingress-traffic-from-namespace-to-another:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Network Allow Ingress Traffic From Namespace To Another
+      kubewarden/mutation: "false"
+      kubewarden/resources: NetworkPolicy
+      kubewarden/rules: |
+        - apiGroups:
+          - networking.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - networkpolicies
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:50.849483018Z"
+    description: 'If you are using a CNI that allows for Network Policies, you can
+      use this Policy to allow Ingress traffic from one namespace to another.  By
+      default, if no policies exist in a namespace, then all ingress and egress traffic
+      is allowed to and from pods in that namespace.  '
+    digest: fbcd3e100d0fd1d8d1d57ac4e58d6577c0a55c5dc494db8ca05a41022adcb6aa
+    home: https://github.com/kubewarden/policies
+    name: network-allow-ingress-traffic-from-namespace-to-another
+    sources:
+    - ghcr.io/kubewarden/policies/network-allow-ingress-traffic-from-namespace-to-another:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/network-allow-ingress-traffic-from-namespace-to-another-1.0.5/network-allow-ingress-traffic-from-namespace-to-another-1.0.5.tgz
+    version: 1.0.5
+  network-block-all-ingress-traffic-to-namespace-from-cidr-block:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Network Block All Ingress Traffic To Namespace From
+        CIDR Block
+      kubewarden/mutation: "false"
+      kubewarden/resources: NetworkPolicy
+      kubewarden/rules: |
+        - apiGroups:
+          - networking.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - networkpolicies
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:51.095913399Z"
+    description: 'If you are using a CNI that allows for Network Policies, you can
+      use this Policy to block all Egress traffic from a specified namespace to a
+      CIDR block of IP addresses.   By default, if no policies exist in a namespace,
+      then all ingress and egress traffic is allowed to and from pods in that namespace.  '
+    digest: 74b252e1f15ac38de3c96281b37ae6dbba46c9b0e7554d8ff73ca4c90cd7a051
+    home: https://github.com/kubewarden/policies
+    name: network-block-all-ingress-traffic-to-namespace-from-cidr-block
+    sources:
+    - ghcr.io/kubewarden/policies/network-block-all-ingress-traffic-to-namespace-from-cidr-block:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/network-block-all-ingress-traffic-to-namespace-from-cidr-block-1.0.5/network-block-all-ingress-traffic-to-namespace-from-cidr-block-1.0.5.tgz
+    version: 1.0.5
+  ns-policyserver-mapper:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: v1
+          kind: Namespace
+      kubewarden/displayName: Namespace to PolicyServer mapper
+      kubewarden/mutation: "true"
+      kubewarden/resources: AdmissionPolicy,AdmissionPolicyGroup
+      kubewarden/rules: |
+        - apiGroups:
+          - policies.kubewarden.io
+          apiVersions:
+          - v1
+          resources:
+          - admissionpolicies
+          - admissionpolicygroups
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 0.1.5
+    created: "2026-11-10T10:20:51.342955104Z"
+    description: 'Mutates AdmissionPolicy and AdmissionPolicyGroup resources to enforce
+      the PolicyServer they run on. The target PolicyServer is read from the `admission.kubewarden.io/policy-server`
+      label of the Namespace where the policy is being created or updated. Requests
+      are rejected when the label is absent, preventing policies from being scheduled
+      on an unintended PolicyServer. '
+    digest: d97801b30ced2261edde5dd1eb7b04dea6a75e27cee7892f62d5306804ba5f04
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - namespace
+    - policies
+    - policyserver
+    - admissionpolicy
+    - admissionpolicygroup
+    name: ns-policyserver-mapper
+    sources:
+    - ghcr.io/kubewarden/policies/ns-policyserver-mapper:v0.1.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ns-policyserver-mapper-0.1.5/ns-policyserver-mapper-0.1.5.tgz
+    version: 0.1.5
+  ocirepository-cosign-verification:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: OCIRepository Cosign Verification
+      kubewarden/mutation: "false"
+      kubewarden/resources: OCIRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1beta2
+          resources:
+          - ocirepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:51.644606228Z"
+    description: OCIRepository resources must provide Cosign verification and reference
+      a specific key.
+    digest: 6527be649013dad9068dc976f42c8df79872f10a2be99c183fcf259935f2e09b
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: ocirepository-cosign-verification
+    sources:
+    - ghcr.io/kubewarden/policies/ocirepository-cosign-verification:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-cosign-verification-1.0.5/ocirepository-cosign-verification-1.0.5.tgz
+    version: 1.0.5
+  ocirepository-ignore-suffixes:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: OCIRepository Ignore Suffixes
+      kubewarden/mutation: "false"
+      kubewarden/resources: OCIRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1beta2
+          resources:
+          - ocirepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:51.935691464Z"
+    description: OCIRepository resources must include specific suffixes in the spec.ignore
+      field which determines the files to be ignored before making a commit..
+    digest: a0ce63cf20a8546bd366f49c513f589cfd5733622cf9c5a5d16722968dc7ee64
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    - oci
+    - suffixes
+    name: ocirepository-ignore-suffixes
+    sources:
+    - ghcr.io/kubewarden/policies/ocirepository-ignore-suffixes:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-ignore-suffixes-1.0.5/ocirepository-ignore-suffixes-1.0.5.tgz
+    version: 1.0.5
+  ocirepository-layer-selector:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: OCIRepository Layer Selector
+      kubewarden/mutation: "false"
+      kubewarden/resources: OCIRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1beta2
+          resources:
+          - ocirepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:52.435586329Z"
+    description: OCIRepository layer selector must only reference predefined media/operation
+      type.
+    digest: e85808fa777e2dfabe522cf7aa1bc19ddcbc54a4c52f1e839df36548fcfbf8df
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: ocirepository-layer-selector
+    sources:
+    - ghcr.io/kubewarden/policies/ocirepository-layer-selector:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-layer-selector-1.0.5/ocirepository-layer-selector-1.0.5.tgz
+    version: 1.0.5
+  ocirepository-not-latest:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: OCIRepository Not Latest Tag
+      kubewarden/mutation: "false"
+      kubewarden/resources: OCIRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1beta2
+          resources:
+          - ocirepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:52.70042664Z"
+    description: OCIRepository resources must not use 'latest' as a tag reference.
+    digest: e5bce620d0e7ac4d3301dbed3d52e738f18dbc6c4dd7c3b70055678016aaea17
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: ocirepository-not-latest
+    sources:
+    - ghcr.io/kubewarden/policies/ocirepository-not-latest:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-not-latest-1.0.5/ocirepository-not-latest-1.0.5.tgz
+    version: 1.0.5
+  ocirepository-organization-domains:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: OCIRepository Organization Domains
+      kubewarden/mutation: "false"
+      kubewarden/resources: OCIRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1beta2
+          resources:
+          - ocirepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:52.967952032Z"
+    description: OCIRepository resources must only be from allowed organization domains.
+    digest: dded6b1e9f15f7434fec6c202290a2382395be2ee51a725a862bb0f86954ce86
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: ocirepository-organization-domains
+    sources:
+    - ghcr.io/kubewarden/policies/ocirepository-organization-domains:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-organization-domains-1.0.5/ocirepository-organization-domains-1.0.5.tgz
+    version: 1.0.5
+  ocirepository-patch-annotation:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: OCIRepository Patch Annotation
+      kubewarden/mutation: "false"
+      kubewarden/resources: OCIRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1beta2
+          resources:
+          - ocirepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:53.274881957Z"
+    description: OCIRepository resources must have a patch annotation that matches
+      the provider.
+    digest: 01a565fdc4846e36e21a320ab32162ff1ab448f9204931ec63229cb061bf24a2
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: ocirepository-patch-annotation
+    sources:
+    - ghcr.io/kubewarden/policies/ocirepository-patch-annotation:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-patch-annotation-1.0.5/ocirepository-patch-annotation-1.0.5.tgz
+    version: 1.0.5
+  persistent-volume-access-modes:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Persistent Volume Access Modes
+      kubewarden/mutation: "false"
+      kubewarden/resources: PersistentVolume
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - persistentvolumes
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:53.549542566Z"
+    description: 'A PersistentVolume can be mounted on a host in any way supported
+      by the resource provider. As shown in the table below, providers will have different
+      capabilities and each PV''s access modes are set to the specific modes supported
+      by that particular volume. For example, NFS can support multiple read/write
+      clients, but a specific NFS PV might be exported on the server as read-only.
+      Each PV gets its own set of access modes describing that specific PV''s capabilities.  The
+      access modes are:  * ReadWriteOnce * ReadOnlyMany * ReadWriteMany * ReadWriteOncePod '
+    digest: 1019908fd1d4ef6ace0a0be1191d2d84ee4ed02687889379a9bbc448ad9992e5
+    home: https://github.com/kubewarden/policies
+    name: persistent-volume-access-modes
+    sources:
+    - ghcr.io/kubewarden/policies/persistent-volume-access-modes:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/persistent-volume-access-modes-1.0.5/persistent-volume-access-modes-1.0.5.tgz
+    version: 1.0.5
+  persistent-volume-claim-snapshot:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Persistent Volume Claim Snapshot
+      kubewarden/mutation: "false"
+      kubewarden/resources: VolumeSnapshot
+      kubewarden/rules: |
+        - apiGroups:
+          - snapshot.storage.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - volumesnapshots
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:53.989319654Z"
+    description: 'This Policy checks for a PVC Snapshot.  '
+    digest: 89af3532b4c90abcaceea09d779e33f7a5b6220ace420301a32150ec080b91ac
+    home: https://github.com/kubewarden/policies
+    name: persistent-volume-claim-snapshot
+    sources:
+    - ghcr.io/kubewarden/policies/persistent-volume-claim-snapshot:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/persistent-volume-claim-snapshot-1.0.5/persistent-volume-claim-snapshot-1.0.5.tgz
+    version: 1.0.5
+  persistentvolumeclaim-storageclass-policy:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: PVC StorageClass Validator
+      kubewarden/mutation: "true"
+      kubewarden/resources: PersistentVolumeClaim
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - persistentvolumeclaims
+          operations:
+          - CREATE
+    apiVersion: v1
+    appVersion: 1.1.10
+    created: "2026-11-10T10:20:54.286921008Z"
+    description: Policy that validates and adjusts the usage of StorageClasses in
+      PersistentVolumeClaims
+    digest: 9ed68e1f51315d6320df2fd59a809a36028e27263c251ccca14c95dc58777756
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - persistentvolumeclaim
+    - pvc
+    - kubewarden
+    name: persistentvolumeclaim-storageclass-policy
+    sources:
+    - ghcr.io/kubewarden/policies/persistentvolumeclaim-storageclass-policy:v1.1.10
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/persistentvolumeclaim-storageclass-policy-1.1.10/persistentvolumeclaim-storageclass-policy-1.1.10.tgz
+    version: 1.1.10
+  pod-ndots:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Pod ndots
+      kubewarden/mutation: "true"
+      kubewarden/registry: ghcr.io
+      kubewarden/repository: kubewarden/policies/pod-ndots
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+      kubewarden/tag: v1.0.13
+    apiVersion: v1
+    appVersion: 1.0.13
+    created: "2026-11-10T10:20:54.59086026Z"
+    description: Enforce a minimum value for the ndots option in the resolv.conf file
+      of a Pod.
+    digest: 802f0f1f2ccb6cc816e98913792085b97c7d2f94e160f5774af8246e099d92ea
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - pod
+    name: pod-ndots
+    sources:
+    - ghcr.io/kubewarden/policies/pod-ndots:v1.0.13
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/pod-ndots-1.0.13/pod-ndots-1.0.13.tgz
+    version: 1.0.13
+  pod-privileged-policy:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Pod Privileged Policy
+      kubewarden/mutation: "false"
+      kubewarden/registry: ghcr.io
+      kubewarden/repository: kubewarden/policies/pod-privileged
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+      kubewarden/tag: v1.0.14
+    apiVersion: v1
+    appVersion: 1.0.14
+    created: "2026-11-10T10:20:54.921880531Z"
+    description: Limit the ability to create privileged containers
+    digest: 13f3ec633de5821f4c1ea866f8aab935312304850b86587b87c90ea16b2d0841
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - psp
+    - pod
+    - container
+    - privileged
+    name: pod-privileged-policy
+    sources:
+    - ghcr.io/kubewarden/policies/pod-privileged:v1.0.14
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/pod-privileged-policy-1.0.14/pod-privileged-policy-1.0.14.tgz
+    version: 1.0.14
+  pod-runtime:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Pod Runtime
+      kubewarden/mutation: "true"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.14
+    created: "2026-11-10T10:20:55.264821808Z"
+    description: Policy that controls the usage of Pod runtimeClass
+    digest: c359a588ee1c48929b0ab4b15b0c446a93930a78d1e0d0940d803e1b8e2436a1
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - pod
+    - runtime
+    - container runtime
+    name: pod-runtime
+    sources:
+    - ghcr.io/kubewarden/policies/pod-runtime:v1.0.14
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/pod-runtime-1.0.14/pod-runtime-1.0.14.tgz
+    version: 1.0.14
+  priority-class-policy:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Priority class policy
+      kubewarden/mutation: "true"
+      kubewarden/registry: ghcr.io
+      kubewarden/repository: kubewarden/policies/priority-class-policy
+      kubewarden/resources: Pod, Replicationcontroller, Deployments, Replicaset, Statefulset,
+        Daemonset, Job, Cronjob
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+      kubewarden/tag: v1.1.9
+    apiVersion: v1
+    appVersion: 1.1.9
+    created: "2026-11-10T10:20:55.518546015Z"
+    description: Validates Pod's priority class
+    digest: 2de1d99c82c9ca1bf16bd0cd7df31e8d9713783e14c0cae732eaf62aad69c0cf
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - pod
+    - priority-class
+    name: priority-class-policy
+    sources:
+    - ghcr.io/kubewarden/policies/priority-class-policy:v1.1.9
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/priority-class-policy-1.1.9/priority-class-policy-1.1.9.tgz
+    version: 1.1.9
+  probes-policy:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Probes validator policy
+      kubewarden/mutation: "false"
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+    apiVersion: v1
+    appVersion: 1.0.9
+    created: "2026-11-10T10:20:55.806573529Z"
+    description: This policy validates that all containers have livenessProbe and
+      readinessProbe defined.
+    digest: d155bf7aaab4525f2a0e28e97e9e649432e0789fe2e2217ce3133f1583ca9d3b
+    home: https://github.com/kubewarden/policies
+    name: probes-policy
+    sources:
+    - ghcr.io/kubewarden/policies/probes:v1.0.9
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/probes-policy-1.0.9/probes-policy-1.0.9.tgz
+    version: 1.0.9
+  psa-label-enforcer:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: PSA Label Enforcer
+      kubewarden/mutation: "true"
+      kubewarden/resources: Namespace
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - namespaces
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.16
+    created: "2026-11-10T10:20:56.101173946Z"
+    description: Policy to ensure that namespaces have the required PSA labels configuration
+      for deployment in the cluster.
+    digest: bec3b00ae9c1e2f47efcf422289bfe6216a473129a5689accffa9d1f7d125300
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - namespace
+    - psa
+    - kubewarden
+    name: psa-label-enforcer
+    sources:
+    - ghcr.io/kubewarden/policies/psa-label-enforcer:v1.0.16
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/psa-label-enforcer-1.0.16/psa-label-enforcer-1.0.16.tgz
+    version: 1.0.16
+  psp-apparmor:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Apparmor PSP
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.16
+    created: "2026-11-10T10:20:56.414887197Z"
+    description: Replacement for the Kubernetes Pod Security Policy that controls
+      the usage of AppArmor profiles
+    digest: 4c181ded93a05ad3400287486c24c1132007c1847d357c76dc0fcd4bcbb626c3
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - psp
+    - apparmor
+    name: psp-apparmor
+    sources:
+    - ghcr.io/kubewarden/policies/apparmor-psp:v1.0.16
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/psp-apparmor-1.0.16/psp-apparmor-1.0.16.tgz
+    version: 1.0.16
+  rancher-project-propagate-labels:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: management.cattle.io/v3
+          kind: Project
+      kubewarden/displayName: Rancher Project propagate labels
+      kubewarden/mutation: "true"
+      kubewarden/registry: ghcr.io
+      kubewarden/repository: kubewarden/policies/rancher-project-propagate-labels
+      kubewarden/resources: Namespace
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - namespaces
+          operations:
+          - CREATE
+          - UPDATE
+      kubewarden/tag: v0.1.8
+    apiVersion: v1
+    appVersion: 0.1.8
+    created: "2026-11-10T10:20:56.725308115Z"
+    description: Propagate labels from a Rancher Project to all the Namespaces that
+      belong to it
+    digest: 0e641cbc3394b50fb502fefc0265298a7f64c05badd8ff97f293f669c8f49c31
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - namespace
+    - rancher project
+    name: rancher-project-propagate-labels
+    sources:
+    - ghcr.io/kubewarden/policies/rancher-project-propagate-labels:v0.1.8
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/rancher-project-propagate-labels-0.1.8/rancher-project-propagate-labels-0.1.8.tgz
+    version: 0.1.8
+  rancher-project-quotas-namespace-validator:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: management.cattle.io/v3
+          kind: Project
+      kubewarden/displayName: Rancher Project quotas namespace validator
+      kubewarden/mutation: "false"
+      kubewarden/resources: management.cattle.io/Project
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - namespace
+          operations:
+          - CREATE
+    apiVersion: v1
+    appVersion: 1.0.15
+    created: "2026-11-10T10:20:56.980291134Z"
+    description: Prevent the creation of Namespace under a Rancher Project that doesn't
+      have any resource quota left
+    digest: da144eb09bddd346bfbe26714c9e34e0b8dd5a8415d545842708157ee2595458
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - rancher
+    - project
+    - quotas
+    name: rancher-project-quotas-namespace-validator
+    sources:
+    - ghcr.io/kubewarden/policies/rancher-project-quotas-namespace-validator:v1.0.15
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/rancher-project-quotas-namespace-validator-1.0.15/rancher-project-quotas-namespace-validator-1.0.15.tgz
+    version: 1.0.15
+  rbac-prohibit-list-secrets:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Rbac Prohibit List On Secrets
+      kubewarden/mutation: "false"
+      kubewarden/resources: Role, ClusterRole
+      kubewarden/rules: |
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - roles
+          - clusterroles
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:57.398514362Z"
+    description: 'This Policy will violate if any RBAC ClusterRoles or Roles are designated
+      with ''list'' verb on ''secrets'' resource. '
+    digest: 7eeb627d6ccb97793970e2faf87ed52203c8c5ef210d784f8945fbf229b4bee2
+    home: https://github.com/kubewarden/policies
+    name: rbac-prohibit-list-secrets
+    sources:
+    - ghcr.io/kubewarden/policies/rbac-prohibit-list-secrets:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/rbac-prohibit-list-secrets-1.0.5/rbac-prohibit-list-secrets-1.0.5.tgz
+    version: 1.0.5
+  rbac-prohibit-watch-secrets:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Rbac Prohibit Watch On Secrets
+      kubewarden/mutation: "false"
+      kubewarden/resources: Role, ClusterRole
+      kubewarden/rules: |
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - roles
+          - clusterroles
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:57.699218603Z"
+    description: 'This Policy will violate if any RBAC ClusterRoles or Roles are designated
+      with ''watch'' verb on ''secrets'' resource. '
+    digest: f07195b3e8315b4cecb8efe8de574e968b60c78f9bb9ff68b787aa75dd9f8ea4
+    home: https://github.com/kubewarden/policies
+    name: rbac-prohibit-watch-secrets
+    sources:
+    - ghcr.io/kubewarden/policies/rbac-prohibit-watch-secrets:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/rbac-prohibit-watch-secrets-1.0.5/rbac-prohibit-watch-secrets-1.0.5.tgz
+    version: 1.0.5
+  rbac-prohibit-wildcard-secrets:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Rbac Prohibit Wildcard On Secrets
+      kubewarden/mutation: "false"
+      kubewarden/resources: Role, ClusterRole
+      kubewarden/rules: |
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - roles
+          - clusterroles
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:57.923398586Z"
+    description: 'This Policy will violate if any RBAC ClusterRoles or Roles are designated
+      with ''wildcard'' verb on ''secrets'' resource. '
+    digest: d144518f83b01677db55597f33ee6caddf282d0f5683f275752edd51a570a50d
+    home: https://github.com/kubewarden/policies
+    name: rbac-prohibit-wildcard-secrets
+    sources:
+    - ghcr.io/kubewarden/policies/rbac-prohibit-wildcard-secrets:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/rbac-prohibit-wildcard-secrets-1.0.5/rbac-prohibit-wildcard-secrets-1.0.5.tgz
+    version: 1.0.5
+  rbac-prohibit-wildcards-policyrule-resources:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Rbac Prohibit Wildcards on Policy Rule Resources
+      kubewarden/mutation: "false"
+      kubewarden/resources: Role, ClusterRole
+      kubewarden/rules: |
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - roles
+          - clusterroles
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.6
+    created: "2026-11-10T10:20:58.328064816Z"
+    description: 'This Policy prohibits various resources from being set with wildcards
+      for Role or ClusterRole resources, except for the `cluster-admin` ClusterRole.
+      It will check each resource specified for the verb specified. The wildcards
+      will be checked in:  ### Resources In the Kubernetes API, most resources are
+      represented and accessed using a string representation of their object name,
+      such as pods for a Pod. RBAC refers to resources using exactly the same name
+      that appears in the URL for the relevant API endpoint.   ### Verbs API verbs
+      like get, list, create, update, patch, watch, delete, and deletecollection are
+      used for resource requests.   ### API Groups The API Group being accessed (for
+      resource requests only).  ### Non Resource URLs Requests to endpoints other
+      than /api/v1/... or /apis/<group>/<version>/... are considered "non-resource
+      requests", and use the lower-cased HTTP method of the request as the verb. '
+    digest: d29083be9eff000bad747497fcad25fc973b8a7c4acbc5b4bbdf9e27f220407c
+    home: https://github.com/kubewarden/policies
+    name: rbac-prohibit-wildcards-policyrule-resources
+    sources:
+    - ghcr.io/kubewarden/policies/rbac-prohibit-wildcards-policyrule-resources:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/rbac-prohibit-wildcards-policyrule-resources-1.0.6/rbac-prohibit-wildcards-policyrule-resources-1.0.6.tgz
+    version: 1.0.6
+  rbac-prohibit-wildcards-policyrule-verbs:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Rbac Prohibit Wildcards on Policy Rule Verbs
+      kubewarden/mutation: "false"
+      kubewarden/resources: Role, ClusterRole
+      kubewarden/rules: |
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - roles
+          - clusterroles
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.6
+    created: "2026-11-10T10:20:58.589202713Z"
+    description: 'This Policy prohibits various resources from being set with wildcards
+      for Role or ClusterRole resources, except for the `cluster-admin` ClusterRole.
+      It will check each resource specified for the verb specified. The wildcards
+      will be checked in:  ### Resources In the Kubernetes API, most resources are
+      represented and accessed using a string representation of their object name,
+      such as pods for a Pod. RBAC refers to resources using exactly the same name
+      that appears in the URL for the relevant API endpoint.   ### Verbs API verbs
+      like get, list, create, update, patch, watch, delete, and deletecollection are
+      used for resource requests.   ### API Groups The API Group being accessed (for
+      resource requests only).  ### Non Resource URLs Requests to endpoints other
+      than /api/v1/... or /apis/<group>/<version>/... are considered "non-resource
+      requests", and use the lower-cased HTTP method of the request as the verb. '
+    digest: ee1c2367e14ecf12e220c47ebab4452f5d8afdc920cfb855f96aa91c97725d49
+    home: https://github.com/kubewarden/policies
+    name: rbac-prohibit-wildcards-policyrule-verbs
+    sources:
+    - ghcr.io/kubewarden/policies/rbac-prohibit-wildcards-policyrule-verbs:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/rbac-prohibit-wildcards-policyrule-verbs-1.0.6/rbac-prohibit-wildcards-policyrule-verbs-1.0.6.tgz
+    version: 1.0.6
+  readonly-root-filesystem-psp:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Readonly Root Filesystem PSP
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.15
+    created: "2026-11-10T10:20:58.914834378Z"
+    description: A Kubewarden policy that enforces root filesystem to be readonly
+    digest: 770f0a4ce667059c4c1809bdeb16f2994f53de6b377b8f8788f788a54b42dfa9
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - psp
+    - container
+    - filesystem
+    - volume
+    name: readonly-root-filesystem-psp
+    sources:
+    - ghcr.io/kubewarden/policies/readonly-root-filesystem-psp:v1.0.15
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/readonly-root-filesystem-psp-1.0.15/readonly-root-filesystem-psp-1.0.15.tgz
+    version: 1.0.15
+  resource-quota-setting-is-missing:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Resource Quota Setting Is Missing
+      kubewarden/mutation: "false"
+      kubewarden/resources: ResourceQuota
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - resourcequotas
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:59.161901593Z"
+    description: 'When creating resource quotas per namespace, ensure CPU and Memory
+      requests and limits are set. '
+    digest: 79b6f48add69fb323617f0ab46c6c4250ce3547a2747e9d1722d2c47b0431bb9
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - soc2-type1
+    name: resource-quota-setting-is-missing
+    sources:
+    - ghcr.io/kubewarden/policies/resource-quota-setting-is-missing:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/resource-quota-setting-is-missing-1.0.5/resource-quota-setting-is-missing-1.0.5.tgz
+    version: 1.0.5
+  resource-reconcile-interval:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Resource Reconcile Interval Must Be Set Between Lower
+        and Upper Bound
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease, GitRepository, OCIRepository, Bucket, HelmChart,
+        HelmRepository, Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - gitrepositories
+          - ocirepositories
+          - buckets
+          - helmcharts
+          - helmrepositories
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.6
+    created: "2026-11-10T10:20:59.430746023Z"
+    description: The reconcile interval of a Resource must be set between a lower
+      and upper bound, lower_bound & upper_bound must be in seconds .
+    digest: 8e655ade75dbbbf202f6df55524a558951e882c18b8b2766595e163887a6aa9f
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: resource-reconcile-interval
+    sources:
+    - ghcr.io/kubewarden/policies/resource-reconcile-interval:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/resource-reconcile-interval-1.0.6/resource-reconcile-interval-1.0.6.tgz
+    version: 1.0.6
+  resource-suspend-waiver:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Resource Suspend Waiver
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease, GitRepository, OCIRepository, Bucket, HelmChart,
+        HelmRepository, Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - gitrepositories
+          - ocirepositories
+          - buckets
+          - helmcharts
+          - helmrepositories
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.5
+    created: "2026-11-10T10:20:59.93294542Z"
+    description: Resource cannot be suspended unless it's on the waiver list.
+    digest: 75dbf3fb02308320864ec9a22857191d3dcbbde93228a1c401f3948f5d3da1ae
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - flux
+    name: resource-suspend-waiver
+    sources:
+    - ghcr.io/kubewarden/policies/resource-suspend-waiver:v1.0.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/resource-suspend-waiver-1.0.5/resource-suspend-waiver-1.0.5.tgz
+    version: 1.0.5
+  runtime-enforcer:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: runtimeenforcer.kubewarden.io/v1alpha1
+          kind: WorkloadPolicy
+      kubewarden/displayName: WorkloadPolicy config verifier
+      kubewarden/mutation: "false"
+      kubewarden/registry: ghcr.io
+      kubewarden/repository: kubewarden/policies/runtime-enforcer
+      kubewarden/resources: Pod, Deployments, Replicaset, Statefulset, Daemonset,
+        Job, Cronjob
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+      kubewarden/tag: v0.2.0
+    apiVersion: v1
+    appVersion: 0.2.0
+    created: "2026-11-10T10:21:00.270455817Z"
+    description: Policy that enforces runtime-enforcer policies to be present when
+      a workload is created
+    digest: a810e0a2771abc912a5974587070d0284cc1272bfd9587f01b7f0c13f26c2c67
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - deployment
+    - replicaset
+    - statefulset
+    - daemonset
+    - job
+    - cronjob
+    - pod
+    - runtime-enforcer
+    name: runtime-enforcer
+    sources:
+    - ghcr.io/kubewarden/policies/runtime-enforcer:v0.2.0
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/runtime-enforcer-0.2.0/runtime-enforcer-0.2.0.tgz
+    version: 0.2.0
+  safe-annotations:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Safe Annotations
+      kubewarden/mutation: "false"
+      kubewarden/resources: '*'
+      kubewarden/rules: |
+        - apiGroups:
+          - '*'
+          apiVersions:
+          - '*'
+          resources:
+          - '*'
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.9
+    created: "2026-11-10T10:21:00.552126411Z"
+    description: A policy that validates Kubernetes' resource annotations
+    digest: c431b38703f34cdbc94608729590679ec615ddeb86e77fe0509660152351ed38
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - annotations
+    name: safe-annotations
+    sources:
+    - ghcr.io/kubewarden/policies/safe-annotations:v1.0.9
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/safe-annotations-1.0.9/safe-annotations-1.0.9.tgz
+    version: 1.0.9
+  safe-labels:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Safe Labels
+      kubewarden/mutation: "false"
+      kubewarden/resources: '*'
+      kubewarden/rules: |
+        - apiGroups:
+          - '*'
+          apiVersions:
+          - '*'
+          resources:
+          - '*'
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.14
+    created: "2026-11-10T10:21:00.808187085Z"
+    description: A policy that validates Kubernetes' resource labels
+    digest: 2567808e80c835b3b786b770ec5e56614b6e6fcc3853dabe7ccb2dde9f919b81
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - labels
+    name: safe-labels
+    sources:
+    - ghcr.io/kubewarden/policies/safe-labels:v1.0.14
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/safe-labels-1.0.14/safe-labels-1.0.14.tgz
+    version: 1.0.14
+  seccomp-psp:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Seccomp PSP
+      kubewarden/mutation: "false"
+      kubewarden/registry: ghcr.io
+      kubewarden/repository: kubewarden/policies/seccomp-psp
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+      kubewarden/tag: v1.0.16
+    apiVersion: v1
+    appVersion: 1.0.16
+    created: "2026-11-10T10:21:01.222353064Z"
+    description: Pod Security Policy that controls usage of Seccomp profile
+    digest: 7aee6905621d2d819d5377249ee9dd210bbc722c84e75fc065c1db7d6a0fb102
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - psp
+    - seccomp
+    name: seccomp-psp
+    sources:
+    - ghcr.io/kubewarden/policies/seccomp-psp:v1.0.16
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/seccomp-psp-1.0.16/seccomp-psp-1.0.16.tgz
+    version: 1.0.16
+  selinux-psp:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Selinux PSP
+      kubewarden/mutation: "true"
+      kubewarden/registry: ghcr.io
+      kubewarden/repository: kubewarden/policies/selinux-psp
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+      kubewarden/tag: v1.1.3
+    apiVersion: v1
+    appVersion: 1.1.3
+    created: "2026-11-10T10:21:01.510915839Z"
+    description: Replacement for the Kubernetes Pod Security Policy that controls
+      the usage of SELinux
+    digest: 14d5906670618908bedd2e13bde1ee821c3f5b72d4bdbcd7c3008b14e23e965a
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - psp
+    - container
+    - runtime
+    - selinux
+    name: selinux-psp
+    sources:
+    - ghcr.io/kubewarden/policies/selinux-psp:v1.1.3
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/selinux-psp-1.1.3/selinux-psp-1.1.3.tgz
+    version: 1.1.3
+  share-pid-namespace-policy:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Share PID namespace
+      kubewarden/mutation: "false"
+      kubewarden/registry: ghcr.io
+      kubewarden/repository: kubewarden/policies/share-pid-namespace-policy
+      kubewarden/resources: Pod,Replicationcontroller,Deployment,Replicaset,Statefulset,Daemonset,Job,Cronjob
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+      kubewarden/tag: v1.0.15
+    apiVersion: v1
+    appVersion: 1.0.15
+    created: "2026-11-10T10:21:01.837195935Z"
+    description: Policy validates pods sharing processes PID namespace
+    digest: e36431bbc7fe74e5c59486e564e6b3f968d45a7ff6f98131d7e6d64bf1b94f2f
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - pod
+    - pid
+    name: share-pid-namespace-policy
+    sources:
+    - ghcr.io/kubewarden/policies/share-pid-namespace-policy:v1.0.15
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/share-pid-namespace-policy-1.0.15/share-pid-namespace-policy-1.0.15.tgz
+    version: 1.0.15
+  sysctl-psp:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Sysctl PSP
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.16
+    created: "2026-11-10T10:21:02.314389426Z"
+    description: A Pod Security Policy that controls usage of sysctls in pods
+    digest: 7bd605bb11cd0e300738eedb29426683bcecbe907fff357cfc3e470f4cb3dbf5
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - sysctl
+    - psp
+    - pod
+    name: sysctl-psp
+    sources:
+    - ghcr.io/kubewarden/policies/sysctl-psp:v1.0.16
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/sysctl-psp-1.0.16/sysctl-psp-1.0.16.tgz
+    version: 1.0.16
+  trusted-repos:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Trusted Repos
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 2.1.6
+    created: "2026-11-10T10:21:02.701352643Z"
+    description: Kubewarden policy that restricts which registries, tags, and images
+      pods in your cluster can refer to, with wildcard pattern support
+    digest: 2c52b76f62598dd0164d37b57484b75acde44ef155a819fe81f4479a18898d3f
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - image
+    - registry
+    - tag
+    - wildcard
+    name: trusted-repos
+    sources:
+    - ghcr.io/kubewarden/policies/trusted-repos:v2.1.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/trusted-repos-2.1.6/trusted-repos-2.1.6.tgz
+    version: 2.1.6
+  unique-service-selector-policy:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: v1
+          kind: Service
+      kubewarden/displayName: Unique service selector
+      kubewarden/mutation: "false"
+      kubewarden/resources: Service
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - services
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.15
+    created: "2026-11-10T10:21:02.933230561Z"
+    description: Policy validates that there are no services with the same set of
+      selectors
+    digest: c11cfaaed8df6c1fb323e2ca747f0e634e25f6fdfa73730f791b5cb529e7bba0
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - service
+    - selector
+    name: unique-service-selector-policy
+    sources:
+    - ghcr.io/kubewarden/policies/unique-service-selector-policy:v1.0.15
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/unique-service-selector-policy-1.0.15/unique-service-selector-policy-1.0.15.tgz
+    version: 1.0.15
+  user-group-psp:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: User Group PSP
+      kubewarden/mutation: "true"
+      kubewarden/registry: ghcr.io
+      kubewarden/repository: kubewarden/policies/user-group-psp
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+      kubewarden/tag: v1.1.5
+    apiVersion: v1
+    appVersion: 1.1.5
+    created: "2026-11-10T10:21:03.296473046Z"
+    description: Kubewarden Policy that controls containers user and groups
+    digest: de4a282cbc288000c055f2a522d79e76881606a682687b063c5a7ac8c86e153b
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - psp
+    - container
+    - user
+    - group
+    name: user-group-psp
+    sources:
+    - ghcr.io/kubewarden/policies/user-group-psp:v1.1.5
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/user-group-psp-1.1.5/user-group-psp-1.1.5.tgz
+    version: 1.1.5
+  verify-image-signatures:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Verify Image Signatures
+      kubewarden/mutation: "true"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.13
+    created: "2026-11-10T10:21:03.612967014Z"
+    description: A Kubewarden Policy that verifies all the signatures of the container
+      images referenced by a Pod
+    digest: c78cf08fc7fecb291052a7666c1e2f6706d40e06a39d9f8ca6bbe0a02f69d111
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - pod
+    - signature
+    - sigstore
+    - trusted
+    name: verify-image-signatures
+    sources:
+    - ghcr.io/kubewarden/policies/verify-image-signatures:v1.0.13
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/verify-image-signatures-1.0.13/verify-image-signatures-1.0.13.tgz
+    version: 1.0.13
+  volumemounts:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: volumeMounts
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod,Deployment,Replicaset,Statefulset,Daemonset,Replicationcontroller,Job,Cronjob
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.0.14
+    created: "2026-11-10T10:21:03.987149194Z"
+    description: Policy that inspects containers, init containers, and ephemeral containers,
+      and restricts their usage of volumes by  checking the `volume` name being used
+      in `volumeMounts[*].name`
+    digest: 35f4174419c1a7a06269bbc46000c3f38690ea75193f67bff40d7a7cffedbdec
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - container
+    - volumeMounts
+    - volume
+    - pod
+    - workload resources
+    name: volumemounts
+    sources:
+    - ghcr.io/kubewarden/policies/volumemounts:v1.0.14
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumemounts-1.0.14/volumemounts-1.0.14.tgz
+    version: 1.0.14
+  volumes-psp:
+  - annotations:
+      artifacthub.io/repository: kubewarden-policy-library
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Volumes PSP
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v1
+    appVersion: 1.1.12
+    created: "2026-11-10T10:21:04.276461388Z"
+    description: Pod Security Policy that controls usage of volumes
+    digest: 8ecf67ce894a2d2064fb540b4081844ff532d919ac296217bb01791c5919d75d
+    home: https://github.com/kubewarden/policies
+    keywords:
+    - psp
+    - pod
+    - volumes
+    name: volumes-psp
+    sources:
+    - ghcr.io/kubewarden/policies/volumes-psp:v1.1.12
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
+    version: 1.1.12
+generated: "2026-11-10T10:21:04.27646948Z"
