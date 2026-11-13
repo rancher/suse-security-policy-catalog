@@ -1,0 +1,93 @@
+protocolVersion: Unknown
+rules:
+- apiGroups:
+  - apps
+  apiVersions:
+  - v1
+  resources:
+  - deployments
+  - replicasets
+  - daemonsets
+  - statefulsets
+  operations:
+  - CREATE
+  - UPDATE
+- apiGroups:
+  - batch
+  apiVersions:
+  - v1
+  resources:
+  - jobs
+  - cronjobs
+  operations:
+  - CREATE
+  - UPDATE
+- apiGroups:
+  - ''
+  apiVersions:
+  - v1
+  resources:
+  - replicationcontrollers
+  operations:
+  - CREATE
+  - UPDATE
+annotations:
+  com.suse.policy.upstream.author: Kubewarden developers <cncf-kubewarden-maintainers@lists.cncf.io>
+  com.suse.policy.upstream.digest: sha256:23efc35577bc1c03de88e1d7221200dc1e5be70e820383ee81dee33b88644ba4
+  com.suse.policy.upstream.release-url: https://github.com/kubewarden/policies/releases/tag/ControllerContainerBlockSysctls/v1.0.6
+  com.suse.policy.upstream.repository: kubewarden/policies
+  com.suse.policy.upstream.tag: ControllerContainerBlockSysctls/v1.0.6
+  io.artifacthub.displayName: Container Block Sysctls
+  io.artifacthub.keywords: pci-dss, cis-benchmark, mitre-attack, nist800-190, gdpr, default
+  io.artifacthub.resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet, StatefulSet, CronJob
+  io.kubewarden.kwctl: 1.39.0-rc.1
+  io.kubewarden.policy.author: SUSE <containers@suse.com>
+  io.kubewarden.policy.category: pod-security
+  io.kubewarden.policy.description: "Setting sysctls can allow containers unauthorized escalated privileges to a Kubernetes node. \n"
+  io.kubewarden.policy.license: Apache-2.0
+  io.kubewarden.policy.ociUrl: ghcr.io/rancher/suse-security-policies/container-block-sysctl
+  io.kubewarden.policy.severity: high
+  io.kubewarden.policy.source: https://github.com/kubewarden/policies
+  io.kubewarden.policy.standards.cis-benchmark: cis-benchmark.5.2.6
+  io.kubewarden.policy.standards.gdpr: gdpr.24, gdpr.25, gdpr.32
+  io.kubewarden.policy.standards.mitre-attack: mitre-attack.4.1
+  io.kubewarden.policy.standards.nist-800-190: nist-800-190.3.3.1
+  io.kubewarden.policy.standards.pci-dss: pci-dss.2.2.4, pci-dss.2.2.5
+  io.kubewarden.policy.title: container-block-sysctl
+  io.kubewarden.policy.url: https://github.com/rancher/suse-security-policies
+  io.kubewarden.policy.usage: |
+    # Container Block Sysctls
+
+    Setting sysctls can allow containers unauthorized escalated privileges to a Kubernetes node.
+
+    You should not set `securityContext.sysctls`
+
+    ```
+    ...
+      spec:
+        securityContext:
+          sysctls
+    ```
+
+    https://kubernetes.io/docs/tasks/configure-pod-container/security-context/
+
+    # Settings
+
+    ```yaml
+    settings:
+      exclude_namespaces: [] # optional, default: ["kube-system"]
+      exclude_label_key: "" # optional
+      exclude_label_value: "" # optional
+    ```
+
+    # Resources
+
+    Policy applies to resources kinds:
+    `Deployment`, `Job`, `ReplicationController`, `ReplicaSet`, `DaemonSet`, `StatefulSet`, `CronJob`
+  io.kubewarden.policy.version: 1.0.6
+  org.opencontainers.image.source: https://github.com/rancher/suse-security-policies
+mutating: false
+backgroundAudit: true
+executionMode: gatekeeper
+policyType: kubernetes
+contextAwareResources: []

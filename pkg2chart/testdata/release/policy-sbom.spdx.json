@@ -1,0 +1,66 @@
+{
+  "SPDXID": "SPDXRef-DOCUMENT",
+  "creationInfo": {
+    "created": "2026-11-12T10:22:09Z",
+    "creators": [
+      "Organization: SUSE",
+      "Tool: suse-security-policies"
+    ]
+  },
+  "dataLicense": "CC0-1.0",
+  "documentNamespace": "https://github.com/rancher/suse-security-policies/spdx/container-block-sysctl/1.0.6-4297d196-65ee-567f-a0e8-d2fb66e613a7",
+  "externalDocumentRefs": [
+    {
+      "checksum": {
+        "algorithm": "SHA256",
+        "checksumValue": "e949d97f7971dc46c087a5571e5ec428f39557a97a4b1efd79abd909716e5d75"
+      },
+      "externalDocumentId": "DocumentRef-upstream",
+      "spdxDocument": "https://anchore.com/syft/dir/container-block-sysctl-1.0.6-efd9926f-dee5-4d11-8cc2-55b8c9c24ab5"
+    }
+  ],
+  "name": "container-block-sysctl-1.0.6",
+  "packages": [
+    {
+      "SPDXID": "SPDXRef-Package-container-block-sysctl",
+      "checksums": [
+        {
+          "algorithm": "SHA256",
+          "checksumValue": "c383805a6bf87cc8872c86695dc4c7f950482565e4f651acebe65bf50d59a84d"
+        }
+      ],
+      "copyrightText": "NOASSERTION",
+      "downloadLocation": "https://github.com/rancher/suse-security-policies/releases/download/ControllerContainerBlockSysctls/v1.0.6/suse-policy.wasm",
+      "externalRefs": [
+        {
+          "referenceCategory": "PACKAGE-MANAGER",
+          "referenceLocator": "pkg:oci/container-block-sysctl@sha256%3A9a915d59ad6b65f16241bd7fa103a434353aee00cf865008dbb5efcec129cc78?repository_url=ghcr.io/rancher/suse-security-policies/container-block-sysctl&tag=v1.0.6",
+          "referenceType": "purl"
+        }
+      ],
+      "filesAnalyzed": false,
+      "licenseConcluded": "NOASSERTION",
+      "licenseDeclared": "NOASSERTION",
+      "name": "container-block-sysctl",
+      "originator": "Organization: Kubewarden (cncf-kubewarden-maintainers@lists.cncf.io)",
+      "packageFileName": "suse-policy.wasm",
+      "primaryPackagePurpose": "APPLICATION",
+      "sourceInfo": "Repackaged by SUSE from https://github.com/kubewarden/policies release ControllerContainerBlockSysctls/v1.0.6 (upstream OCI digest sha256:23efc35577bc1c03de88e1d7221200dc1e5be70e820383ee81dee33b88644ba4, upstream source commit 5bbbfd0b8859359a9dcd01fc53d8d5c3114e6c7d). kwctl annotate set the SUSE annotations (io.kubewarden.policy.ociUrl, io.kubewarden.policy.author, io.kubewarden.policy.url, org.opencontainers.image.source and com.suse.policy.upstream.*) in the io.kubewarden.metadata custom section and wrote the module out again. The program made sure that no other metadata changed, except the io.kubewarden.kwctl annotation. The program did not compare the other bytes of the module with upstream.",
+      "supplier": "Organization: SUSE",
+      "versionInfo": "1.0.6"
+    }
+  ],
+  "relationships": [
+    {
+      "relatedSpdxElement": "SPDXRef-Package-container-block-sysctl",
+      "relationshipType": "DESCRIBES",
+      "spdxElementId": "SPDXRef-DOCUMENT"
+    },
+    {
+      "relatedSpdxElement": "DocumentRef-upstream:SPDXRef-DocumentRoot-Directory-container-block-sysctl-1.0.6",
+      "relationshipType": "GENERATED_FROM",
+      "spdxElementId": "SPDXRef-Package-container-block-sysctl"
+    }
+  ],
+  "spdxVersion": "SPDX-2.3"
+}

@@ -1,0 +1,55 @@
+annotations:
+  catalog.cattle.io/hidden: "true"
+  catalog.cattle.io/type: kubewarden-policy
+  catalog.cattle.io/ui-component: kubewarden
+  kubewarden/displayName: Container Block Sysctls
+  kubewarden/mutation: "false"
+  kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+    StatefulSet, CronJob
+  kubewarden/rules: |
+    - apiGroups:
+      - apps
+      apiVersions:
+      - v1
+      resources:
+      - deployments
+      - replicasets
+      - daemonsets
+      - statefulsets
+      operations:
+      - CREATE
+      - UPDATE
+    - apiGroups:
+      - batch
+      apiVersions:
+      - v1
+      resources:
+      - jobs
+      - cronjobs
+      operations:
+      - CREATE
+      - UPDATE
+    - apiGroups:
+      - ''
+      apiVersions:
+      - v1
+      resources:
+      - replicationcontrollers
+      operations:
+      - CREATE
+      - UPDATE
+appVersion: 1.0.6
+description: Setting sysctls can allow containers unauthorized escalated privileges
+  to a Kubernetes node.
+home: https://github.com/rancher/suse-security-policies
+keywords:
+- pci-dss
+- cis-benchmark
+- mitre-attack
+- nist800-190
+- gdpr
+- default
+name: container-block-sysctl
+sources:
+- ghcr.io/rancher/suse-security-policies/container-block-sysctl:v1.0.6
+version: 1.0.6
