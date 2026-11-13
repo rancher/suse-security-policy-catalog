@@ -7,5 +7,15 @@
   ],
   "labels": [
     "area/dependencies"
+  ],
+  "customManagers": [
+    {
+      "customType": "regex",
+      "description": "Update the tool versions in the env blocks of the workflows",
+      "managerFilePatterns": ["/^\\.github/workflows/.+\\.ya?ml$/"],
+      "matchStrings": [
+        "# renovate: datasource=(?<datasource>\\S+) depName=(?<depName>\\S+)(?: extractVersion=(?<extractVersion>\\S+))?\\s*\\n\\s*[\\w-]+:\\s*[\"']?(?<currentValue>[^\\s\"']+)[\"']?"
+      ]
+    }
   ]
 }
