@@ -1,168 +1,141 @@
 name: Release Policy
 
+# The policies repository sends a release-policy event for each published
+# policy release. A person can start the same work with workflow_dispatch.
+# scripts/build-chart.sh verifies the release and writes the chart. This
+# workflow opens a pull request with the chart.
 on:
   workflow_dispatch:
     inputs:
-      owner:
-        description: "Owner"
-        required: true
-        type: string
-      repo:
-        description: "Repository"
-        required: true
-        type: string
       tag:
-        description: "Tag to release"
+        description: "Release tag in the policies repository, for example ControllerContainerBlockSysctls/v1.0.6"
         required: true
         type: string
-      policy-working-dir:
-        description: "Working directory of the policy. Useful for repos with policies in folders"
-        required: false
-        default: ""
+      policy-name:
+        description: "Upstream directory name of the policy, for example ControllerContainerBlockSysctls"
+        required: true
         type: string
-      chart-dir:
-        description: "Override the chart directory name (defaults to repo name if not provided)"
-        required: false
+      release-version:
+        description: "Release version, for example 1.0.6 or 1.0.6+suse.1"
+        required: true
+        type: string
+      oci-tag:
+        description: "OCI tag of the policy, for example v1.0.6 or v1.0.6_suse.1"
+        required: true
         type: string
   repository_dispatch:
     types: [release-policy]
 
+permissions: {}
+
+# Two requests for the same policy write the same chart directory.
+concurrency:
+  group: release-policy-${{ github.event.client_payload.policy_name || inputs.policy-name }}
+  cancel-in-progress: false
+
 jobs:
   release-policy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
     permissions:
       contents: write
       pull-requests: write
-
+    env:
+      # A fork sets these repository variables to build charts from its own
+      # policies repository.
+      POLICIES_REPOSITORY: ${{ vars.POLICIES_REPOSITORY || 'rancher/suse-security-policies' }}
+      POLICIES_OCI_BASE: ${{ vars.POLICIES_OCI_BASE || 'ghcr.io/rancher/suse-security-policies' }}
+      # The request values come in through the environment, never inline, so
+      # no request value can change a shell command.
+      TAG: ${{ github.event.client_payload.tag || inputs.tag }}
+      POLICY_NAME: ${{ github.event.client_payload.policy_name || inputs.policy-name }}
+      RELEASE_VERSION: ${{ github.event.client_payload.release_version || inputs.release-version }}
+      OCI_TAG: ${{ github.event.client_payload.oci_tag || inputs.oci-tag }}
+      SOURCE_REPOSITORY: ${{ github.event.client_payload.owner && format('{0}/{1}', github.event.client_payload.owner, github.event.client_payload.repo) || '' }}
+      # renovate: datasource=github-releases depName=kubewarden/adm-controller
+      KWCTL_VERSION: v1.39.0
+      # renovate: datasource=github-releases depName=sigstore/cosign
+      COSIGN_VERSION: v3.1.3
     steps:
-      - name: Checkout current repository
+      - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      - name: Extract repository info
-        id: repo-info
+      # A branch for the tag means that a pull request is open, or that a
+      # person closed it without a merge and kept the branch.
+      - name: Check for an earlier pull request
+        id: request
         run: |
-          if [[ "${{ github.event_name }}" == "workflow_dispatch" ]]; then
-            echo "owner=${{ github.event.inputs.owner }}" >> $GITHUB_OUTPUT
-            echo "repo=${{ github.event.inputs.repo }}" >> $GITHUB_OUTPUT
-            echo "tag=${{ github.event.inputs.tag }}" >> $GITHUB_OUTPUT
-            echo "policy_working_dir=${{ github.event.inputs.policy-working-dir }}" >> $GITHUB_OUTPUT
-            
-            if [[ -n "${{ github.event.inputs.chart-dir }}" ]]; then
-              echo "chart_dir=${{ github.event.inputs.chart-dir }}" >> $GITHUB_OUTPUT
-            else
-              echo "chart_dir=${{ github.event.inputs.repo }}" >> $GITHUB_OUTPUT
-            fi
+          branch="release-policy/${TAG}"
+          echo "branch=${branch}" >> "$GITHUB_OUTPUT"
+          if git ls-remote --exit-code --heads origin "$branch" > /dev/null; then
+            echo "::notice::the branch ${branch} exists, so the chart for ${TAG} has a pull request. Nothing to do"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
           else
-            echo "owner=${{ github.event.client_payload.owner }}" >> $GITHUB_OUTPUT
-            echo "repo=${{ github.event.client_payload.repo }}" >> $GITHUB_OUTPUT
-            echo "tag=${{ github.event.client_payload.tag }}" >> $GITHUB_OUTPUT
-
-            if [[ -n "${{ github.event.client_payload.policy_working_dir }}" ]]; then
-              echo "policy_working_dir=${{ github.event.client_payload.policy_working_dir }}" >> $GITHUB_OUTPUT
-            else
-              echo "policy_working_dir=" >> $GITHUB_OUTPUT
-            fi
-            
-            if [[ -n "${{ github.event.client_payload.chart_dir }}" ]]; then
-              echo "chart_dir=${{ github.event.client_payload.chart_dir }}" >> $GITHUB_OUTPUT
-            else
-              echo "chart_dir=${{ github.event.client_payload.repo }}" >> $GITHUB_OUTPUT
-            fi
+            echo "skip=false" >> "$GITHUB_OUTPUT"
           fi
+          # The App token action needs the owner and the repository name apart.
+          echo "policies-owner=${POLICIES_REPOSITORY%%/*}" >> "$GITHUB_OUTPUT"
+          echo "policies-name=${POLICIES_REPOSITORY#*/}" >> "$GITHUB_OUTPUT"
 
-      - name: Clone source repository
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          repository: ${{ steps.repo-info.outputs.owner }}/${{ steps.repo-info.outputs.repo }}
-          ref: ${{ steps.repo-info.outputs.tag }}
-          path: policy-source
-
-      - name: Clone source repository at artifacthub branch
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
-        with:
-          repository: ${{ steps.repo-info.outputs.owner }}/${{ steps.repo-info.outputs.repo }}
-          ref: artifacthub
-          path: policy-source-artifacthub
-
-      - name: Setup Go
+      - name: Set up Go
+        if: steps.request.outputs.skip == 'false'
         uses: actions/setup-go@b7ad1dad31e06c5925ef5d2fc7ad053ef454303e # v7.0.0
         with:
-          go-version: "1.27"
+          go-version-file: pkg2chart/go.mod
+          cache-dependency-path: pkg2chart/go.sum
 
-      - name: Create directory structure
-        run: |
-          TARGET_DIR="charts/${{ steps.repo-info.outputs.chart_dir }}"
-          ROOT_DIR="policy-source"
-          POLICY_WORKING_DIR="${{ steps.repo-info.outputs.policy_working_dir }}"
+      - name: Install kwctl
+        if: steps.request.outputs.skip == 'false'
+        uses: kubewarden/github-actions/kwctl-installer@4d25ea5d35d22768786526f592b0f9ba27587c9c # v8.0.0
+        with:
+          kwctl-version: ${{ env.KWCTL_VERSION }}
 
-          if [ -n "$POLICY_WORKING_DIR" ]; then
-            SOURCE_DIR="$ROOT_DIR/$POLICY_WORKING_DIR"
-          else
-            SOURCE_DIR="$ROOT_DIR"
-          fi
+      # The kwctl installer runs its own cosign-installer, which writes an
+      # older cosign to $HOME/.cosign/cosign. This step must come after it,
+      # because it writes the pinned cosign to the same file.
+      - name: Install cosign
+        if: steps.request.outputs.skip == 'false'
+        uses: sigstore/cosign-installer@6f9f17788090df1f26f669e9d70d6ae9567deba6 # v4.1.2
+        with:
+          cosign-release: ${{ env.COSIGN_VERSION }}
 
-          mkdir -p "$TARGET_DIR"
+      # The policies repository is private, so the release assets need a token.
+      - name: Generate the token to read the policies repository
+        if: steps.request.outputs.skip == 'false'
+        id: token
+        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+          owner: ${{ steps.request.outputs.policies-owner }}
+          repositories: ${{ steps.request.outputs.policies-name }}
+          permission-contents: read
 
-          if [ -f "$SOURCE_DIR/README.md" ]; then
-            cp "$SOURCE_DIR/README.md" "$TARGET_DIR/"
-          else
-            echo "::error::README.md file not found in the source repository"
-            exit 1
-          fi
-
-          if [ -f "policy-source/LICENSE" ]; then
-            cp "policy-source/LICENSE" "$TARGET_DIR/"
-          else
-            if [ -f "$ROOT_DIR/LICENSE" ]; then
-              cp "$ROOT_DIR/LICENSE" "$TARGET_DIR/"
-            else 
-              echo "::error::LICENSE file not found neither in the source nor the root repository"
-              exit 1
-            fi
-          fi
-
-          if [ -f "$SOURCE_DIR/questions-ui.yml" ]; then
-            cp "$SOURCE_DIR/questions-ui.yml" "$TARGET_DIR/questions.yaml"
-          else
-            echo "::notice::questions-ui.yml file not found in the source repository"
-          fi
-
-      - name: Generate Chart.yaml
-        run: |
-          TARGET_DIR="charts/${{ steps.repo-info.outputs.chart_dir }}"
-          POLICY_WORKING_DIR="${{ steps.repo-info.outputs.policy_working_dir }}"
-          SOURCE_DIR="policy-source-artifacthub"
-
-          if [[ -n "$POLICY_WORKING_DIR" ]]; then
-            SOURCE_DIR="$SOURCE_DIR/$POLICY_WORKING_DIR"
-          fi
-
-          cd pkg2chart
-
-          go run main.go \
-            --pkg "../$SOURCE_DIR/artifacthub-pkg.yml" \
-            --repo "../policy-source/artifacthub-repo.yml" \
-            --output "../$TARGET_DIR"
-
-      - name: Create Pull Request
+      - name: Build the chart
+        if: steps.request.outputs.skip == 'false'
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ steps.token.outputs.token }}
+        run: scripts/build-chart.sh
+
+      - name: Create the pull request
+        if: steps.request.outputs.skip == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          BRANCH: ${{ steps.request.outputs.branch }}
         run: |
-          TITLE="chore: update policy ${{ steps.repo-info.outputs.repo }} to ${{ steps.repo-info.outputs.tag }}"
-          BODY="Updates policy ${{ steps.repo-info.outputs.repo }} to ${{ steps.repo-info.outputs.tag }}"
-          COMMIT_MSG="chore: update policy ${{ steps.repo-info.outputs.repo }} to ${{ steps.repo-info.outputs.tag }}"
-
-          TARGET_DIR="charts"
-          BRANCH_NAME="update-policy-${{ steps.repo-info.outputs.repo }}-${{ steps.repo-info.outputs.tag }}"
-
+          if [ -z "$(git status --porcelain -- "charts/${POLICY_NAME}")" ]; then
+            echo "The chart did not change, so there is no pull request"
+            exit 0
+          fi
+          title="chore: update policy ${POLICY_NAME} to ${RELEASE_VERSION}"
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
-          git checkout -b "$BRANCH_NAME"
-          git add "$TARGET_DIR"
-          git commit -m "$COMMIT_MSG"
-          git push origin "$BRANCH_NAME"
+          git checkout -b "$BRANCH"
+          git add -- "charts/${POLICY_NAME}"
+          git commit -m "$title"
+          git push origin "$BRANCH"
           gh pr create \
-            --title "$TITLE" \
-            --body "$BODY" \
+            --title "$title" \
+            --body "Updates the chart of ${POLICY_NAME} to the release [${TAG}](https://github.com/${POLICIES_REPOSITORY}/releases/tag/${TAG})." \
             --base main \
-            --head "$BRANCH_NAME"
+            --head "$BRANCH"
