@@ -41,11 +41,11 @@ jobs:
       contents: write
       pull-requests: write
     env:
-      # A fork sets these repository variables to build charts from its own
+      # A fork sets this repository variable to build charts from its own
       # policies repository.
       POLICIES_REPOSITORY: ${{ vars.POLICIES_REPOSITORY || 'rancher/suse-security-policies' }}
-      # The SUSE policies are in the Rancher Prime registry. This repository
-      # does not store the host of that registry, so there is no default.
+      # The host of the Rancher Prime registry comes from Vault in the policies
+      # repository. A default here could go out of date, so there is none.
       POLICIES_OCI_BASE: ${{ vars.POLICIES_OCI_BASE }}
       # The request values come in through the environment, never inline, so
       # no request value can change a shell command.
@@ -64,7 +64,7 @@ jobs:
       - name: Check the configuration
         run: |
           if [ -z "$POLICIES_OCI_BASE" ]; then
-            echo "::error::the repository variable POLICIES_OCI_BASE is not set. Set it to <Rancher Prime registry host>/rancher/suse-security-policies"
+            echo "::error::the repository variable POLICIES_OCI_BASE is empty or not set. Set it to the host of the Rancher Prime registry, followed by /rancher/suse-security-policies. README.md, section Configuration, tells where the host comes from"
             exit 1
           fi
 

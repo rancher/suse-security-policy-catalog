@@ -201,6 +201,8 @@ func TestRunRejects(t *testing.T) {
 			wantErr: `policy-sbom.spdx.json records the OCI tag "v1.0.6", but the request has "v1.0.7"`},
 		{name: "other OCI base", change: func(o *options, _ string) { o.ociBase = "ghcr.io/kubewarden/policies" },
 			wantErr: `policy-sbom.spdx.json records the repository "registry.example.com/rancher/suse-security-policies/container-block-sysctl", which is not a policy under ghcr.io/kubewarden/policies`},
+		{name: "OCI base with another host", change: func(o *options, _ string) { o.ociBase = "ghcr.io/rancher/suse-security-policies" },
+			wantErr: `policy-sbom.spdx.json records the repository "registry.example.com/rancher/suse-security-policies/container-block-sysctl", which is not a policy under ghcr.io/rancher/suse-security-policies`},
 		// A person copied the signed assets to a release with another tag.
 		{name: "assets of another release", change: func(o *options, _ string) {
 			o.tag, o.policyName = "OtherPolicy/v1.0.6", "OtherPolicy"

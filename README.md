@@ -40,12 +40,14 @@ release, and it fails if they differ.
 
 ### What the Workflow Does
 
-1. If the branch `release-policy/<tag>` exists, the workflow looks for a pull
+1. If `POLICIES_OCI_BASE` is empty, the workflow fails before it does
+   anything else.
+2. If the branch `release-policy/<tag>` exists, the workflow looks for a pull
    request of the branch. If the pull request is open, merged or closed, the
    workflow does nothing. If the branch has no pull request, an earlier run
    failed after the push. Then the workflow fails, and a person must delete
    the branch or open the pull request.
-2. It runs `scripts/build-chart.sh`. The script:
+3. It runs `scripts/build-chart.sh`. The script:
    - fails if `owner`/`repo` differ from `POLICIES_REPOSITORY`,
    - downloads the release assets,
    - verifies the signatures of `suse-policy.wasm` and of the SUSE SBOM
@@ -53,10 +55,10 @@ release, and it fails if they differ.
      `https://github.com/<POLICIES_REPOSITORY>/.github/workflows/sync-upstream-releases.yaml@refs/heads/main`,
    - runs `pkg2chart`, which verifies the rest and writes
      `charts/<policy_name>/`. See [pkg2chart/README.md](pkg2chart/README.md).
-3. If the chart changed, it runs `helm lint` on the chart. Only errors fail
+4. If the chart changed, it runs `helm lint` on the chart. Only errors fail
    the lint. GitHub starts no checks on a pull request that the workflow
    opens with `GITHUB_TOKEN`, so this is the only check before the merge.
-4. If the lint passes, it opens a pull request.
+5. If the lint passes, it opens a pull request.
 
 If the chart already has the same version or a newer one, nothing changes.
 Thus the policies repository can send the same event again.
@@ -75,15 +77,20 @@ the release assets need this token.
 
 `POLICIES_OCI_BASE` has no default, and the workflow stops if it is empty. Set
 it to the host of the Rancher Prime registry, followed by
-`/rancher/suse-security-policies`. The host is the `registry` value of the
-EIO Vault entry `rancher-prime-registry` of rancher/suse-security-policies.
+`/rancher/suse-security-policies`. The host is the key `registry` in the
+Vault path
+`secret/data/github/repo/rancher/suse-security-policies/rancher-prime-registry/credentials`.
+The EIO team runs this Vault. If you cannot read the path, ask the EIO team or
+a maintainer of rancher/suse-security-policies for the host.
 
 A fork sets the two variables to its own policies repository and registry.
 
 ### Run it locally
 
 Install gh, cosign, kwctl and Go. Log in with `gh auth login` as a user that
-can read the policies repository. Then run:
+can read the policies repository. Set the shell variable `PRIME_REGISTRY` to
+the host of the Rancher Prime registry. The Configuration section tells where
+the host comes from. Then run:
 
 ```console
 TAG=ControllerContainerBlockSysctls/v1.0.6 \
@@ -91,12 +98,9 @@ POLICY_NAME=ControllerContainerBlockSysctls \
 RELEASE_VERSION=1.0.6 \
 OCI_TAG=v1.0.6 \
 POLICIES_REPOSITORY=rancher/suse-security-policies \
-POLICIES_OCI_BASE=<Rancher Prime registry host>/rancher/suse-security-policies \
+POLICIES_OCI_BASE="${PRIME_REGISTRY:?set PRIME_REGISTRY to the host of the Rancher Prime registry}/rancher/suse-security-policies" \
 scripts/build-chart.sh
 ```
-
-A local run must also set `POLICIES_OCI_BASE`. Replace
-`<Rancher Prime registry host>` with the host from the Configuration section.
 
 The script writes `charts/ControllerContainerBlockSysctls/`. It opens no pull
 request.
