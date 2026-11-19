@@ -157,7 +157,7 @@ func TestRunRevision(t *testing.T) {
 	chart := readFile(t, filepath.Join(o.output, chartFile))
 	assert.Contains(t, chart, "\nversion: 1.0.6+suse.1\n")
 	assert.Contains(t, chart, "\nappVersion: 1.0.6+suse.1\n")
-	assert.Contains(t, chart, "- ghcr.io/rancher/suse-security-policies/container-block-sysctl:v1.0.6_suse.1\n")
+	assert.Contains(t, chart, "- oci://ghcr.io/rancher/suse-security-policies/container-block-sysctl:v1.0.6_suse.1\n")
 	assert.Contains(t, readFile(t, filepath.Join(o.output, valuesFile)), "  tag: v1.0.6_suse.1\n")
 }
 

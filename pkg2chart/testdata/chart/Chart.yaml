@@ -52,5 +52,5 @@ keywords:
 - default
 name: container-block-sysctl
 sources:
-- ghcr.io/rancher/suse-security-policies/container-block-sysctl:v1.0.6
+- oci://ghcr.io/rancher/suse-security-policies/container-block-sysctl:v1.0.6
 version: 1.0.6

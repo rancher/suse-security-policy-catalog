@@ -63,7 +63,7 @@ go run . \
 | `description` | `io.kubewarden.policy.description`, trimmed |
 | `keywords` | `io.artifacthub.keywords`, split on commas |
 | `home` | `io.kubewarden.policy.url` |
-| `sources` | `<ociUrl>:<oci-tag>` |
+| `sources` | `oci://<ociUrl>:<oci-tag>` |
 | `kubewarden/displayName` | `io.artifacthub.displayName` (required) |
 | `kubewarden/mutation`, `kubewarden/rules` | `mutating`, `rules` |
 | `kubewarden/contextAwareResources` | `contextAwareResources`, if not empty |

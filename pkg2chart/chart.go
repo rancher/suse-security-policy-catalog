@@ -142,7 +142,8 @@ func buildChart(rel *release, version string, files *upstreamFiles) (map[string]
 		Description: strings.TrimSpace(a["io.kubewarden.policy.description"]),
 		Keywords:    keywords,
 		Home:        a["io.kubewarden.policy.url"],
-		Sources:     []string{rel.image},
+		// helm lint accepts only a URL with a scheme as a source.
+		Sources:     []string{"oci://" + rel.image},
 		Annotations: annotations,
 	})
 	if err != nil {
