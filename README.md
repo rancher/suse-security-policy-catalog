@@ -66,12 +66,17 @@ Thus the policies repository can send the same event again.
 | Name | Kind | Default |
 |---|---|---|
 | `POLICIES_REPOSITORY` | repository variable | `rancher/suse-security-policies` |
-| `POLICIES_OCI_BASE` | repository variable | `ghcr.io/rancher/suse-security-policies` |
+| `POLICIES_OCI_BASE` | repository variable | none, required |
 | `APP_ID`, `APP_PRIVATE_KEY` | secrets | none |
 
 The GitHub App must be installed on the owner of `POLICIES_REPOSITORY`, with
 the `contents: read` permission on it. The policies repository is private, so
 the release assets need this token.
+
+`POLICIES_OCI_BASE` has no default, and the workflow stops if it is empty. Set
+it to the host of the Rancher Prime registry, followed by
+`/rancher/suse-security-policies`. The host is the `registry` value of the
+EIO Vault entry `rancher-prime-registry` of rancher/suse-security-policies.
 
 A fork sets the two variables to its own policies repository and registry.
 
@@ -86,9 +91,12 @@ POLICY_NAME=ControllerContainerBlockSysctls \
 RELEASE_VERSION=1.0.6 \
 OCI_TAG=v1.0.6 \
 POLICIES_REPOSITORY=rancher/suse-security-policies \
-POLICIES_OCI_BASE=ghcr.io/rancher/suse-security-policies \
+POLICIES_OCI_BASE=<Rancher Prime registry host>/rancher/suse-security-policies \
 scripts/build-chart.sh
 ```
+
+A local run must also set `POLICIES_OCI_BASE`. Replace
+`<Rancher Prime registry host>` with the host from the Configuration section.
 
 The script writes `charts/ControllerContainerBlockSysctls/`. It opens no pull
 request.

@@ -189,7 +189,7 @@ func generatedFrom(doc *spdxDocument, from, to string) bool {
 }
 
 // purlRepository reads the OCI purl of the package, for example
-// pkg:oci/name@sha256%3A...?repository_url=ghcr.io/org/repo/name&tag=v1.0.6,
+// pkg:oci/name@sha256%3A...?repository_url=registry.example.com/rancher/suse-security-policies/name&tag=v1.0.6,
 // and returns repository_url. The tag in the purl must be ociTag.
 func purlRepository(pkg *spdxPackage, ociTag string) (string, error) {
 	var purls []string

@@ -46,10 +46,15 @@ go run . \
   --policy-name ControllerContainerBlockSysctls \
   --release-version 1.0.6 \
   --oci-tag v1.0.6 \
-  --oci-base ghcr.io/rancher/suse-security-policies \
+  --oci-base <Rancher Prime registry host>/rancher/suse-security-policies \
   --policies-repository rancher/suse-security-policies \
   --output ../charts/ControllerContainerBlockSysctls
 ```
+
+`--oci-base` has no default. It is the host of the Rancher Prime registry,
+followed by `/rancher/suse-security-policies`. The host is the `registry`
+value of the EIO Vault entry `rancher-prime-registry` of
+rancher/suse-security-policies.
 
 `--upstream-repository` is optional. The default is `kubewarden/policies`.
 

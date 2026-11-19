@@ -45,7 +45,7 @@ annotations:
   io.kubewarden.policy.category: pod-security
   io.kubewarden.policy.description: "Setting sysctls can allow containers unauthorized escalated privileges to a Kubernetes node. \n"
   io.kubewarden.policy.license: Apache-2.0
-  io.kubewarden.policy.ociUrl: ghcr.io/rancher/suse-security-policies/container-block-sysctl
+  io.kubewarden.policy.ociUrl: registry.example.com/rancher/suse-security-policies/container-block-sysctl
   io.kubewarden.policy.severity: high
   io.kubewarden.policy.source: https://github.com/kubewarden/policies
   io.kubewarden.policy.standards.cis-benchmark: cis-benchmark.5.2.6

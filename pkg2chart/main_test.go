@@ -65,7 +65,7 @@ func testOptions(t *testing.T, releaseDir string) options {
 		policyName:         "ControllerContainerBlockSysctls",
 		releaseVersion:     "1.0.6",
 		ociTag:             "v1.0.6",
-		ociBase:            "ghcr.io/rancher/suse-security-policies",
+		ociBase:            "registry.example.com/rancher/suse-security-policies",
 		policiesRepository: "rancher/suse-security-policies",
 		upstreamRepository: "kubewarden/policies",
 		output:             filepath.Join(t.TempDir(), "ControllerContainerBlockSysctls"),
@@ -157,7 +157,7 @@ func TestRunRevision(t *testing.T) {
 	chart := readFile(t, filepath.Join(o.output, chartFile))
 	assert.Contains(t, chart, "\nversion: 1.0.6+suse.1\n")
 	assert.Contains(t, chart, "\nappVersion: 1.0.6+suse.1\n")
-	assert.Contains(t, chart, "- oci://ghcr.io/rancher/suse-security-policies/container-block-sysctl:v1.0.6_suse.1\n")
+	assert.Contains(t, chart, "- oci://registry.example.com/rancher/suse-security-policies/container-block-sysctl:v1.0.6_suse.1\n")
 	assert.Contains(t, readFile(t, filepath.Join(o.output, valuesFile)), "  tag: v1.0.6_suse.1\n")
 }
 
@@ -200,7 +200,7 @@ func TestRunRejects(t *testing.T) {
 		{name: "other OCI tag", change: func(o *options, _ string) { o.ociTag = "v1.0.7" },
 			wantErr: `policy-sbom.spdx.json records the OCI tag "v1.0.6", but the request has "v1.0.7"`},
 		{name: "other OCI base", change: func(o *options, _ string) { o.ociBase = "ghcr.io/kubewarden/policies" },
-			wantErr: `policy-sbom.spdx.json records the repository "ghcr.io/rancher/suse-security-policies/container-block-sysctl", which is not a policy under ghcr.io/kubewarden/policies`},
+			wantErr: `policy-sbom.spdx.json records the repository "registry.example.com/rancher/suse-security-policies/container-block-sysctl", which is not a policy under ghcr.io/kubewarden/policies`},
 		// A person copied the signed assets to a release with another tag.
 		{name: "assets of another release", change: func(o *options, _ string) {
 			o.tag, o.policyName = "OtherPolicy/v1.0.6", "OtherPolicy"
@@ -215,8 +215,8 @@ func TestRunRejects(t *testing.T) {
 		}, change: func(o *options, _ string) {
 			o.tag, o.releaseVersion, o.ociTag = "ControllerContainerBlockSysctls/v1.0.6+suse.1", "1.0.6+suse.1", "v1.0.6_suse.1"
 		}, wantErr: `is at "https://github.com/rancher/suse-security-policies/releases/download/ControllerContainerBlockSysctls/v1.0.6%2Bsuse.1/suse-policy.wasm"`},
-		{name: "OCI base that is a prefix of the owner", change: func(o *options, _ string) { o.ociBase = "ghcr.io/rancher" },
-			wantErr: "which is not a policy under ghcr.io/rancher"},
+		{name: "OCI base that is a prefix of the owner", change: func(o *options, _ string) { o.ociBase = "registry.example.com/rancher" },
+			wantErr: "which is not a policy under registry.example.com/rancher"},
 		{name: "changed upstream SBOM", change: func(_ *options, dir string) {
 			path := filepath.Join(dir, upstreamSBOMName)
 			data, err := os.ReadFile(path)
@@ -228,9 +228,9 @@ func TestRunRejects(t *testing.T) {
 		{name: "no GENERATED_FROM", edits: []edit{{sbomName, `"GENERATED_FROM"`, `"OTHER"`}},
 			wantErr: "policy-sbom.spdx.json does not record that SPDXRef-Package-container-block-sysctl is generated from"},
 		{name: "other ociUrl annotation", edits: []edit{{metadataName,
-			"io.kubewarden.policy.ociUrl: ghcr.io/rancher/suse-security-policies/container-block-sysctl",
-			"io.kubewarden.policy.ociUrl: ghcr.io/rancher/suse-security-policies/other"}},
-			wantErr: `the io.kubewarden.policy.ociUrl annotation is "ghcr.io/rancher/suse-security-policies/other"`},
+			"io.kubewarden.policy.ociUrl: registry.example.com/rancher/suse-security-policies/container-block-sysctl",
+			"io.kubewarden.policy.ociUrl: registry.example.com/rancher/suse-security-policies/other"}},
+			wantErr: `the io.kubewarden.policy.ociUrl annotation is "registry.example.com/rancher/suse-security-policies/other"`},
 		{name: "other policy version annotation", edits: []edit{{metadataName, "io.kubewarden.policy.version: 1.0.6", "io.kubewarden.policy.version: 1.0.5"}},
 			wantErr: `the io.kubewarden.policy.version annotation is "1.0.5", but the release version "1.0.6" needs "1.0.6"`},
 		{name: "no display name", edits: []edit{{metadataName, "  io.artifacthub.displayName: Container Block Sysctls\n", ""}},

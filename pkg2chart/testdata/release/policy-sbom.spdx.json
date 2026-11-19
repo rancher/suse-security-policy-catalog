@@ -34,7 +34,7 @@
       "externalRefs": [
         {
           "referenceCategory": "PACKAGE-MANAGER",
-          "referenceLocator": "pkg:oci/container-block-sysctl@sha256%3A9a915d59ad6b65f16241bd7fa103a434353aee00cf865008dbb5efcec129cc78?repository_url=ghcr.io/rancher/suse-security-policies/container-block-sysctl&tag=v1.0.6",
+          "referenceLocator": "pkg:oci/container-block-sysctl@sha256%3A9a915d59ad6b65f16241bd7fa103a434353aee00cf865008dbb5efcec129cc78?repository_url=registry.example.com/rancher/suse-security-policies/container-block-sysctl&tag=v1.0.6",
           "referenceType": "purl"
         }
       ],
