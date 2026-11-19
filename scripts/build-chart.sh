@@ -62,4 +62,5 @@ go run . \
   --release-version "$RELEASE_VERSION" \
   --oci-tag "$OCI_TAG" \
   --oci-base "$POLICIES_OCI_BASE" \
+  --policies-repository "$POLICIES_REPOSITORY" \
   --output "$root/charts/$POLICY_NAME"

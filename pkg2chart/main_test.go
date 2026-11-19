@@ -66,6 +66,7 @@ func testOptions(t *testing.T, releaseDir string) options {
 		releaseVersion:     "1.0.6",
 		ociTag:             "v1.0.6",
 		ociBase:            "ghcr.io/rancher/suse-security-policies",
+		policiesRepository: "rancher/suse-security-policies",
 		upstreamRepository: "kubewarden/policies",
 		output:             filepath.Join(t.TempDir(), "ControllerContainerBlockSysctls"),
 	}
@@ -147,6 +148,7 @@ func TestRunRevision(t *testing.T) {
 	dir := newRelease(t,
 		edit{sbomName, `"versionInfo": "1.0.6"`, `"versionInfo": "1.0.6+suse.1"`},
 		edit{sbomName, "&tag=v1.0.6", "&tag=v1.0.6_suse.1"},
+		edit{sbomName, "/ControllerContainerBlockSysctls/v1.0.6/", "/ControllerContainerBlockSysctls/v1.0.6%2Bsuse.1/"},
 	)
 	o := testOptions(t, dir)
 	o.tag, o.releaseVersion, o.ociTag = "ControllerContainerBlockSysctls/v1.0.6+suse.1", "1.0.6+suse.1", "v1.0.6_suse.1"
@@ -199,6 +201,20 @@ func TestRunRejects(t *testing.T) {
 			wantErr: `policy-sbom.spdx.json records the OCI tag "v1.0.6", but the request has "v1.0.7"`},
 		{name: "other OCI base", change: func(o *options, _ string) { o.ociBase = "ghcr.io/kubewarden/policies" },
 			wantErr: `policy-sbom.spdx.json records the repository "ghcr.io/rancher/suse-security-policies/container-block-sysctl", which is not a policy under ghcr.io/kubewarden/policies`},
+		// A person copied the signed assets to a release with another tag.
+		{name: "assets of another release", change: func(o *options, _ string) {
+			o.tag, o.policyName = "OtherPolicy/v1.0.6", "OtherPolicy"
+		}, wantErr: `policy-sbom.spdx.json records the download location "https://github.com/rancher/suse-security-policies/releases/download/ControllerContainerBlockSysctls/v1.0.6/suse-policy.wasm", ` +
+			`but the module of the release OtherPolicy/v1.0.6 of rancher/suse-security-policies is at "https://github.com/rancher/suse-security-policies/releases/download/OtherPolicy/v1.0.6/suse-policy.wasm"`},
+		{name: "other policies repository", change: func(o *options, _ string) { o.policiesRepository = "other/suse-security-policies" },
+			wantErr: `but the module of the release ControllerContainerBlockSysctls/v1.0.6 of other/suse-security-policies is at`},
+		{name: "revision with an unescaped tag", edits: []edit{
+			{sbomName, `"versionInfo": "1.0.6"`, `"versionInfo": "1.0.6+suse.1"`},
+			{sbomName, "&tag=v1.0.6", "&tag=v1.0.6_suse.1"},
+			{sbomName, "/ControllerContainerBlockSysctls/v1.0.6/", "/ControllerContainerBlockSysctls/v1.0.6+suse.1/"},
+		}, change: func(o *options, _ string) {
+			o.tag, o.releaseVersion, o.ociTag = "ControllerContainerBlockSysctls/v1.0.6+suse.1", "1.0.6+suse.1", "v1.0.6_suse.1"
+		}, wantErr: `is at "https://github.com/rancher/suse-security-policies/releases/download/ControllerContainerBlockSysctls/v1.0.6%2Bsuse.1/suse-policy.wasm"`},
 		{name: "OCI base that is a prefix of the owner", change: func(o *options, _ string) { o.ociBase = "ghcr.io/rancher" },
 			wantErr: "which is not a policy under ghcr.io/rancher"},
 		{name: "changed upstream SBOM", change: func(_ *options, dir string) {
@@ -284,7 +300,7 @@ func TestCompareVersions(t *testing.T) {
 func TestOptionsCheck(t *testing.T) {
 	err := options{tag: "x"}.check(nil)
 	require.Error(t, err)
-	assert.Equal(t, "these flags are required and must not be empty: --release-dir, --policy-name, --release-version, --oci-tag, --oci-base, --upstream-repository, --output", err.Error())
+	assert.Equal(t, "these flags are required and must not be empty: --release-dir, --policy-name, --release-version, --oci-tag, --oci-base, --policies-repository, --upstream-repository, --output", err.Error())
 	o := testOptions(t, "dir")
 	require.Error(t, o.check([]string{"extra"}))
 	require.NoError(t, o.check(nil))

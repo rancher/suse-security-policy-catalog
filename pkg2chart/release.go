@@ -33,10 +33,11 @@ type spdxChecksum struct {
 }
 
 type spdxPackage struct {
-	SPDXID       string         `json:"SPDXID"`
-	VersionInfo  string         `json:"versionInfo"`
-	Checksums    []spdxChecksum `json:"checksums"`
-	ExternalRefs []struct {
+	SPDXID           string         `json:"SPDXID"`
+	VersionInfo      string         `json:"versionInfo"`
+	DownloadLocation string         `json:"downloadLocation"`
+	Checksums        []spdxChecksum `json:"checksums"`
+	ExternalRefs     []struct {
 		ReferenceType    string `json:"referenceType"`
 		ReferenceLocator string `json:"referenceLocator"`
 	} `json:"externalRefs"`
@@ -97,6 +98,16 @@ func verifyRelease(o options) (*release, error) {
 	}
 	if pkg.VersionInfo != o.releaseVersion {
 		return nil, fmt.Errorf("%s records the version %q, but the release version is %q", sbomName, pkg.VersionInfo, o.releaseVersion)
+	}
+	// The tag selects the chart directory and the upstream files, and the blob
+	// signatures stay valid when a person copies the assets to a release with
+	// another tag. Thus the signed SBOM must name this release. The repackager
+	// writes the '+' of a revision as %2B, as GitHub does in
+	// browser_download_url.
+	wantLocation := "https://github.com/" + o.policiesRepository + "/releases/download/" + strings.ReplaceAll(o.tag, "+", "%2B") + "/" + wasmName
+	if pkg.DownloadLocation != wantLocation {
+		return nil, fmt.Errorf("%s records the download location %q, but the module of the release %s of %s is at %q",
+			sbomName, pkg.DownloadLocation, o.tag, o.policiesRepository, wantLocation)
 	}
 	repository, err := purlRepository(pkg, o.ociTag)
 	if err != nil {

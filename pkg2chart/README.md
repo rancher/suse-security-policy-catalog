@@ -23,6 +23,10 @@ The caller also writes `metadata.yml`, the output of
 3. It follows the chain from the SUSE SBOM:
    - The SUSE SBOM records the sha256 of `suse-policy.wasm` and of the upstream
      SBOM.
+   - The SUSE SBOM records the download address of `suse-policy.wasm` in the
+     release `--tag` of `--policies-repository`. The blob signatures stay
+     valid in a release with another tag, so this check binds the signed
+     files to the tag, and thus to the policy name.
    - The SUSE SBOM records `--release-version` and, in its purl,
      `--oci-tag` and a repository under `--oci-base`.
    - The upstream SBOM records the upstream commit.
@@ -43,6 +47,7 @@ go run . \
   --release-version 1.0.6 \
   --oci-tag v1.0.6 \
   --oci-base ghcr.io/rancher/suse-security-policies \
+  --policies-repository rancher/suse-security-policies \
   --output ../charts/ControllerContainerBlockSysctls
 ```
 

@@ -29,6 +29,7 @@ type options struct {
 	releaseVersion     string
 	ociTag             string
 	ociBase            string
+	policiesRepository string
 	upstreamRepository string
 	output             string
 }
@@ -42,6 +43,7 @@ func main() {
 	flag.StringVar(&o.releaseVersion, "release-version", "", "version of the release, for example 1.0.6 or 1.0.6+suse.1 (required)")
 	flag.StringVar(&o.ociTag, "oci-tag", "", "OCI tag of the policy, for example v1.0.6 or v1.0.6_suse.1 (required)")
 	flag.StringVar(&o.ociBase, "oci-base", "", "registry and path of the published policies, for example ghcr.io/rancher/suse-security-policies (required)")
+	flag.StringVar(&o.policiesRepository, "policies-repository", "", "owner/repo that published the release, for example rancher/suse-security-policies (required)")
 	flag.StringVar(&o.upstreamRepository, "upstream-repository", "kubewarden/policies", "owner/repo that holds the policy files")
 	flag.StringVar(&o.output, "output", "", "chart directory, for example charts/ControllerContainerBlockSysctls (required)")
 	flag.Parse()
@@ -63,7 +65,8 @@ func (o options) check(args []string) error {
 	var missing []string
 	for _, f := range [][2]string{
 		{"release-dir", o.releaseDir}, {"tag", o.tag}, {"policy-name", o.policyName}, {"release-version", o.releaseVersion},
-		{"oci-tag", o.ociTag}, {"oci-base", o.ociBase}, {"upstream-repository", o.upstreamRepository}, {"output", o.output},
+		{"oci-tag", o.ociTag}, {"oci-base", o.ociBase}, {"policies-repository", o.policiesRepository},
+		{"upstream-repository", o.upstreamRepository}, {"output", o.output},
 	} {
 		if strings.TrimSpace(f[1]) == "" {
 			missing = append(missing, "--"+f[0])
