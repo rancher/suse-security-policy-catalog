@@ -1,0 +1,6 @@
+global:
+  cattle:
+    systemDefaultRegistry: ghcr.io
+module:
+  repository: rancher/suse-security-policies/container-block-sysctl
+  tag: v1.0.6
