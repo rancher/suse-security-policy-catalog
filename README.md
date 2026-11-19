@@ -53,7 +53,10 @@ release, and it fails if they differ.
      `https://github.com/<POLICIES_REPOSITORY>/.github/workflows/sync-upstream-releases.yaml@refs/heads/main`,
    - runs `pkg2chart`, which verifies the rest and writes
      `charts/<policy_name>/`. See [pkg2chart/README.md](pkg2chart/README.md).
-3. If the chart changed, it opens a pull request.
+3. If the chart changed, it runs `helm lint` on the chart. Only errors fail
+   the lint. GitHub starts no checks on a pull request that the workflow
+   opens with `GITHUB_TOKEN`, so this is the only check before the merge.
+4. If the lint passes, it opens a pull request.
 
 If the chart already has the same version or a newer one, nothing changes.
 Thus the policies repository can send the same event again.

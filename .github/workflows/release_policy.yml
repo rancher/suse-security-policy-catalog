@@ -56,6 +56,8 @@ jobs:
       KWCTL_VERSION: v1.39.0
       # renovate: datasource=github-releases depName=sigstore/cosign
       COSIGN_VERSION: v3.1.3
+      # renovate: datasource=github-releases depName=helm/helm
+      HELM_VERSION: v4.3.2
     steps:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
@@ -111,6 +113,13 @@ jobs:
         with:
           cosign-release: ${{ env.COSIGN_VERSION }}
 
+      - name: Install Helm
+        if: steps.request.outputs.skip == 'false'
+        uses: azure/setup-helm@2f5e7bc67f1f9972ab16657bb795f36d8f04de0e # v5.1.0
+        with:
+          version: ${{ env.HELM_VERSION }}
+          checksum-policy: required
+
       # The policies repository is private, so the release assets need a token.
       - name: Generate the token to read the policies repository
         if: steps.request.outputs.skip == 'false'
@@ -123,22 +132,36 @@ jobs:
           repositories: ${{ steps.request.outputs.policies-name }}
           permission-contents: read
 
+      # pkg2chart changes nothing if the chart already has the same version or
+      # a newer one.
       - name: Build the chart
         if: steps.request.outputs.skip == 'false'
+        id: build
         env:
           GH_TOKEN: ${{ steps.token.outputs.token }}
-        run: scripts/build-chart.sh
+        run: |
+          scripts/build-chart.sh
+          if [ -z "$(git status --porcelain -- "charts/${POLICY_NAME}")" ]; then
+            echo "The chart did not change, so there is no pull request"
+            echo "changed=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "changed=true" >> "$GITHUB_OUTPUT"
+          fi
+
+      # GitHub starts no pull_request workflow for a pull request that
+      # GITHUB_TOKEN opens, so this is the only check before the merge. Only
+      # errors fail the lint. The charts have no templates and no icon, which
+      # helm reports as a warning and as information.
+      - name: Lint the chart
+        if: steps.build.outputs.changed == 'true'
+        run: helm lint "charts/${POLICY_NAME}"
 
       - name: Create the pull request
-        if: steps.request.outputs.skip == 'false'
+        if: steps.build.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
           BRANCH: ${{ steps.request.outputs.branch }}
         run: |
-          if [ -z "$(git status --porcelain -- "charts/${POLICY_NAME}")" ]; then
-            echo "The chart did not change, so there is no pull request"
-            exit 0
-          fi
           title="chore: update policy ${POLICY_NAME} to ${RELEASE_VERSION}"
           git config user.name "$GITHUB_ACTOR"
           git config user.email "$GITHUB_ACTOR@users.noreply.github.com"
