@@ -38,6 +38,7 @@ annotations:
       operations:
       - CREATE
       - UPDATE
+apiVersion: v2
 appVersion: 1.0.6
 description: Setting sysctls can allow containers unauthorized escalated privileges
   to a Kubernetes node.

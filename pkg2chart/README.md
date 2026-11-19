@@ -57,6 +57,7 @@ go run . \
 
 | Chart field | Source |
 |---|---|
+| `apiVersion` | `v2`, the chart format of Helm 3 and later |
 | `name` | `io.kubewarden.policy.title` |
 | `version`, `appVersion` | `--release-version` |
 | `description` | `io.kubewarden.policy.description`, trimmed |

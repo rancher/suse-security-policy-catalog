@@ -135,6 +135,7 @@ func buildChart(rel *release, version string, files *upstreamFiles) (map[string]
 		}
 	}
 	chartYAML, err := sigsyaml.Marshal(&chart.Metadata{
+		APIVersion:  chart.APIVersionV2,
 		Name:        title,
 		Version:     version,
 		AppVersion:  version,
