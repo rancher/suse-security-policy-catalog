@@ -40,7 +40,11 @@ release, and it fails if they differ.
 
 ### What the Workflow Does
 
-1. If the branch `release-policy/<tag>` exists, the workflow does nothing.
+1. If the branch `release-policy/<tag>` exists, the workflow looks for a pull
+   request of the branch. If the pull request is open, merged or closed, the
+   workflow does nothing. If the branch has no pull request, an earlier run
+   failed after the push. Then the workflow fails, and a person must delete
+   the branch or open the pull request.
 2. It runs `scripts/build-chart.sh`. The script:
    - fails if `owner`/`repo` differ from `POLICIES_REPOSITORY`,
    - downloads the release assets,

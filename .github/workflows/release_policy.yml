@@ -60,18 +60,30 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
-      # A branch for the tag means that a pull request is open, or that a
-      # person closed it without a merge and kept the branch.
+      # A branch for the tag has a pull request that is open or merged, or
+      # that a person closed without a merge to stop the chart. A branch
+      # without a pull request remains when an earlier run failed after the
+      # push. Nobody checked that branch, so the run stops, and a person must
+      # delete the branch or open the pull request. The full ref name stops
+      # ls-remote from matching a branch that only ends with the same name.
       - name: Check for an earlier pull request
         id: request
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           branch="release-policy/${TAG}"
           echo "branch=${branch}" >> "$GITHUB_OUTPUT"
-          if git ls-remote --exit-code --heads origin "$branch" > /dev/null; then
-            echo "::notice::the branch ${branch} exists, so the chart for ${TAG} has a pull request. Nothing to do"
-            echo "skip=true" >> "$GITHUB_OUTPUT"
-          else
+          heads="$(git ls-remote --heads origin "refs/heads/${branch}")"
+          if [ -z "$heads" ]; then
             echo "skip=false" >> "$GITHUB_OUTPUT"
+          else
+            states="$(gh pr list --repo "$GITHUB_REPOSITORY" --head "$branch" --state all --json state --jq '.[].state')"
+            if [ -z "$states" ]; then
+              echo "::error::the branch ${branch} exists without a pull request, because an earlier run failed after the push. Delete the branch, or open the pull request by hand"
+              exit 1
+            fi
+            echo "::notice::the branch ${branch} has a pull request (${states//$'\n'/, }), so the chart for ${TAG} needs no new one. Nothing to do"
+            echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
           # The App token action needs the owner and the repository name apart.
           echo "policies-owner=${POLICIES_REPOSITORY%%/*}" >> "$GITHUB_OUTPUT"
