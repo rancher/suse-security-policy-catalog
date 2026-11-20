@@ -46,10 +46,13 @@ go run . \
   --policy-name ControllerContainerBlockSysctls \
   --release-version 1.0.6 \
   --oci-tag v1.0.6 \
-  --oci-base ghcr.io/rancher/suse-security-policies \
+  --oci-base registry.rancher.com/rancher/suse-security-policies \
   --policies-repository rancher/suse-security-policies \
   --output ../charts/ControllerContainerBlockSysctls
 ```
+
+`--oci-base` is required. It must be equal to `destination.registry` in the
+`config.yaml` of the policies repository.
 
 `--upstream-repository` is optional. The default is `kubewarden/policies`.
 

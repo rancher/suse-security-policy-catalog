@@ -42,7 +42,7 @@ func main() {
 	flag.StringVar(&o.policyName, "policy-name", "", "upstream directory name of the policy, for example ControllerContainerBlockSysctls (required)")
 	flag.StringVar(&o.releaseVersion, "release-version", "", "version of the release, for example 1.0.6 or 1.0.6+suse.1 (required)")
 	flag.StringVar(&o.ociTag, "oci-tag", "", "OCI tag of the policy, for example v1.0.6 or v1.0.6_suse.1 (required)")
-	flag.StringVar(&o.ociBase, "oci-base", "", "registry and path of the published policies, for example ghcr.io/rancher/suse-security-policies (required)")
+	flag.StringVar(&o.ociBase, "oci-base", "", "registry and path of the published policies, for example registry.example.com/rancher/suse-security-policies (required)")
 	flag.StringVar(&o.policiesRepository, "policies-repository", "", "owner/repo that published the release, for example rancher/suse-security-policies (required)")
 	flag.StringVar(&o.upstreamRepository, "upstream-repository", "kubewarden/policies", "owner/repo that holds the policy files")
 	flag.StringVar(&o.output, "output", "", "chart directory, for example charts/ControllerContainerBlockSysctls (required)")

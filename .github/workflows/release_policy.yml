@@ -44,7 +44,11 @@ jobs:
       # A fork sets these repository variables to build charts from its own
       # policies repository.
       POLICIES_REPOSITORY: ${{ vars.POLICIES_REPOSITORY || 'rancher/suse-security-policies' }}
-      POLICIES_OCI_BASE: ${{ vars.POLICIES_OCI_BASE || 'ghcr.io/rancher/suse-security-policies' }}
+      # Must be equal to destination.registry in the config.yaml of the
+      # policies repository. If the registry moves, change both in reviewed
+      # pull requests. Until then, pkg2chart rejects the SBOMs of the new
+      # registry.
+      POLICIES_OCI_BASE: ${{ vars.POLICIES_OCI_BASE || 'registry.rancher.com/rancher/suse-security-policies' }}
       # The request values come in through the environment, never inline, so
       # no request value can change a shell command.
       TAG: ${{ github.event.client_payload.tag || inputs.tag }}

@@ -66,12 +66,17 @@ Thus the policies repository can send the same event again.
 | Name | Kind | Default |
 |---|---|---|
 | `POLICIES_REPOSITORY` | repository variable | `rancher/suse-security-policies` |
-| `POLICIES_OCI_BASE` | repository variable | `ghcr.io/rancher/suse-security-policies` |
+| `POLICIES_OCI_BASE` | repository variable | `registry.rancher.com/rancher/suse-security-policies` |
 | `APP_ID`, `APP_PRIVATE_KEY` | secrets | none |
 
 The GitHub App must be installed on the owner of `POLICIES_REPOSITORY`, with
 the `contents: read` permission on it. The policies repository is private, so
 the release assets need this token.
+
+`POLICIES_OCI_BASE` is the registry and the path of the published policies,
+in the Rancher Prime registry. It must be equal to `destination.registry` in
+the `config.yaml` of the policies repository. If the two values differ,
+`pkg2chart` rejects the SUSE SBOM, and the workflow makes no chart.
 
 A fork sets the two variables to its own policies repository and registry.
 
@@ -86,7 +91,7 @@ POLICY_NAME=ControllerContainerBlockSysctls \
 RELEASE_VERSION=1.0.6 \
 OCI_TAG=v1.0.6 \
 POLICIES_REPOSITORY=rancher/suse-security-policies \
-POLICIES_OCI_BASE=ghcr.io/rancher/suse-security-policies \
+POLICIES_OCI_BASE=registry.rancher.com/rancher/suse-security-policies \
 scripts/build-chart.sh
 ```
 
