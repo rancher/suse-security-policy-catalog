@@ -41,12 +41,14 @@ jobs:
       contents: write
       pull-requests: write
     env:
-      # A fork sets this repository variable to build charts from its own
+      # A fork sets these repository variables to build charts from its own
       # policies repository.
       POLICIES_REPOSITORY: ${{ vars.POLICIES_REPOSITORY || 'rancher/suse-security-policies' }}
-      # The host of the Rancher Prime registry comes from Vault in the policies
-      # repository. A default here could go out of date, so there is none.
-      POLICIES_OCI_BASE: ${{ vars.POLICIES_OCI_BASE }}
+      # Must be equal to destination.registry in the config.yaml of the
+      # policies repository. If the registry moves, change both in reviewed
+      # pull requests. Until then, pkg2chart rejects the SBOMs of the new
+      # registry.
+      POLICIES_OCI_BASE: ${{ vars.POLICIES_OCI_BASE || 'registry.rancher.com/rancher/suse-security-policies' }}
       # The request values come in through the environment, never inline, so
       # no request value can change a shell command.
       TAG: ${{ github.event.client_payload.tag || inputs.tag }}
@@ -61,13 +63,6 @@ jobs:
       # renovate: datasource=github-releases depName=helm/helm
       HELM_VERSION: v4.3.2
     steps:
-      - name: Check the configuration
-        run: |
-          if [ -z "$POLICIES_OCI_BASE" ]; then
-            echo "::error::the repository variable POLICIES_OCI_BASE is empty or not set. Set it to the host of the Rancher Prime registry, followed by /rancher/suse-security-policies. README.md, section Configuration, tells where the host comes from"
-            exit 1
-          fi
-
       - name: Checkout code
         uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 

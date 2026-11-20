@@ -39,10 +39,6 @@ The caller also writes `metadata.yml`, the output of
 
 ## Usage
 
-Set the shell variable `PRIME_REGISTRY` to the host of the Rancher Prime
-registry. The section Configuration of the [top README](../README.md#configuration)
-tells where the host comes from. Then run:
-
 ```console
 go run . \
   --release-dir /path/to/assets \
@@ -50,13 +46,13 @@ go run . \
   --policy-name ControllerContainerBlockSysctls \
   --release-version 1.0.6 \
   --oci-tag v1.0.6 \
-  --oci-base "${PRIME_REGISTRY:?set PRIME_REGISTRY to the host of the Rancher Prime registry}/rancher/suse-security-policies" \
+  --oci-base registry.rancher.com/rancher/suse-security-policies \
   --policies-repository rancher/suse-security-policies \
   --output ../charts/ControllerContainerBlockSysctls
 ```
 
-`--oci-base` is required. It is the host of the Rancher Prime registry,
-followed by `/rancher/suse-security-policies`.
+`--oci-base` is required. It must be equal to `destination.registry` in the
+`config.yaml` of the policies repository.
 
 `--upstream-repository` is optional. The default is `kubewarden/policies`.
 
