@@ -840,6 +840,60 @@ entries:
     version: 1.0.5
   containers-block-ssh-port:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Containers Block Ssh Port
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.7
+    created: "2026-11-23T16:00:31.254638042Z"
+    description: This Policy checks if the container is exposing ssh port.
+    digest: 964b02e87f079aa6df7c5843aa0bf76e0ab9b561e3a5694f2e94134a0ef2478a
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - pci-dss
+    name: containers-block-ssh-port
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/containers-block-ssh-port:v1.0.7
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/containers-block-ssh-port-1.0.7/containers-block-ssh-port-1.0.7.tgz
+    version: 1.0.7
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -5446,4 +5500,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-10T10:21:04.27646948Z"
+generated: "2026-11-23T16:00:31.25466404Z"
