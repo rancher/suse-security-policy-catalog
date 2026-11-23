@@ -67,11 +67,13 @@ Thus the policies repository can send the same event again.
 |---|---|---|
 | `POLICIES_REPOSITORY` | repository variable | `rancher/suse-security-policies` |
 | `POLICIES_OCI_BASE` | repository variable | `registry.rancher.com/rancher/suse-security-policies` |
-| `APP_ID`, `APP_PRIVATE_KEY` | secrets | none |
 
-The GitHub App must be installed on the owner of `POLICIES_REPOSITORY`, with
-the `contents: read` permission on it. The policies repository is private, so
-the release assets need this token.
+The workflow reads a read-only GitHub token from Vault, at the path
+`github/token/<owner>--<repo>--contents--read`. The owner and the repository
+name come from `POLICIES_REPOSITORY`. The token expires after one hour. The
+policies repository is private, so the release assets need this token. The
+workflow logs in to the Vault of the EIO team with the OIDC token of GitHub
+Actions and the JWT role that has the name of this repository.
 
 `POLICIES_OCI_BASE` is the registry and the path of the published policies,
 in the Rancher Prime registry. It must be equal to `destination.registry` in
@@ -79,6 +81,8 @@ the `config.yaml` of the policies repository. If the two values differ,
 `pkg2chart` rejects the SUSE SBOM, and the workflow makes no chart.
 
 A fork sets the two variables to its own policies repository and registry.
+A fork also needs the EIO team to create the Vault login and the token path
+for its policies repository.
 
 ### Run it locally
 
