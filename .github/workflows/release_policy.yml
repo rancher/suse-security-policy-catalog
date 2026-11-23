@@ -40,6 +40,8 @@ jobs:
     permissions:
       contents: write
       pull-requests: write
+      # Vault login
+      id-token: write
     env:
       # A fork sets these repository variables to build charts from its own
       # policies repository.
@@ -91,7 +93,8 @@ jobs:
             echo "::notice::the branch ${branch} has a pull request (${states//$'\n'/, }), so the chart for ${TAG} needs no new one. Nothing to do"
             echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
-          # The App token action needs the owner and the repository name apart.
+          # The Vault path joins the owner and the repository name with "--",
+          # so the step writes them apart.
           echo "policies-owner=${POLICIES_REPOSITORY%%/*}" >> "$GITHUB_OUTPUT"
           echo "policies-name=${POLICIES_REPOSITORY#*/}" >> "$GITHUB_OUTPUT"
 
@@ -125,16 +128,14 @@ jobs:
           checksum-policy: required
 
       # The policies repository is private, so the release assets need a token.
-      - name: Generate the token to read the policies repository
+      # The token is read-only and expires after one hour. The action writes
+      # the token to the environment of every later step.
+      - name: Read the token for the policies repository from Vault
         if: steps.request.outputs.skip == 'false'
-        id: token
-        uses: actions/create-github-app-token@64ab729a6294000f5aa4a4bc0b73d1f32bc45510 # v3.3.0
+        uses: rancher-eio/read-vault-secrets@4c8f4e741954651c502bb7739c46ae1bad26b44d # main
         with:
-          app-id: ${{ secrets.APP_ID }}
-          private-key: ${{ secrets.APP_PRIVATE_KEY }}
-          owner: ${{ steps.request.outputs.policies-owner }}
-          repositories: ${{ steps.request.outputs.policies-name }}
-          permission-contents: read
+          secrets: |
+            github/token/${{ steps.request.outputs.policies-owner }}--${{ steps.request.outputs.policies-name }}--contents--read token | POLICIES_READ_TOKEN
 
       # pkg2chart changes nothing if the chart already has the same version or
       # a newer one.
@@ -142,7 +143,7 @@ jobs:
         if: steps.request.outputs.skip == 'false'
         id: build
         env:
-          GH_TOKEN: ${{ steps.token.outputs.token }}
+          GH_TOKEN: ${{ env.POLICIES_READ_TOKEN }}
         run: |
           scripts/build-chart.sh
           if [ -z "$(git status --porcelain -- "charts/${POLICY_NAME}")" ]; then
