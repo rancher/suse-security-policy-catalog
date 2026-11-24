@@ -4561,6 +4561,42 @@ entries:
     version: 0.1.8
   rancher-project-quotas-namespace-validator:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: management.cattle.io/v3
+          kind: Project
+      kubewarden/displayName: Rancher Project quotas namespace validator
+      kubewarden/mutation: "false"
+      kubewarden/resources: management.cattle.io/Project
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - namespace
+          operations:
+          - CREATE
+    apiVersion: v2
+    appVersion: 1.0.16
+    created: "2026-11-24T16:37:49.938025005Z"
+    description: Prevent the creation of Namespace under a Rancher Project that doesn't
+      have any resource quota left
+    digest: 924bbbdbe301273eb5a568e289dd9067dc876f28791c2afa14010a3eace8a1b1
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - rancher
+    - project
+    - quotas
+    name: rancher-project-quotas-namespace-validator
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/rancher-project-quotas-namespace-validator:v1.0.16
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/rancher-project-quotas-namespace-validator-1.0.16/rancher-project-quotas-namespace-validator-1.0.16.tgz
+    version: 1.0.16
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -5828,4 +5864,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T16:37:36.544271974Z"
+generated: "2026-11-24T16:37:49.938078073Z"
