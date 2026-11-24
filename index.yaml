@@ -2677,6 +2677,38 @@ entries:
     version: 1.0.5
   helm-release-remediation-retries:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Remediation Retries
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.7
+    created: "2026-11-24T17:55:50.763525905Z"
+    description: HelmRelease remediation retries must be within the specified lower
+      and upper bounds.
+    digest: 7f274192026916b178019db4915c40e8a16fa326c7d74034912a8efc1c5cb5ad
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: helm-release-remediation-retries
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/helm-release-remediation-retries:v1.0.7
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-remediation-retries-1.0.7/helm-release-remediation-retries-1.0.7.tgz
+    version: 1.0.7
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -2710,6 +2742,37 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-remediation-retries-1.0.6/helm-release-remediation-retries-1.0.6.tgz
     version: 1.0.6
   helm-release-rollback:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Rollback Should Be Disabled
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:55:51.040042812Z"
+    description: The rollback feature of a HelmRelease should be disabled.
+    digest: 0432948d13c70bf18f1c323b52ccd02e39549aa0a84e77863f9be5cf7cc0d41e
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: helm-release-rollback
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/helm-release-rollback:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-rollback-1.0.6/helm-release-rollback-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -7282,4 +7345,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:55:32.368690958Z"
+generated: "2026-11-24T17:55:51.040165967Z"
