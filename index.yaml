@@ -5830,6 +5830,38 @@ entries:
     version: 1.0.5
   ocirepository-layer-selector:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: OCIRepository Layer Selector
+      kubewarden/mutation: "false"
+      kubewarden/resources: OCIRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1beta2
+          resources:
+          - ocirepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:58:25.090440061Z"
+    description: OCIRepository layer selector must only reference predefined media/operation
+      type.
+    digest: 607673a902e8fb6e5649bda4421410d6b4fc24fb36b7fcf190f1548e1fecbc7e
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: ocirepository-layer-selector
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/ocirepository-layer-selector:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-layer-selector-1.0.6/ocirepository-layer-selector-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -7819,4 +7851,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:58:11.223884798Z"
+generated: "2026-11-24T17:58:25.090589692Z"
