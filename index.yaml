@@ -3633,6 +3633,36 @@ entries:
     version: 1.0.14
   istio-gateway-approved-hosts:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Istio Gateway Approved Hosts
+      kubewarden/mutation: "false"
+      kubewarden/resources: Gateway
+      kubewarden/rules: |
+        - apiGroups:
+          - networking.istio.io
+          apiVersions:
+          - v1
+          resources:
+          - gateways
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:59:11.324781276Z"
+    description: '### Istio Gateway Approved Hosts This ensures you are only serving
+      traffic for approved hostnames.'
+    digest: 0c8ce42b28619498c21031a30e743c16eea48fdfc6c63d8c4089a83b57a3aa53
+    home: https://github.com/rancher/suse-security-policies
+    name: istio-gateway-approved-hosts
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/istio-gateway-approved-hosts:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/istio-gateway-approved-hosts-1.0.6/istio-gateway-approved-hosts-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -6971,6 +7001,62 @@ entries:
     version: 1.0.5
   resource-reconcile-interval:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Resource Reconcile Interval Must Be Set Between Lower
+        and Upper Bound
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease, GitRepository, OCIRepository, Bucket, HelmChart,
+        HelmRepository, Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - gitrepositories
+          - ocirepositories
+          - buckets
+          - helmcharts
+          - helmrepositories
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.7
+    created: "2026-11-24T17:59:11.532294553Z"
+    description: The reconcile interval of a Resource must be set between a lower
+      and upper bound, lower_bound & upper_bound must be in seconds .
+    digest: 7d9eb0a04acc35816a3f3651badeecdceaceeba807038b31d6ad2baa209d10be
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: resource-reconcile-interval
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/resource-reconcile-interval:v1.0.7
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/resource-reconcile-interval-1.0.7/resource-reconcile-interval-1.0.7.tgz
+    version: 1.0.7
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -7945,4 +8031,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:58:54.242810093Z"
+generated: "2026-11-24T17:59:11.532471379Z"
