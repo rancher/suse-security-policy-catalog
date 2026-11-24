@@ -2765,6 +2765,38 @@ entries:
     version: 1.0.5
   kustomization-target-namespace:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Target Namespace
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.7
+    created: "2026-11-24T15:58:38.92231101Z"
+    description: Kustomization targetNamespace must be one of the allowed targetNamespace
+      list.
+    digest: e908d8f14dceeb4c48285217ee7c0c612006ba205e91c239c4461e2913a278de
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: kustomization-target-namespace
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/kustomization-target-namespace:v1.0.7
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-target-namespace-1.0.7/kustomization-target-namespace-1.0.7.tgz
+    version: 1.0.7
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -5500,4 +5532,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-23T16:00:31.25466404Z"
+generated: "2026-11-24T15:58:38.922340645Z"
