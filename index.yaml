@@ -1398,6 +1398,62 @@ entries:
     version: 1.0.5
   containers-should-not-run-in-namespace:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Containers Should Not Run In Namespace
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod, Deployment, Job, ReplicationController, ReplicaSet,
+        DaemonSet, StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:53:49.003191262Z"
+    description: This Policy ensure workloads are not running in a specified namespace.
+    digest: 64fa9f95fe455986846a76fc0cd0f1a3cc35c171fd19cf65be870393113af964
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - cis-benchmark
+    - soc2-type1
+    name: containers-should-not-run-in-namespace
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/containers-should-not-run-in-namespace:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/containers-should-not-run-in-namespace-1.0.6/containers-should-not-run-in-namespace-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -6915,4 +6971,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:53:36.11364978Z"
+generated: "2026-11-24T17:53:49.00328477Z"
