@@ -5804,6 +5804,39 @@ entries:
     version: 1.0.5
   network-block-all-ingress-traffic-to-namespace-from-cidr-block:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Network Block All Ingress Traffic To Namespace From
+        CIDR Block
+      kubewarden/mutation: "false"
+      kubewarden/resources: NetworkPolicy
+      kubewarden/rules: |
+        - apiGroups:
+          - networking.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - networkpolicies
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T18:00:38.550837495Z"
+    description: If you are using a CNI that allows for Network Policies, you can
+      use this Policy to block all Egress traffic from a specified namespace to a
+      CIDR block of IP addresses.   By default, if no policies exist in a namespace,
+      then all ingress and egress traffic is allowed to and from pods in that namespace.
+    digest: df5b17f340ca4de87a3f25e2b549afbda5f4a6e7bc9a8893ea236144bb2c9ba3
+    home: https://github.com/rancher/suse-security-policies
+    name: network-block-all-ingress-traffic-to-namespace-from-cidr-block
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/network-block-all-ingress-traffic-to-namespace-from-cidr-block:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/network-block-all-ingress-traffic-to-namespace-from-cidr-block-1.0.6/network-block-all-ingress-traffic-to-namespace-from-cidr-block-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -6279,6 +6312,41 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-patch-annotation-1.0.5/ocirepository-patch-annotation-1.0.5.tgz
     version: 1.0.5
   persistent-volume-access-modes:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Persistent Volume Access Modes
+      kubewarden/mutation: "false"
+      kubewarden/resources: PersistentVolume
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - persistentvolumes
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T18:00:38.724814564Z"
+    description: 'A PersistentVolume can be mounted on a host in any way supported
+      by the resource provider. As shown in the table below, providers will have different
+      capabilities and each PV''s access modes are set to the specific modes supported
+      by that particular volume. For example, NFS can support multiple read/write
+      clients, but a specific NFS PV might be exported on the server as read-only.
+      Each PV gets its own set of access modes describing that specific PV''s capabilities.  The
+      access modes are:  * ReadWriteOnce * ReadOnlyMany * ReadWriteMany * ReadWriteOncePod'
+    digest: b0ccff47cea82b51839b04b476cfbe2f61e832c3d93511d2fc887f0a41f51f36
+    home: https://github.com/rancher/suse-security-policies
+    name: persistent-volume-access-modes
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/persistent-volume-access-modes:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/persistent-volume-access-modes-1.0.6/persistent-volume-access-modes-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -8277,4 +8345,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:00:21.627962934Z"
+generated: "2026-11-24T18:00:38.725021278Z"
