@@ -6385,6 +6385,35 @@ entries:
     version: 1.0.5
   persistent-volume-claim-snapshot:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Persistent Volume Claim Snapshot
+      kubewarden/mutation: "false"
+      kubewarden/resources: VolumeSnapshot
+      kubewarden/rules: |
+        - apiGroups:
+          - snapshot.storage.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - volumesnapshots
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T18:00:53.724221359Z"
+    description: This Policy checks for a PVC Snapshot.
+    digest: e7e942d975675791320a96ba07a9ee0a673e64f1fbfffcc12ef36e611e5de2fd
+    home: https://github.com/rancher/suse-security-policies
+    name: persistent-volume-claim-snapshot
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/persistent-volume-claim-snapshot:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/persistent-volume-claim-snapshot-1.0.6/persistent-volume-claim-snapshot-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -6939,6 +6968,37 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/rancher-project-quotas-namespace-validator-1.0.15/rancher-project-quotas-namespace-validator-1.0.15.tgz
     version: 1.0.15
   rbac-prohibit-list-secrets:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Rbac Prohibit List On Secrets
+      kubewarden/mutation: "false"
+      kubewarden/resources: Role, ClusterRole
+      kubewarden/rules: |
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - roles
+          - clusterroles
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T18:00:53.88780356Z"
+    description: This Policy will violate if any RBAC ClusterRoles or Roles are designated
+      with 'list' verb on 'secrets' resource.
+    digest: 05f5e3bd7de633914c8bc516449600a8f454920e99ef653801182e1a9e99aa00
+    home: https://github.com/rancher/suse-security-policies
+    name: rbac-prohibit-list-secrets
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/rbac-prohibit-list-secrets:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/rbac-prohibit-list-secrets-1.0.6/rbac-prohibit-list-secrets-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -8345,4 +8405,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:00:38.725021278Z"
+generated: "2026-11-24T18:00:53.888037306Z"
