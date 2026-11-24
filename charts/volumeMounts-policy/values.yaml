@@ -1,6 +1,6 @@
 global:
   cattle:
-    systemDefaultRegistry: ghcr.io
+    systemDefaultRegistry: registry.rancher.com
 module:
-  repository: kubewarden/policies/volumemounts
-  tag: v1.0.14
+  repository: rancher/suse-security-policies/volumemounts
+  tag: v1.0.15
