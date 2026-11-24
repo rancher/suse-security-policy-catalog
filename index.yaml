@@ -3129,6 +3129,38 @@ entries:
     version: 1.0.5
   helm-repo-url:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Repo URL Should Be in Organisation Domain
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - helmrepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:56:55.496403408Z"
+    description: The URL of a Helm repository should only be from the specified organisation
+      domain.
+    digest: 3b9317dde896cb5c65e47566a5662385ef1f3623cff37c36da80be9fea495309
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: helm-repo-url
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/helm-repo-url:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-repo-url-1.0.6/helm-repo-url-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -3665,6 +3697,37 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/istio-injected-namespaces-1.0.5/istio-injected-namespaces-1.0.5.tgz
     version: 1.0.5
   kustomization-decryption-provider:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Decryption Provider
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:56:55.691246722Z"
+    description: Spec.decryption.provider must be set to one of decryption_providers.
+    digest: b3666b8e4e429070b3b6fc64e82fdf3c6496147c3442877493a6c1d67919488d
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: kustomization-decryption-provider
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/kustomization-decryption-provider:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-decryption-provider-1.0.6/kustomization-decryption-provider-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -7501,4 +7564,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:56:38.186122525Z"
+generated: "2026-11-24T17:56:55.691379082Z"
