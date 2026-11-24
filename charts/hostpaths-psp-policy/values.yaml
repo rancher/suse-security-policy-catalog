@@ -1,6 +1,6 @@
 global:
   cattle:
-    systemDefaultRegistry: ghcr.io
+    systemDefaultRegistry: registry.rancher.com
 module:
-  repository: kubewarden/policies/hostpaths-psp
-  tag: v1.1.12
+  repository: rancher/suse-security-policies/hostpaths-psp
+  tag: v1.1.13
