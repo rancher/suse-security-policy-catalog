@@ -1,6 +1,6 @@
 global:
   cattle:
-    systemDefaultRegistry: ghcr.io
+    systemDefaultRegistry: registry.rancher.com
 module:
-  repository: kubewarden/policies/labels
-  tag: v0.1.12
+  repository: rancher/suse-security-policies/labels
+  tag: v0.1.13
