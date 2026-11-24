@@ -2429,6 +2429,40 @@ entries:
     version: 1.1.8
   echo:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Echo
+      kubewarden/mutation: "false"
+      kubewarden/resources: '*'
+      kubewarden/rules: |
+        - apiGroups:
+          - '*'
+          apiVersions:
+          - '*'
+          resources:
+          - '*'
+          operations:
+          - CREATE
+          - UPDATE
+          - DELETE
+          - CONNECT
+    apiVersion: v2
+    appVersion: 0.1.22
+    created: "2026-11-24T18:03:27.62149014Z"
+    description: A policy that echoes back Kubernetes' AdmissionReview - useful for
+      Policy Authors
+    digest: 17997452f21e5430c981c86993d22e16ce71408b9b65a02014ea34f08ff15330
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - developer
+    name: echo
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/echo:v0.1.22
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/echo-0.1.22/echo-0.1.22.tgz
+    version: 0.1.22
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -9134,4 +9168,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:03:11.263410173Z"
+generated: "2026-11-24T18:03:27.621818994Z"
