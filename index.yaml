@@ -768,6 +768,44 @@ entries:
     version: 1.0.15
   cel-policy:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: v1
+          kind: Namespace
+      kubewarden/displayName: CEL Policy
+      kubewarden/mutation: "false"
+      kubewarden/resources: Any
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+          - UPDATE
+          - DELETE
+    apiVersion: v2
+    appVersion: 1.6.6
+    created: "2026-11-24T18:02:53.940638446Z"
+    description: A policy that evaluates CEL expressions
+    digest: 06c945b82e0cbf9c4908ff1d9a7688b0a464acc2c3353938fb13c60a229bb180
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - compliance
+    - CEL
+    - ValidatingAdmissionPolicy
+    - Common Expression Language
+    name: cel-policy
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/cel-policy:v1.6.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/cel-policy-1.6.6/cel-policy-1.6.6.tgz
+    version: 1.6.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -1833,6 +1871,196 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/containers-should-not-run-in-namespace-1.0.5/containers-should-not-run-in-namespace-1.0.5.tgz
     version: 1.0.5
   deprecated-api-versions:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Deprecated API Versions
+      kubewarden/mutation: "false"
+      kubewarden/resources: '*'
+      kubewarden/rules: |
+        - apiGroups:
+          - admissionregistration.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - apiextensions.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - apiregistration.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1beta1
+          - v1beta2
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - audit.k8s.io
+          apiVersions:
+          - v1alpha1
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - authentication.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - autoscaling
+          apiVersions:
+          - v2beta1
+          - v2beta2
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - certificates.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - coordination.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - discovery.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - events.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - extensions
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - flowcontrol.apiserver.k8s.io
+          apiVersions:
+          - v1beta1
+          - v1beta2
+          - v1beta3
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - networking.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - node.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - policy
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          apiVersions:
+          - v1alpha1
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - scheduling.k8s.io
+          apiVersions:
+          - v1alpha1
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+        - apiGroups:
+          - storage.k8s.io
+          apiVersions:
+          - v1beta1
+          resources:
+          - '*'
+          operations:
+          - CREATE
+    apiVersion: v2
+    appVersion: 1.0.14
+    created: "2026-11-24T18:02:54.162916674Z"
+    description: Find deprecated and removed Kubernetes resources
+    digest: d8dee0f4880f4cb41aa0dd1e30d9f3a785b20e8541dd5272ddbadeba87fcb139
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - compliance
+    - deprecated API
+    name: deprecated-api-versions
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/deprecated-api-versions:v1.0.14
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/deprecated-api-versions-1.0.14/deprecated-api-versions-1.0.14.tgz
+    version: 1.0.14
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -8842,4 +9070,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:02:36.858740359Z"
+generated: "2026-11-24T18:02:54.163166404Z"
