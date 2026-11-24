@@ -7097,6 +7097,37 @@ entries:
     version: 1.0.5
   rbac-prohibit-wildcard-secrets:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Rbac Prohibit Wildcard On Secrets
+      kubewarden/mutation: "false"
+      kubewarden/resources: Role, ClusterRole
+      kubewarden/rules: |
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - roles
+          - clusterroles
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T18:01:35.504590672Z"
+    description: This Policy will violate if any RBAC ClusterRoles or Roles are designated
+      with 'wildcard' verb on 'secrets' resource.
+    digest: 1c84aec6e6c728e0b9ba28b638a61477153160d61b29704cacbe68269b7370a5
+    home: https://github.com/rancher/suse-security-policies
+    name: rbac-prohibit-wildcard-secrets
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/rbac-prohibit-wildcard-secrets:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/rbac-prohibit-wildcard-secrets-1.0.6/rbac-prohibit-wildcard-secrets-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -7213,6 +7244,47 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/rbac-prohibit-wildcards-policyrule-resources-1.0.6/rbac-prohibit-wildcards-policyrule-resources-1.0.6.tgz
     version: 1.0.6
   rbac-prohibit-wildcards-policyrule-verbs:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Rbac Prohibit Wildcards on Policy Rule Verbs
+      kubewarden/mutation: "false"
+      kubewarden/resources: Role, ClusterRole
+      kubewarden/rules: |
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - roles
+          - clusterroles
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.7
+    created: "2026-11-24T18:01:35.657460738Z"
+    description: 'This Policy prohibits various resources from being set with wildcards
+      for Role or ClusterRole resources, except for the `cluster-admin` ClusterRole.
+      It will check each resource specified for the verb specified. The wildcards
+      will be checked in:  ### Resources In the Kubernetes API, most resources are
+      represented and accessed using a string representation of their object name,
+      such as pods for a Pod. RBAC refers to resources using exactly the same name
+      that appears in the URL for the relevant API endpoint.   ### Verbs API verbs
+      like get, list, create, update, patch, watch, delete, and deletecollection are
+      used for resource requests.   ### API Groups The API Group being accessed (for
+      resource requests only).  ### Non Resource URLs Requests to endpoints other
+      than /api/v1/... or /apis/<group>/<version>/... are considered "non-resource
+      requests", and use the lower-cased HTTP method of the request as the verb.'
+    digest: 2ad6d4828846a79f6e18c5b8bc4f0d2e7670cb30efca2acfbb3153ad5d30e19b
+    home: https://github.com/rancher/suse-security-policies
+    name: rbac-prohibit-wildcards-policyrule-verbs
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/rbac-prohibit-wildcards-policyrule-verbs:v1.0.7
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/rbac-prohibit-wildcards-policyrule-verbs-1.0.7/rbac-prohibit-wildcards-policyrule-verbs-1.0.7.tgz
+    version: 1.0.7
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -8477,4 +8549,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:01:20.601078029Z"
+generated: "2026-11-24T18:01:35.657735741Z"
