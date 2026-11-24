@@ -3065,6 +3065,37 @@ entries:
     version: 1.0.5
   helm-repo-type:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Repo Type Should Be OCI
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - helmrepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:56:38.186034552Z"
+    description: The type of a Helm repository should be OCI.
+    digest: 30cd37489e5f02ca15230865ae3ed06ad7ec9a4ef877ff227ccc4e94b05c1062
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: helm-repo-type
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/helm-repo-type:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-repo-type-1.0.6/helm-repo-type-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -7470,4 +7501,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:56:25.179388701Z"
+generated: "2026-11-24T17:56:38.186122525Z"
