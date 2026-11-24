@@ -5896,6 +5896,37 @@ entries:
     version: 1.0.5
   ocirepository-not-latest:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: OCIRepository Not Latest Tag
+      kubewarden/mutation: "false"
+      kubewarden/resources: OCIRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1beta2
+          resources:
+          - ocirepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:58:39.985757595Z"
+    description: OCIRepository resources must not use 'latest' as a tag reference.
+    digest: 22f5f5114439bb89cef1399d6f4049162c244ad6195d115038b196ef3f2a7df1
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: ocirepository-not-latest
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/ocirepository-not-latest:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-not-latest-1.0.6/ocirepository-not-latest-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -5928,6 +5959,37 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-not-latest-1.0.5/ocirepository-not-latest-1.0.5.tgz
     version: 1.0.5
   ocirepository-organization-domains:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: OCIRepository Organization Domains
+      kubewarden/mutation: "false"
+      kubewarden/resources: OCIRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1beta2
+          resources:
+          - ocirepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:58:40.134538816Z"
+    description: OCIRepository resources must only be from allowed organization domains.
+    digest: 5b48f7d1dd7ddf1db2a2545a13e97f4239d2160be27b5c39a0ac388e50abc64a
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: ocirepository-organization-domains
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/ocirepository-organization-domains:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-organization-domains-1.0.6/ocirepository-organization-domains-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -7851,4 +7913,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:58:25.090589692Z"
+generated: "2026-11-24T17:58:40.134780686Z"
