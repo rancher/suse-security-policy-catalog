@@ -1,6 +1,6 @@
 # Kubewarden policy-catalog
 
-This repository contains the catalog of Kubewarden policies to be consumed by the Rancher UI. The catalog is published to GitHub Pages at [https://kubewarden.github.io/policy-catalog/](https://kubewarden.github.io/policy-catalog/).
+This repository contains the catalog of SUSE-Security policies to be consumed by the Rancher UI. The catalog is published to GitHub Pages at [https://kubewarden.github.io/suse-security-policy-catalog](https://rancher.github.io/suse-security-policy-catalog).
 
 ## Release Policy Workflow
 
