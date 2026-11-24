@@ -3762,6 +3762,37 @@ entries:
     version: 1.0.5
   kustomization-excluded-paths:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Excluded Paths
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:57:12.509940269Z"
+    description: spec.path cannot be one of excludedPathsList[]
+    digest: c7a7817a815fc4abde29f394c3fdb59e24a3770ac717ec2507fc70bfff697180
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: kustomization-excluded-paths
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/kustomization-excluded-paths:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-excluded-paths-1.0.6/kustomization-excluded-paths-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -3794,6 +3825,37 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-excluded-paths-1.0.5/kustomization-excluded-paths-1.0.5.tgz
     version: 1.0.5
   kustomization-image-tag-standards:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Image Tag Standards
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:57:12.727679535Z"
+    description: spec.Images must comply with image tag/semver reference standards.
+    digest: 64879bd8b2f4d6bcef692a0218cbc6fe6e5824761604b28c68f4dad9be6d8bb0
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: kustomization-image-tag-standards
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/kustomization-image-tag-standards:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-image-tag-standards-1.0.6/kustomization-image-tag-standards-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -7564,4 +7626,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:56:55.691379082Z"
+generated: "2026-11-24T17:57:12.727858681Z"
