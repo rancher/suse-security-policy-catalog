@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -40,13 +39,14 @@ annotations:
       operations:
       - CREATE
       - UPDATE
-appVersion: 1.0.6
+apiVersion: v2
+appVersion: 1.0.7
 description: The reconcile interval of a Resource must be set between a lower and
   upper bound, lower_bound & upper_bound must be in seconds .
-home: https://github.com/kubewarden/policies
+home: https://github.com/rancher/suse-security-policies
 keywords:
 - flux
 name: resource-reconcile-interval
 sources:
-- ghcr.io/kubewarden/policies/resource-reconcile-interval:v1.0.6
-version: 1.0.6
+- oci://registry.rancher.com/rancher/suse-security-policies/resource-reconcile-interval:v1.0.7
+version: 1.0.7
