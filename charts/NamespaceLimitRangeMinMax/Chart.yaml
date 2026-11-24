@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -16,8 +15,9 @@ annotations:
       operations:
       - CREATE
       - UPDATE
-appVersion: 1.0.5
-description: |
+apiVersion: v2
+appVersion: 1.0.6
+description: |-
   When setting up default CPU and Memory values for your namespace, this policy will check if both requests and limits are set. This policy checks for the following:
 
   | Resource Setting | Resource Type  |
@@ -30,10 +30,10 @@ description: |
   |  min | cpu  |
   |  max | cpu |
   |  max | memory  |
-home: https://github.com/kubewarden/policies
+home: https://github.com/rancher/suse-security-policies
 keywords:
 - soc2-type1
 name: namespace-resources-limitrange
 sources:
-- ghcr.io/kubewarden/policies/namespace-resources-limitrange:v1.0.5
-version: 1.0.5
+- oci://registry.rancher.com/rancher/suse-security-policies/namespace-resources-limitrange:v1.0.6
+version: 1.0.6
