@@ -2,6 +2,60 @@ apiVersion: v1
 entries:
   affinity-node-selector:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Affinity Node Selector
+      kubewarden/mutation: "false"
+      kubewarden/resources: CronJob, DaemonSet, Deployment, Job, Pod, StatefulSet
+      kubewarden/rules: |
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - cronjobs
+          - jobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - daemonsets
+          - deployments
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.8
+    created: "2026-11-24T17:51:57.362850122Z"
+    description: This Policy allows setting a key and value for `nodeSelector` when
+      assigning pods to nodes.   `nodeSelector` is a field of PodSpec. It specifies
+      a map of key-value pairs. For the pod to be eligible to scheduled on a node,
+      the node must have each of the indicated key-value pairs as labels (it can have
+      additional labels as well).
+    digest: 42c58859fcc70a76d9cf54b54922a009b9767f5501890b4f80ecb25550888f35
+    home: https://github.com/rancher/suse-security-policies
+    name: affinity-node-selector
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/affinity-node-selector:v1.0.8
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/affinity-node-selector-1.0.8/affinity-node-selector-1.0.8.tgz
+    version: 1.0.8
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -527,6 +581,66 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/container-block-sysctl-1.0.5/container-block-sysctl-1.0.5.tgz
     version: 1.0.5
   container-block-sysctl.cve-2022-0811:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Container Block Sysctls CVE-2022-0811
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:51:57.512387531Z"
+    description: Setting sysctls can allow containers unauthorized escalated privileges
+      to a Kubernetes node.
+    digest: c44888b92bc2fe0883f46ffda4f326d2ddb3ea6cd62f4918602e55751cac87c8
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - pci-dss
+    - cis-benchmark
+    - mitre-attack
+    - nist800-190
+    - gdpr
+    - default
+    name: container-block-sysctl.cve-2022-0811
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/container-block-sysctl.cve-2022-0811:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/container-block-sysctl.cve-2022-0811-1.0.6/container-block-sysctl.cve-2022-0811-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -6137,4 +6251,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:51:29.523045017Z"
+generated: "2026-11-24T17:51:57.512481095Z"
