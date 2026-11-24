@@ -315,6 +315,37 @@ entries:
     version: 0.1.13
   bucket-approved-region:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Bucket Approved Region
+      kubewarden/mutation: "false"
+      kubewarden/resources: Bucket
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - buckets
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:53:35.952903721Z"
+    description: Bucket region must be one of the approved regions.
+    digest: f91bc7bf93b5e8b7f25f1710a6b4335ebcdabfe89c7c386db279145535e7de0a
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: bucket-approved-region
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/bucket-approved-region:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/bucket-approved-region-1.0.6/bucket-approved-region-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -1947,6 +1978,38 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/flexvolume-drivers-psp-1.0.19/flexvolume-drivers-psp-1.0.19.tgz
     version: 1.0.19
   gitrepository-ignore-suffixes:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: GitRepository Ignore Suffixes
+      kubewarden/mutation: "false"
+      kubewarden/resources: GitRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - gitrepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:53:36.113535347Z"
+    description: GitRepository resources must include specific suffixes in the spec.ignore
+      field which determines the files to be ignored before making a commit.
+    digest: b44411d0b35ddd3d1b18bb55b62300ddd0c4cd7b14b3b794808840d72757bdfe
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: gitrepository-ignore-suffixes
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/gitrepository-ignore-suffixes:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/gitrepository-ignore-suffixes-1.0.6/gitrepository-ignore-suffixes-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -6852,4 +6915,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:53:21.06499681Z"
+generated: "2026-11-24T17:53:36.11364978Z"
