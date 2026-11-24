@@ -5538,6 +5538,36 @@ entries:
     version: 1.0.14
   namespace-pod-quota:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Namespace Pod Quota
+      kubewarden/mutation: "false"
+      kubewarden/resources: ResourceQuota
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - resourcequotas
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.7
+    created: "2026-11-24T18:00:02.566643358Z"
+    description: When using a pod quota ensure setting the proper value for the quantity
+      of pods you wish to have in your namespace.
+    digest: e803d39f21326fe50d3d56eecfed861e46808f5b209c07f5d57c4f3f1bc09ba0
+    home: https://github.com/rancher/suse-security-policies
+    name: namespace-pod-quota
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/namespace-pod-quota:v1.0.7
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/namespace-pod-quota-1.0.7/namespace-pod-quota-1.0.7.tgz
+    version: 1.0.7
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -5569,6 +5599,41 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/namespace-pod-quota-1.0.6/namespace-pod-quota-1.0.6.tgz
     version: 1.0.6
   namespace-resources-limitrange:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Namespace Resources Limitrange
+      kubewarden/mutation: "false"
+      kubewarden/resources: LimitRange
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - limitranges
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T18:00:02.756107161Z"
+    description: 'When setting up default CPU and Memory values for your namespace,
+      this policy will check if both requests and limits are set. This policy checks
+      for the following:  | Resource Setting | Resource Type  | |---|---| |  default
+      | cpu  | |  default  | memory  | |  defaultRequest |  cpu | |  defaultRequest
+      | memory  | |  min | memory  | |  min | cpu  | |  max | cpu | |  max | memory  |'
+    digest: 09e17408983c3163cf7c4f8c496e290784e628a7b09b728111f4f1deb844d8d3
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - soc2-type1
+    name: namespace-resources-limitrange
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/namespace-resources-limitrange:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/namespace-resources-limitrange-1.0.6/namespace-resources-limitrange-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -5606,6 +5671,38 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/namespace-resources-limitrange-1.0.5/namespace-resources-limitrange-1.0.5.tgz
     version: 1.0.5
   network-allow-egress-traffic-from-namespace-to-another:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Network Allow Egress Traffic From Namespace To Another
+      kubewarden/mutation: "false"
+      kubewarden/resources: NetworkPolicy
+      kubewarden/rules: |
+        - apiGroups:
+          - networking.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - networkpolicies
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T18:00:02.930112398Z"
+    description: If you are using a CNI that allows for Network Policies, you can
+      use this Policy to allow Egress traffic from one namespace to another.  By default,
+      if no policies exist in a namespace, then all ingress and egress traffic is
+      allowed to and from pods in that namespace.
+    digest: d069d88240dc8b2277ede7f354c4a3c3cbb40e92a3b935be721c01861afd00ee
+    home: https://github.com/rancher/suse-security-policies
+    name: network-allow-egress-traffic-from-namespace-to-another
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/network-allow-egress-traffic-from-namespace-to-another:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/network-allow-egress-traffic-from-namespace-to-another-1.0.6/network-allow-egress-traffic-from-namespace-to-another-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -8116,4 +8213,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:59:42.312100188Z"
+generated: "2026-11-24T18:00:02.930282406Z"
