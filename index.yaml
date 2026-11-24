@@ -4415,6 +4415,37 @@ entries:
     version: 0.6.6
   ingress-policy:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Ingress Policy
+      kubewarden/mutation: "false"
+      kubewarden/resources: Ingress
+      kubewarden/rules: |
+        - apiGroups:
+          - networking.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - ingresses
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.14
+    created: "2026-11-24T18:04:32.955666933Z"
+    description: Enforce requirements on Ingress resources
+    digest: ac598f036dd1f9ee937c6a340f28764deaed68554d051d8c972b7900d2c566b8
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - ingress
+    name: ingress-policy
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/ingress:v1.0.14
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ingress-policy-1.0.14/ingress-policy-1.0.14.tgz
+    version: 1.0.14
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -5200,6 +5231,68 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/kyverno-dsl-0.1.13/kyverno-dsl-0.1.13.tgz
     version: 0.1.13
   labels:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Labels
+      kubewarden/mutation: "false"
+      kubewarden/resources: '*'
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 0.1.13
+    created: "2026-11-24T18:04:33.169514877Z"
+    description: A policy that validates labels of Kubernetes' resources
+    digest: 5572ab3040d9a766a64c14065b4dbf407e70d8cdff8f55120ca7d0f4a04e308b
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - labels
+    name: labels
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/labels:v0.1.13
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/labels-0.1.13/labels-0.1.13.tgz
+    version: 0.1.13
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -9469,4 +9562,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:04:15.528580739Z"
+generated: "2026-11-24T18:04:33.169754452Z"
