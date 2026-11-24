@@ -112,6 +112,71 @@ entries:
     version: 1.0.7
   allow-privilege-escalation-psp:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Allow Privilege Escalation PSP
+      kubewarden/mutation: "true"
+      kubewarden/resources: Deployment,Replicaset,Statefulset,Daemonset,Replicationcontroller,Job,Cronjob,Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.16
+    created: "2026-11-24T18:02:06.663673528Z"
+    description: Replacement for the Kubernetes Pod Security Policy that controls
+      the allowance of privilege escalation in containers and init containers of a
+      pod
+    digest: 9aaf79aff93c54cdc0bdf0769cdb52ff8a890bb6fb302d9ddf42a5d7892dfa12
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - PSP
+    - privilege escalation
+    name: allow-privilege-escalation-psp
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/allow-privilege-escalation-psp:v1.0.16
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/allow-privilege-escalation-psp-1.0.16/allow-privilege-escalation-psp-1.0.16.tgz
+    version: 1.0.16
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -248,6 +313,40 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/allowed-fsgroups-psp-1.0.14/allowed-fsgroups-psp-1.0.14.tgz
     version: 1.0.14
   allowed-proc-mount-types-psp:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Allowed Proc Mount Types PSP
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.18
+    created: "2026-11-24T18:02:06.925788189Z"
+    description: Replacement for the Kubernetes Pod Security Policy that controls
+      the usage of /proc mount types
+    digest: f1383bb150fff09354af9ab56956ba995af37f746b86f5bf4de0b576581bb16e
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - psp
+    - container
+    - runtime
+    name: allowed-proc-mount-types-psp
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/allowed-proc-mount-types-psp:v1.0.18
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/allowed-proc-mount-types-psp-1.0.18/allowed-proc-mount-types-psp-1.0.18.tgz
+    version: 1.0.18
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -8583,4 +8682,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:01:49.112756198Z"
+generated: "2026-11-24T18:02:06.926058731Z"
