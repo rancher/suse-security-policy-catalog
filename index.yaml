@@ -1241,6 +1241,68 @@ entries:
     version: 1.0.6
   containers-missing-security-context:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Containers Missing Security Context
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, Pod, ReplicationController, ReplicaSet,
+        DaemonSet, StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:53:20.869127311Z"
+    description: This Policy checks if the container is missing securityContext while
+      there is no securityContext defined on the Pod level as well. The security settings
+      that are specified on the Pod level apply to all containers in the Pod.
+    digest: b632718ca47889e3f5e7e0147fbd149155ce2994075fc42ef79fc94405da0020
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - pci-dss
+    - cis-benchmark
+    - mitre-attack
+    - nist800-190
+    - gdpr
+    - default
+    name: containers-missing-security-context
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/containers-missing-security-context:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/containers-missing-security-context-1.0.6/containers-missing-security-context-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -3567,6 +3629,68 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/missing-kubernetes-app-component-label-1.0.5/missing-kubernetes-app-component-label-1.0.5.tgz
     version: 1.0.5
   missing-kubernetes-app-created-by-label:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Missing Kubernetes App Created By Label
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:53:21.064930239Z"
+    description: 'Custom labels can help enforce organizational standards for each
+      artifact deployed. This Policy ensure a custom label key is set in the entity''s
+      `metadata`. The Policy detects the presence of the following:   ### owner A
+      label key of `owner` will help identify who the owner of this entity is.   ###
+      app.kubernetes.io/name The name of the application   ### app.kubernetes.io/instance
+      A unique name identifying the instance of an application     ### app.kubernetes.io/version
+      The current version of the application (e.g., a semantic version, revision hash,
+      etc.)  ### app.kubernetes.io/part-of The name of a higher level application
+      this one is part of   ### app.kubernetes.io/managed-by The tool being used to
+      manage the operation of an application   ### app.kubernetes.io/created-by The
+      controller/user who created this resource'
+    digest: 81a24583e2af812a6c7030ddf57bb1e0bb64bf23487a7b97834dd18410bc0c66
+    home: https://github.com/rancher/suse-security-policies
+    name: missing-kubernetes-app-created-by-label
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/missing-kubernetes-app-created-by-label:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/missing-kubernetes-app-created-by-label-1.0.6/missing-kubernetes-app-created-by-label-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -6728,4 +6852,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:53:03.740278603Z"
+generated: "2026-11-24T17:53:21.06499681Z"
