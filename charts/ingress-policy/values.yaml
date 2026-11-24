@@ -1,6 +1,6 @@
 global:
   cattle:
-    systemDefaultRegistry: ghcr.io
+    systemDefaultRegistry: registry.rancher.com
 module:
-  repository: kubewarden/policies/ingress
-  tag: v1.0.13
+  repository: rancher/suse-security-policies/ingress
+  tag: v1.0.14
