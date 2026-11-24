@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -16,13 +15,14 @@ annotations:
       operations:
       - CREATE
       - UPDATE
-appVersion: 1.0.5
-description: "If you are using a CNI that allows for Network Policies, you can use
-  this Policy to allow Egress traffic from one namespace to another.\n\nBy default,
-  if no policies exist in a namespace, then all ingress and egress traffic is allowed
-  to and from pods in that namespace. \n"
-home: https://github.com/kubewarden/policies
+apiVersion: v2
+appVersion: 1.0.6
+description: |-
+  If you are using a CNI that allows for Network Policies, you can use this Policy to allow Egress traffic from one namespace to another.
+
+  By default, if no policies exist in a namespace, then all ingress and egress traffic is allowed to and from pods in that namespace.
+home: https://github.com/rancher/suse-security-policies
 name: network-allow-egress-traffic-from-namespace-to-another
 sources:
-- ghcr.io/kubewarden/policies/network-allow-egress-traffic-from-namespace-to-another:v1.0.5
-version: 1.0.5
+- oci://registry.rancher.com/rancher/suse-security-policies/network-allow-egress-traffic-from-namespace-to-another:v1.0.6
+version: 1.0.6
