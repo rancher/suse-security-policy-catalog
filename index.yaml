@@ -5284,6 +5284,72 @@ entries:
     version: 1.0.16
   trusted-repos:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Trusted Repos
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 2.1.7
+    created: "2026-11-24T16:35:04.444703231Z"
+    description: Kubewarden policy that restricts which registries, tags, and images
+      pods in your cluster can refer to, with wildcard pattern support
+    digest: 17b436470ccf0d934367fa64f45ca85fc9bc218a968c2cc3b8115cf64a111399
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - image
+    - registry
+    - tag
+    - wildcard
+    name: trusted-repos
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/trusted-repos:v2.1.7
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/trusted-repos-2.1.7/trusted-repos-2.1.7.tgz
+    version: 2.1.7
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -5667,4 +5733,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T16:34:48.046183289Z"
+generated: "2026-11-24T16:35:04.444751541Z"
