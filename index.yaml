@@ -3695,6 +3695,37 @@ entries:
     version: 1.0.5
   istio-injected-namespaces:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Istio Injected Namespaces
+      kubewarden/mutation: "false"
+      kubewarden/resources: Namespace
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - namespaces
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:59:27.240535105Z"
+    description: '# Istio-Injected Namespaces Specify namespaces you would like to
+      be labeld with `istio-injected: enabled`. Namespaces with this label with automatically
+      deploy a Istio sidecar with each pod.'
+    digest: 25127575fdf00874d500c7957e5dc6db396ed27207bdab0fddf0b2dfab0f3371
+    home: https://github.com/rancher/suse-security-policies
+    name: istio-injected-namespaces
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/istio-injected-namespaces:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/istio-injected-namespaces-1.0.6/istio-injected-namespaces-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -8031,4 +8062,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:59:11.532471379Z"
+generated: "2026-11-24T17:59:27.240716255Z"
