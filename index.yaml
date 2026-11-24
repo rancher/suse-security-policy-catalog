@@ -443,6 +443,37 @@ entries:
     version: 1.0.5
   bucket-insecure-connections:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Bucket Insecure Connections
+      kubewarden/mutation: "false"
+      kubewarden/resources: Bucket
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - buckets
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:54:19.784028367Z"
+    description: Ensure that Bucket objects do not use insecure connections
+    digest: fa07283907a39adf6fe3da1ad96968609bc8089fc114fcc8f8dd725cc734d749
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: bucket-insecure-connections
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/bucket-insecure-connections:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/bucket-insecure-connections-1.0.6/bucket-insecure-connections-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -2197,6 +2228,37 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/gitrepository-specific-branch-1.0.5/gitrepository-specific-branch-1.0.5.tgz
     version: 1.0.5
   gitrepository-untrusted-domains:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: GitRepository Untrusted Domains
+      kubewarden/mutation: "false"
+      kubewarden/resources: GitRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - gitrepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:54:19.977517561Z"
+    description: GitRepository resources must not use targets from untrusted domains.
+    digest: 069e9106e9f513a33517a057fcbfee93393e9efb869a82706572b46b37b4ab6b
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: gitrepository-untrusted-domains
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/gitrepository-untrusted-domains:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/gitrepository-untrusted-domains-1.0.6/gitrepository-untrusted-domains-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -7002,4 +7064,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:54:03.208514565Z"
+generated: "2026-11-24T17:54:19.977650308Z"
