@@ -6487,6 +6487,68 @@ entries:
     version: 1.0.5
   namespace-label-propagator-policy:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: v1
+          kind: Namespace
+      kubewarden/displayName: Namespace label propagator
+      kubewarden/mutation: "true"
+      kubewarden/resources: Pod, ReplicationController, Deployment, ReplicaSet, StatefulSet,
+        DaemonSet, Job, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.15
+    created: "2026-11-24T18:05:10.419269951Z"
+    description: Kubewarden policy designed to automatically propagate labels defined
+      in a Kubernetes namespace to the associated resources within that namespace
+    digest: bc23373c200eafa2295cd6b19240668d9906bccaacdc7f02c5eadb54a7438771
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - policy
+    - kubewarden
+    - namespace
+    - label
+    name: namespace-label-propagator-policy
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/namespace-label-propagator:v1.0.15
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/namespace-label-propagator-policy-1.0.15/namespace-label-propagator-policy-1.0.15.tgz
+    version: 1.0.15
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -6884,6 +6946,49 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/network-block-all-ingress-traffic-to-namespace-from-cidr-block-1.0.5/network-block-all-ingress-traffic-to-namespace-from-cidr-block-1.0.5.tgz
     version: 1.0.5
   ns-policyserver-mapper:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: v1
+          kind: Namespace
+      kubewarden/displayName: Namespace to PolicyServer mapper
+      kubewarden/mutation: "true"
+      kubewarden/resources: AdmissionPolicy,AdmissionPolicyGroup
+      kubewarden/rules: |
+        - apiGroups:
+          - policies.kubewarden.io
+          apiVersions:
+          - v1
+          resources:
+          - admissionpolicies
+          - admissionpolicygroups
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 0.1.6
+    created: "2026-11-24T18:05:10.675387152Z"
+    description: Mutates AdmissionPolicy and AdmissionPolicyGroup resources to enforce
+      the PolicyServer they run on. The target PolicyServer is read from the `admission.kubewarden.io/policy-server`
+      label of the Namespace where the policy is being created or updated. Requests
+      are rejected when the label is absent, preventing policies from being scheduled
+      on an unintended PolicyServer.
+    digest: ecb615829359646887ad53a457dbd8df83c276834ff10f69cbcb4acd6147ed6d
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - namespace
+    - policies
+    - policyserver
+    - admissionpolicy
+    - admissionpolicygroup
+    name: ns-policyserver-mapper
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/ns-policyserver-mapper:v0.1.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ns-policyserver-mapper-0.1.6/ns-policyserver-mapper-0.1.6.tgz
+    version: 0.1.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -9628,4 +9733,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:04:51.984579915Z"
+generated: "2026-11-24T18:05:10.675615578Z"
