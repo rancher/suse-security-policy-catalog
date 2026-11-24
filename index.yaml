@@ -379,6 +379,37 @@ entries:
     version: 1.0.5
   bucket-endpoint-domain:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Bucket Endpoint Domain
+      kubewarden/mutation: "false"
+      kubewarden/resources: Bucket
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - buckets
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:54:03.208414215Z"
+    description: Bucket endpoint domain must be one of the trusted domains.
+    digest: c6671089e77dbbc15096044d9ea33b804beea7634065eabd40b8d1b22c38e918
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: bucket-endpoint-domain
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/bucket-endpoint-domain:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/bucket-endpoint-domain-1.0.6/bucket-endpoint-domain-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -6971,4 +7002,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:53:49.00328477Z"
+generated: "2026-11-24T17:54:03.208514565Z"
