@@ -384,6 +384,68 @@ entries:
     version: 1.0.17
   annotations:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Annotations
+      kubewarden/mutation: "false"
+      kubewarden/resources: '*'
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 0.1.14
+    created: "2026-11-24T18:02:22.389286444Z"
+    description: A policy that validates annotations of Kubernetes' resources
+    digest: fddbb9fb1ee270a643e0df3f2b0218365657f5798d3caf143334b35afc9f7b76
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - annotations
+    name: annotations
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/annotations:v0.1.14
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/annotations-0.1.14/annotations-0.1.14.tgz
+    version: 0.1.14
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -6952,6 +7014,39 @@ entries:
     version: 1.0.16
   psp-apparmor:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Apparmor PSP
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.17
+    created: "2026-11-24T18:02:22.552195966Z"
+    description: Replacement for the Kubernetes Pod Security Policy that controls
+      the usage of AppArmor profiles
+    digest: 58d4f4fc75bfb33a891f7de215f0e362d5e02267a3d99473af453da17ba3912f
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - psp
+    - apparmor
+    name: psp-apparmor
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/apparmor-psp:v1.0.17
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/psp-apparmor-1.0.17/psp-apparmor-1.0.17.tgz
+    version: 1.0.17
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -8682,4 +8777,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:02:06.926058731Z"
+generated: "2026-11-24T18:02:22.55243923Z"
