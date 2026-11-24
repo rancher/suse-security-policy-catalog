@@ -2163,6 +2163,37 @@ entries:
     version: 1.0.5
   gitrepository-organization-domains:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: GitRepository Organization Domains
+      kubewarden/mutation: "false"
+      kubewarden/resources: GitRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - gitrepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:54:36.023017299Z"
+    description: GitRepository resources must only be from allowed organization domains.
+    digest: 1a74493dafeb185c0354289650617db189d0bafa205f41728336147a1b9ec3ab
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: gitrepository-organization-domains
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/gitrepository-organization-domains:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/gitrepository-organization-domains-1.0.6/gitrepository-organization-domains-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -2195,6 +2226,37 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/gitrepository-organization-domains-1.0.5/gitrepository-organization-domains-1.0.5.tgz
     version: 1.0.5
   gitrepository-specific-branch:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: GitRepository Specific Branch
+      kubewarden/mutation: "false"
+      kubewarden/resources: GitRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - gitrepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:54:36.245383258Z"
+    description: GitRepository resources must reference a specific branch, e.g. 'main'.
+    digest: 6f528bb0448f1ee4af5dea2a3ec565d0e8372131f87cb1b53ff9bc03466c8a7f
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: gitrepository-specific-branch
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/gitrepository-specific-branch:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/gitrepository-specific-branch-1.0.6/gitrepository-specific-branch-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -7064,4 +7126,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:54:19.977650308Z"
+generated: "2026-11-24T17:54:36.245507302Z"
