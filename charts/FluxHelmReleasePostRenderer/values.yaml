@@ -1,6 +1,6 @@
 global:
   cattle:
-    systemDefaultRegistry: ghcr.io
+    systemDefaultRegistry: registry.rancher.com
 module:
-  repository: kubewarden/policies/helm-release-post-renderer
-  tag: v1.0.5
+  repository: rancher/suse-security-policies/helm-release-post-renderer
+  tag: v1.0.6
