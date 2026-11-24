@@ -4057,6 +4057,38 @@ entries:
     version: 1.0.6
   kustomization-var-substitution:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Var Substitution
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:57:25.040085969Z"
+    description: The property 'spec.postBuild.substitute.var_substitution_enabled'
+      must be disabled.
+    digest: edff45b5ad7753c48ac044c5704c932a01acc703ffc9d843a060f608792c1151
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: kustomization-var-substitution
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/kustomization-var-substitution:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-var-substitution-1.0.6/kustomization-var-substitution-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -7626,4 +7658,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:57:12.727858681Z"
+generated: "2026-11-24T17:57:25.040225536Z"
