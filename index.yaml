@@ -179,6 +179,40 @@ entries:
     version: 1.0.15
   allowed-fsgroups-psp:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Allowed Fs Groups PSP
+      kubewarden/mutation: "true"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.15
+    created: "2026-11-24T18:01:49.112501973Z"
+    description: Replacement for the Kubernetes Pod Security Policy that controls
+      the usage of fsGroups in the pod security context
+    digest: 18f289a97ddd61eb1be27f85f61b6c2af5f371663ac58378e597b8fdab6fde52
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - psp
+    - container
+    - runtime
+    name: allowed-fsgroups-psp
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/allowed-fsgroups-psp:v1.0.15
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/allowed-fsgroups-psp-1.0.15/allowed-fsgroups-psp-1.0.15.tgz
+    version: 1.0.15
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -8549,4 +8583,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:01:35.657735741Z"
+generated: "2026-11-24T18:01:49.112756198Z"
