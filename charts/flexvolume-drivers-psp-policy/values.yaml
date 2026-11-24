@@ -1,6 +1,6 @@
 global:
   cattle:
-    systemDefaultRegistry: ghcr.io
+    systemDefaultRegistry: registry.rancher.com
 module:
-  repository: kubewarden/policies/flexvolume-drivers-psp
-  tag: v1.0.19
+  repository: rancher/suse-security-policies/flexvolume-drivers-psp
+  tag: v1.0.20
