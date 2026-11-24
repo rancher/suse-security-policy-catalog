@@ -913,6 +913,57 @@ entries:
     version: 1.0.6
   containers-block-specific-image-names:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Containers Block Specific Image Names
+      kubewarden/mutation: "false"
+      kubewarden/resources: CronJob, DaemonSet, Deployment, Job, Pod, StatefulSet
+      kubewarden/rules: |
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - cronjobs
+          - jobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - daemonsets
+          - deployments
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:51:29.522978158Z"
+    description: This Policy prohibits images with certain image names from being
+      deployed by specifying a list of unapproved names.
+    digest: 297a7773b5b22d1eebf0048cdeae0f202ea914eab5245a3e63366c0aa9c13ef7
+    home: https://github.com/rancher/suse-security-policies
+    name: containers-block-specific-image-names
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/containers-block-specific-image-names:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/containers-block-specific-image-names-1.0.6/containers-block-specific-image-names-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -6086,4 +6137,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:51:13.45862609Z"
+generated: "2026-11-24T17:51:29.523045017Z"
