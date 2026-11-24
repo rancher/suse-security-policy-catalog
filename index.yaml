@@ -5038,6 +5038,37 @@ entries:
     version: 0.2.0
   safe-annotations:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Safe Annotations
+      kubewarden/mutation: "false"
+      kubewarden/resources: '*'
+      kubewarden/rules: |
+        - apiGroups:
+          - '*'
+          apiVersions:
+          - '*'
+          resources:
+          - '*'
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.10
+    created: "2026-11-24T16:35:44.551368711Z"
+    description: A policy that validates Kubernetes' resource annotations
+    digest: 24f21e7652a486dc4ca28fd99ee6e6ebe27e13b7eacfa5a456b3aef64e4fec94
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - annotations
+    name: safe-annotations
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/safe-annotations:v1.0.10
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/safe-annotations-1.0.10/safe-annotations-1.0.10.tgz
+    version: 1.0.10
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -5766,4 +5797,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T16:35:21.856068385Z"
+generated: "2026-11-24T16:35:44.551411214Z"
