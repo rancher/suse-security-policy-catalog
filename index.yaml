@@ -3956,6 +3956,37 @@ entries:
     version: 1.0.5
   kustomization-patches-requirement:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Patches
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:58:11.001499031Z"
+    description: Kustomization patches should be enabled or disabled based on input.
+    digest: 7826294eab9293ba4b61f9bb8cf8b4aaf6e12f432c35e536444f4b71c4d0b0b7
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: kustomization-patches-requirement
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/kustomization-patches-requirement:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-patches-requirement-1.0.6/kustomization-patches-requirement-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -5728,6 +5759,40 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-cosign-verification-1.0.5/ocirepository-cosign-verification-1.0.5.tgz
     version: 1.0.5
   ocirepository-ignore-suffixes:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: OCIRepository Ignore Suffixes
+      kubewarden/mutation: "false"
+      kubewarden/resources: OCIRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1beta2
+          resources:
+          - ocirepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:58:11.223765651Z"
+    description: OCIRepository resources must include specific suffixes in the spec.ignore
+      field which determines the files to be ignored before making a commit..
+    digest: 0d9e6088d9c868f7ea220e5eb92c7e8e5f8af34c88ad853cf62ff79f4b360cfd
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    - oci
+    - suffixes
+    name: ocirepository-ignore-suffixes
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/ocirepository-ignore-suffixes:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-ignore-suffixes-1.0.6/ocirepository-ignore-suffixes-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -7754,4 +7819,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:57:54.438398549Z"
+generated: "2026-11-24T17:58:11.223884798Z"
