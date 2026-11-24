@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -39,12 +38,13 @@ annotations:
       operations:
       - CREATE
       - UPDATE
-appVersion: 1.0.6
-description: "Running as root gives the container full access to all resources in
-  the VM it is running on. Containers should not run with such access rights unless
-  required by design. This Policy enforces that the `securityContext.runAsNonRoot`
-  attribute is set to `true`. \n"
-home: https://github.com/kubewarden/policies
+apiVersion: v2
+appVersion: 1.0.7
+description: Running as root gives the container full access to all resources in the
+  VM it is running on. Containers should not run with such access rights unless required
+  by design. This Policy enforces that the `securityContext.runAsNonRoot` attribute
+  is set to `true`.
+home: https://github.com/rancher/suse-security-policies
 keywords:
 - pci-dss
 - cis-benchmark
@@ -54,5 +54,5 @@ keywords:
 - default
 name: container-running-as-root
 sources:
-- ghcr.io/kubewarden/policies/container-running-as-root:v1.0.6
-version: 1.0.6
+- oci://registry.rancher.com/rancher/suse-security-policies/container-running-as-root:v1.0.7
+version: 1.0.7
