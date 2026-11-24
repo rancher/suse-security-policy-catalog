@@ -6024,6 +6024,38 @@ entries:
     version: 1.0.5
   ocirepository-patch-annotation:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: OCIRepository Patch Annotation
+      kubewarden/mutation: "false"
+      kubewarden/resources: OCIRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1beta2
+          resources:
+          - ocirepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:58:54.242625426Z"
+    description: OCIRepository resources must have a patch annotation that matches
+      the provider.
+    digest: 143a6475f888112072f9e9a6b05c2a572479a76485159cac78a30e792201b824
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: ocirepository-patch-annotation
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/ocirepository-patch-annotation:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-patch-annotation-1.0.6/ocirepository-patch-annotation-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -7913,4 +7945,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:58:40.134780686Z"
+generated: "2026-11-24T17:58:54.242810093Z"
