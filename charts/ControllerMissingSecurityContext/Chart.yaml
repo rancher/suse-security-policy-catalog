@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -40,10 +39,12 @@ annotations:
       operations:
       - CREATE
       - UPDATE
-appVersion: 1.0.5
-description: |
-  This Policy checks if the container is missing securityContext while there is no securityContext defined on the Pod level as well. The security settings that are specified on the Pod level apply to all containers in the Pod.
-home: https://github.com/kubewarden/policies
+apiVersion: v2
+appVersion: 1.0.6
+description: This Policy checks if the container is missing securityContext while
+  there is no securityContext defined on the Pod level as well. The security settings
+  that are specified on the Pod level apply to all containers in the Pod.
+home: https://github.com/rancher/suse-security-policies
 keywords:
 - pci-dss
 - cis-benchmark
@@ -53,5 +54,5 @@ keywords:
 - default
 name: containers-missing-security-context
 sources:
-- ghcr.io/kubewarden/policies/containers-missing-security-context:v1.0.5
-version: 1.0.5
+- oci://registry.rancher.com/rancher/suse-security-policies/containers-missing-security-context:v1.0.6
+version: 1.0.6
