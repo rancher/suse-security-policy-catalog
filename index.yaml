@@ -2499,6 +2499,74 @@ entries:
     version: 0.1.21
   env-variable-secrets-scanner:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Environment Variable Secrets Scanner
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod,Deployment,Replicaset,Statefulset,Daemonset,Replicationcontroller,Job,Cronjob
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.18
+    created: "2026-11-24T18:03:44.900052934Z"
+    description: Policy that inspects env vars and rejects a request if a secret was
+      found
+    digest: a33815b474ef71ed5b15bb51e6a0bc6fd113d322cf24e303c45a0809bb549422
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - secrets
+    - api keys
+    - tokens
+    - secret leak
+    - confidential data
+    - confidential data leak
+    name: env-variable-secrets-scanner
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/env-variable-secrets-scanner:v1.0.18
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/env-variable-secrets-scanner-1.0.18/env-variable-secrets-scanner-1.0.18.tgz
+    version: 1.0.18
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -2644,6 +2712,42 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/environment-variable-policy-3.0.6/environment-variable-policy-3.0.6.tgz
     version: 3.0.6
   flexvolume-drivers-psp:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Flexvolume Drivers Psp
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.20
+    created: "2026-11-24T18:03:45.140789592Z"
+    description: Replacement for the Kubernetes Pod Security Policy that controls
+      the allowed `flexVolume` drivers
+    digest: 9448211615901c12d75aebd9ed1b43c3a4bb72744ebc72efacc9764b649a4dea
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - psp
+    - container
+    - runtime
+    - flex volume
+    - flex
+    name: flexvolume-drivers-psp
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/flexvolume-drivers-psp:v1.0.20
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/flexvolume-drivers-psp-1.0.20/flexvolume-drivers-psp-1.0.20.tgz
+    version: 1.0.20
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -9168,4 +9272,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:03:27.621818994Z"
+generated: "2026-11-24T18:03:45.140990341Z"
