@@ -4449,6 +4449,40 @@ entries:
     version: 1.0.9
   psa-label-enforcer:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: PSA Label Enforcer
+      kubewarden/mutation: "true"
+      kubewarden/resources: Namespace
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - namespaces
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.17
+    created: "2026-11-24T16:38:29.794489457Z"
+    description: Policy to ensure that namespaces have the required PSA labels configuration
+      for deployment in the cluster.
+    digest: 74abd8d6346941f7142bc4faded4c1ded0f9bac98f34924827b1d06f694deb18
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - namespace
+    - psa
+    - kubewarden
+    name: psa-label-enforcer
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/psa-label-enforcer:v1.0.17
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/psa-label-enforcer-1.0.17/psa-label-enforcer-1.0.17.tgz
+    version: 1.0.17
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -5898,4 +5932,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T16:38:04.443366579Z"
+generated: "2026-11-24T16:38:29.794547118Z"
