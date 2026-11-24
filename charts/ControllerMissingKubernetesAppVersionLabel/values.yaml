@@ -1,6 +1,6 @@
 global:
   cattle:
-    systemDefaultRegistry: ghcr.io
+    systemDefaultRegistry: registry.rancher.com
 module:
-  repository: kubewarden/policies/missing-kubernetes-app-version-label
-  tag: v1.0.5
+  repository: rancher/suse-security-policies/missing-kubernetes-app-version-label
+  tag: v1.0.6
