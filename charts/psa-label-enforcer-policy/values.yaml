@@ -1,6 +1,6 @@
 global:
   cattle:
-    systemDefaultRegistry: ghcr.io
+    systemDefaultRegistry: registry.rancher.com
 module:
-  repository: kubewarden/policies/psa-label-enforcer
-  tag: v1.0.16
+  repository: rancher/suse-security-policies/psa-label-enforcer
+  tag: v1.0.17
