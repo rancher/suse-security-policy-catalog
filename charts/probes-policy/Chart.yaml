@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -14,11 +13,12 @@ annotations:
       - pods
       operations:
       - CREATE
-appVersion: 1.0.9
+apiVersion: v2
+appVersion: 1.0.10
 description: This policy validates that all containers have livenessProbe and readinessProbe
   defined.
-home: https://github.com/kubewarden/policies
+home: https://github.com/rancher/suse-security-policies
 name: probes-policy
 sources:
-- ghcr.io/kubewarden/policies/probes:v1.0.9
-version: 1.0.9
+- oci://registry.rancher.com/rancher/suse-security-policies/probes:v1.0.10
+version: 1.0.10
