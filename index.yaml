@@ -3399,6 +3399,68 @@ entries:
     version: 1.0.5
   missing-kubernetes-app-component-label:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Missing Kubernetes App Component Label
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:52:15.887529075Z"
+    description: 'Custom labels can help enforce organizational standards for each
+      artifact deployed. This Policy ensure a custom label key is set in the entity''s
+      `metadata`. The Policy detects the presence of the following:   ### owner A
+      label key of `owner` will help identify who the owner of this entity is.   ###
+      app.kubernetes.io/name The name of the application   ### app.kubernetes.io/instance
+      A unique name identifying the instance of an application     ### app.kubernetes.io/version
+      The current version of the application (e.g., a semantic version, revision hash,
+      etc.)  ### app.kubernetes.io/part-of The name of a higher level application
+      this one is part of   ### app.kubernetes.io/managed-by The tool being used to
+      manage the operation of an application   ### app.kubernetes.io/created-by The
+      controller/user who created this resource'
+    digest: b79e0d14fdad5b0df28b9d96b2425c189c1b0d0dfea36414878592ad24de13ef
+    home: https://github.com/rancher/suse-security-policies
+    name: missing-kubernetes-app-component-label
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/missing-kubernetes-app-component-label:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/missing-kubernetes-app-component-label-1.0.6/missing-kubernetes-app-component-label-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -3527,6 +3589,68 @@ entries:
     version: 1.0.5
   missing-kubernetes-app-instance-label:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Missing Kubernetes App Instance Label
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:52:16.087075478Z"
+    description: 'Custom labels can help enforce organizational standards for each
+      artifact deployed. This Policy ensure a custom label key is set in the entity''s
+      `metadata`. The Policy detects the presence of the following:   ### owner A
+      label key of `owner` will help identify who the owner of this entity is.   ###
+      app.kubernetes.io/name The name of the application   ### app.kubernetes.io/instance
+      A unique name identifying the instance of an application     ### app.kubernetes.io/version
+      The current version of the application (e.g., a semantic version, revision hash,
+      etc.)  ### app.kubernetes.io/part-of The name of a higher level application
+      this one is part of   ### app.kubernetes.io/managed-by The tool being used to
+      manage the operation of an application   ### app.kubernetes.io/created-by The
+      controller/user who created this resource'
+    digest: 2766f94d7a9c827400c2ba011f3ea78ed9a9858818ce603dfdc8eb32d13abda2
+    home: https://github.com/rancher/suse-security-policies
+    name: missing-kubernetes-app-instance-label
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/missing-kubernetes-app-instance-label:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/missing-kubernetes-app-instance-label-1.0.6/missing-kubernetes-app-instance-label-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -3590,6 +3714,68 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/missing-kubernetes-app-instance-label-1.0.5/missing-kubernetes-app-instance-label-1.0.5.tgz
     version: 1.0.5
   missing-kubernetes-app-label:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Missing Kubernetes App Label
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:52:16.286427623Z"
+    description: 'Custom labels can help enforce organizational standards for each
+      artifact deployed. This Policy ensure a custom label key is set in the entity''s
+      `metadata`. The Policy detects the presence of the following:   ### owner A
+      label key of `owner` will help identify who the owner of this entity is.   ###
+      app.kubernetes.io/name The name of the application   ### app.kubernetes.io/instance
+      A unique name identifying the instance of an application     ### app.kubernetes.io/version
+      The current version of the application (e.g., a semantic version, revision hash,
+      etc.)  ### app.kubernetes.io/part-of The name of a higher level application
+      this one is part of   ### app.kubernetes.io/managed-by The tool being used to
+      manage the operation of an application   ### app.kubernetes.io/created-by The
+      controller/user who created this resource'
+    digest: 078d41d38e188ef353b1ab5f9228ebf92186a7cd5ed2d5542cf9071eb31ac855
+    home: https://github.com/rancher/suse-security-policies
+    name: missing-kubernetes-app-label
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/missing-kubernetes-app-label:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/missing-kubernetes-app-label-1.0.6/missing-kubernetes-app-label-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -6251,4 +6437,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:51:57.512481095Z"
+generated: "2026-11-24T17:52:16.286509936Z"
