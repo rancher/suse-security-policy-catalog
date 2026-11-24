@@ -1,6 +1,6 @@
 global:
   cattle:
-    systemDefaultRegistry: ghcr.io
+    systemDefaultRegistry: registry.rancher.com
 module:
-  repository: kubewarden/policies/namespace-label-propagator
-  tag: v1.0.14
+  repository: rancher/suse-security-policies/namespace-label-propagator
+  tag: v1.0.15
