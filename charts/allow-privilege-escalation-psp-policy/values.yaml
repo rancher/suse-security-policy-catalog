@@ -1,6 +1,6 @@
 global:
   cattle:
-    systemDefaultRegistry: ghcr.io
+    systemDefaultRegistry: registry.rancher.com
 module:
-  repository: kubewarden/policies/allow-privilege-escalation-psp
-  tag: v1.0.15
+  repository: rancher/suse-security-policies/allow-privilege-escalation-psp
+  tag: v1.0.16
