@@ -721,6 +721,70 @@ entries:
     version: 1.0.6
   container-running-as-user:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Container Running As User
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.7
+    created: "2026-11-24T17:50:59.451759076Z"
+    description: Containers has a feature in which you specify the ID of the user
+      which all processes in the container will run with. This Policy enforces that
+      the `securityContext.runAsUser` attribute is set to a uid greater than root
+      uid. Running as root user gives the container full access to all resources in
+      the VM it is running on. Containers should not run with such access rights unless
+      required by design.
+    digest: ea021a72b3717e3901f4e28bc59430143bb333905b45caf65ffc2b8578e31dcf
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - pci-dss
+    - cis-benchmark
+    - mitre-attack
+    - nist800-190
+    - gdpr
+    - default
+    name: container-running-as-user
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/container-running-as-user:v1.0.7
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/container-running-as-user-1.0.7/container-running-as-user-1.0.7.tgz
+    version: 1.0.7
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -5960,4 +6024,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T16:38:56.964911469Z"
+generated: "2026-11-24T17:50:59.451829878Z"
