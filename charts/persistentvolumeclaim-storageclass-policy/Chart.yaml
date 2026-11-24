@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -15,14 +14,15 @@ annotations:
       - persistentvolumeclaims
       operations:
       - CREATE
-appVersion: 1.1.10
+apiVersion: v2
+appVersion: 1.1.11
 description: Policy that validates and adjusts the usage of StorageClasses in PersistentVolumeClaims
-home: https://github.com/kubewarden/policies
+home: https://github.com/rancher/suse-security-policies
 keywords:
 - persistentvolumeclaim
 - pvc
 - kubewarden
 name: persistentvolumeclaim-storageclass-policy
 sources:
-- ghcr.io/kubewarden/policies/persistentvolumeclaim-storageclass-policy:v1.1.10
-version: 1.1.10
+- oci://registry.rancher.com/rancher/suse-security-policies/persistentvolumeclaim-storageclass-policy:v1.1.11
+version: 1.1.11
