@@ -1,6 +1,6 @@
 global:
   cattle:
-    systemDefaultRegistry: ghcr.io
+    systemDefaultRegistry: registry.rancher.com
 module:
-  repository: kubewarden/policies/container-resources
-  tag: v1.3.8
+  repository: rancher/suse-security-policies/container-resources
+  tag: v1.3.9
