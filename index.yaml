@@ -846,6 +846,66 @@ entries:
     version: 1.6.5
   container-block-sysctl:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Container Block Sysctls
+      kubewarden/mutation: "false"
+      kubewarden/resources: Deployment, Job, ReplicationController, ReplicaSet, DaemonSet,
+        StatefulSet, CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - daemonsets
+          - statefulsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T18:05:57.202195758Z"
+    description: Setting sysctls can allow containers unauthorized escalated privileges
+      to a Kubernetes node.
+    digest: 4b1fdac46bedfd85ef70ba0e819ac9be1aa1fc5be1ae3851db2d64edc05b5cb4
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - pci-dss
+    - cis-benchmark
+    - mitre-attack
+    - nist800-190
+    - gdpr
+    - default
+    name: container-block-sysctl
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/container-block-sysctl:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/container-block-sysctl-1.0.6/container-block-sysctl-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -9900,4 +9960,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:05:40.986209859Z"
+generated: "2026-11-24T18:05:57.202506445Z"
