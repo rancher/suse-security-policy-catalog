@@ -5738,6 +5738,38 @@ entries:
     version: 1.0.5
   network-allow-ingress-traffic-from-namespace-to-another:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Network Allow Ingress Traffic From Namespace To Another
+      kubewarden/mutation: "false"
+      kubewarden/resources: NetworkPolicy
+      kubewarden/rules: |
+        - apiGroups:
+          - networking.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - networkpolicies
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T18:00:21.320748562Z"
+    description: If you are using a CNI that allows for Network Policies, you can
+      use this Policy to allow Ingress traffic from one namespace to another.  By
+      default, if no policies exist in a namespace, then all ingress and egress traffic
+      is allowed to and from pods in that namespace.
+    digest: 2288b8709f6f43e5220ba7e9eaddd9b7242dfd79fc0a0f15e78e816d9a504f3f
+    home: https://github.com/rancher/suse-security-policies
+    name: network-allow-ingress-traffic-from-namespace-to-another
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/network-allow-ingress-traffic-from-namespace-to-another:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/network-allow-ingress-traffic-from-namespace-to-another-1.0.6/network-allow-ingress-traffic-from-namespace-to-another-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -7095,6 +7127,38 @@ entries:
     version: 1.0.15
   resource-quota-setting-is-missing:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Resource Quota Setting Is Missing
+      kubewarden/mutation: "false"
+      kubewarden/resources: ResourceQuota
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - resourcequotas
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T18:00:21.627681028Z"
+    description: When creating resource quotas per namespace, ensure CPU and Memory
+      requests and limits are set.
+    digest: 0e107d0c6ca0a93dd083c88320437bead819f7a21e8f2b1438b8b8a9dcd010a3
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - soc2-type1
+    name: resource-quota-setting-is-missing
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/resource-quota-setting-is-missing:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/resource-quota-setting-is-missing-1.0.6/resource-quota-setting-is-missing-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -8213,4 +8277,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:00:02.930282406Z"
+generated: "2026-11-24T18:00:21.627962934Z"
