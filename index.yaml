@@ -2463,6 +2463,41 @@ entries:
     version: 1.0.13
   ingress-unique-host:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: networking.k8s.io/v1
+          kind: Ingress
+      kubewarden/displayName: Unique Ingress host
+      kubewarden/mutation: "false"
+      kubewarden/resources: Ingress
+      kubewarden/rules: |
+        - apiGroups:
+          - networking.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - ingresses
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.15
+    created: "2026-11-24T16:34:22.301778528Z"
+    description: Requires all Ingress rule hosts to be unique
+    digest: 1af0cf57a50215ecff4ead02b319df84ae1c4e4562cb0b843c2b720090624721
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - ingress
+    - kubewarden
+    name: ingress-unique-host
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/unique-ingress-policy:v1.0.15
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ingress-unique-host-1.0.15/ingress-unique-host-1.0.15.tgz
+    version: 1.0.15
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -5568,4 +5603,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T16:33:39.594040981Z"
+generated: "2026-11-24T16:34:22.30179914Z"
