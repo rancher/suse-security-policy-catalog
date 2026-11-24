@@ -4275,6 +4275,75 @@ entries:
     version: 1.1.12
   image-cve-policy:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/contextAwareResources: |
+        - apiVersion: storage.sbomscanner.kubewarden.io/v1alpha1
+          kind: VulnerabilityReport
+      kubewarden/displayName: image-cve
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod, ReplicaSet, Deployment, DaemonSet, StatefulSet, Job,
+        CronJob
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 0.6.7
+    created: "2026-11-24T18:04:15.528431684Z"
+    description: Validate workloads based on the vulnerabilities of the images they
+      make use of
+    digest: 7c566fffd4d50854f19aa4cee76382f2d80a864b38a9562e911caad9e41a4bd9
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - pod
+    - cool policy
+    - kubewarden
+    name: image-cve-policy
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/image-cve-policy:v0.6.7
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/image-cve-policy-0.6.7/image-cve-policy-0.6.7.tgz
+    version: 0.6.7
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -9400,4 +9469,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:04:01.926711248Z"
+generated: "2026-11-24T18:04:15.528580739Z"
