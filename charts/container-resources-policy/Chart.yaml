@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -48,14 +47,15 @@ annotations:
       operations:
       - CREATE
       - UPDATE
-appVersion: 1.3.8
+apiVersion: v2
+appVersion: 1.3.9
 description: Policy is designed to enforce constraints on the resource requirements
   of Kubernetes containers
-home: https://github.com/kubewarden/policies
+home: https://github.com/rancher/suse-security-policies
 keywords:
 - container
 - resources
 name: container-resources
 sources:
-- ghcr.io/kubewarden/policies/container-resources:v1.3.8
-version: 1.3.8
+- oci://registry.rancher.com/rancher/suse-security-policies/container-resources:v1.3.9
+version: 1.3.9
