@@ -5197,6 +5197,39 @@ entries:
     version: 1.0.5
   kyverno-dsl:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kyverno DSL policy
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 0.1.14
+    created: "2026-11-24T18:04:51.79555015Z"
+    description: An experimental Kubewarden policy that runs Kyverno policies
+    digest: 8e9a3486d2f36d93e4b7f64a1719fc2cc0626fdac65510d16f843d51514bb708
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - psp
+    - container
+    - runtime
+    name: kyverno-dsl
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/kyverno-dsl:v0.1.14
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kyverno-dsl-0.1.14/kyverno-dsl-0.1.14.tgz
+    version: 0.1.14
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -7425,6 +7458,39 @@ entries:
     version: 1.0.5
   persistentvolumeclaim-storageclass-policy:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: PVC StorageClass Validator
+      kubewarden/mutation: "true"
+      kubewarden/resources: PersistentVolumeClaim
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - persistentvolumeclaims
+          operations:
+          - CREATE
+    apiVersion: v2
+    appVersion: 1.1.11
+    created: "2026-11-24T18:04:51.984286859Z"
+    description: Policy that validates and adjusts the usage of StorageClasses in
+      PersistentVolumeClaims
+    digest: 39a586383a1d8c62277ba071def68cc2fa204143b302809727c9b04a149884d0
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - persistentvolumeclaim
+    - pvc
+    - kubewarden
+    name: persistentvolumeclaim-storageclass-policy
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/persistentvolumeclaim-storageclass-policy:v1.1.11
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/persistentvolumeclaim-storageclass-policy-1.1.11/persistentvolumeclaim-storageclass-policy-1.1.11.tgz
+    version: 1.1.11
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -9562,4 +9628,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:04:33.169754452Z"
+generated: "2026-11-24T18:04:51.984579915Z"
