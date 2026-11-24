@@ -7738,6 +7738,39 @@ entries:
     version: 1.0.14
   pod-runtime:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Pod Runtime
+      kubewarden/mutation: "true"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.15
+    created: "2026-11-24T18:05:26.933138007Z"
+    description: Policy that controls the usage of Pod runtimeClass
+    digest: 0bddc18608a601df8c40f3fcc68687d4c5e14303f432def9cf827a21848e4496
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - pod
+    - runtime
+    - container runtime
+    name: pod-runtime
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/pod-runtime:v1.0.15
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/pod-runtime-1.0.15/pod-runtime-1.0.15.tgz
+    version: 1.0.15
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -9562,6 +9595,72 @@ entries:
     version: 1.1.5
   verify-image-signatures:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Verify Image Signatures
+      kubewarden/mutation: "true"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.14
+    created: "2026-11-24T18:05:27.088874732Z"
+    description: A Kubewarden Policy that verifies all the signatures of the container
+      images referenced by a Pod
+    digest: d1de88fb7348d2f6308acd1d403e709290ac448d89a03d7e5e89369998b3b984
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - pod
+    - signature
+    - sigstore
+    - trusted
+    name: verify-image-signatures
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/verify-image-signatures:v1.0.14
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/verify-image-signatures-1.0.14/verify-image-signatures-1.0.14.tgz
+    version: 1.0.14
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -9733,4 +9832,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:05:10.675615578Z"
+generated: "2026-11-24T18:05:27.089208023Z"
