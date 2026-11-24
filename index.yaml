@@ -3890,6 +3890,38 @@ entries:
     version: 1.0.5
   kustomization-images-requirement:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Images Requirement
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:57:39.958854815Z"
+    description: The 'spec.images' field in a Kustomization object must be enabled
+      or disabled based on the policy input images_required.
+    digest: fb86e184c846021f29b4e815efb189d7d7b1384cb7983e4eed326022cb6c3e1c
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: kustomization-images-requirement
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/kustomization-images-requirement:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-images-requirement-1.0.6/kustomization-images-requirement-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -3956,6 +3988,38 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-patches-requirement-1.0.5/kustomization-patches-requirement-1.0.5.tgz
     version: 1.0.5
   kustomization-prune:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Kustomization Prune
+      kubewarden/mutation: "false"
+      kubewarden/resources: Kustomization
+      kubewarden/rules: |
+        - apiGroups:
+          - kustomize.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - kustomizations
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:57:40.171373622Z"
+    description: The 'spec.prune' field in the Kustomization object must be set according
+      to the input parameter 'prune'.
+    digest: e1d72476986110ac1a26c49854a616255ddc81c87779a6d0ef79e035e0f2db48
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: kustomization-prune
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/kustomization-prune:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/kustomization-prune-1.0.6/kustomization-prune-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -7658,4 +7722,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:57:25.040225536Z"
+generated: "2026-11-24T17:57:40.171584749Z"
