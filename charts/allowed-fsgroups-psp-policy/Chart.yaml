@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -16,15 +15,16 @@ annotations:
       operations:
       - CREATE
       - UPDATE
-appVersion: 1.0.14
+apiVersion: v2
+appVersion: 1.0.15
 description: Replacement for the Kubernetes Pod Security Policy that controls the
   usage of fsGroups in the pod security context
-home: https://github.com/kubewarden/policies
+home: https://github.com/rancher/suse-security-policies
 keywords:
 - psp
 - container
 - runtime
 name: allowed-fsgroups-psp
 sources:
-- ghcr.io/kubewarden/policies/allowed-fsgroups-psp:v1.0.14
-version: 1.0.14
+- oci://registry.rancher.com/rancher/suse-security-policies/allowed-fsgroups-psp:v1.0.15
+version: 1.0.15
