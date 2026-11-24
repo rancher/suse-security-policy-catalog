@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -47,14 +46,15 @@ annotations:
       operations:
       - CREATE
       - UPDATE
-appVersion: 1.1.12
+apiVersion: v2
+appVersion: 1.1.13
 description: A Pod Security Policy that controls usage of hostPath volumes
-home: https://github.com/kubewarden/policies
+home: https://github.com/rancher/suse-security-policies
 keywords:
 - psp
 - hostpaths
 - pod
 name: hostpaths-psp
 sources:
-- ghcr.io/kubewarden/policies/hostpaths-psp:v1.1.12
-version: 1.1.12
+- oci://registry.rancher.com/rancher/suse-security-policies/hostpaths-psp:v1.1.13
+version: 1.1.13
