@@ -1,6 +1,6 @@
 global:
   cattle:
-    systemDefaultRegistry: ghcr.io
+    systemDefaultRegistry: registry.rancher.com
 module:
-  repository: kubewarden/policies/persistentvolumeclaim-storageclass-policy
-  tag: v1.1.10
+  repository: rancher/suse-security-policies/persistentvolumeclaim-storageclass-policy
+  tag: v1.1.11
