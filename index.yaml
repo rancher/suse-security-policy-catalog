@@ -2485,6 +2485,37 @@ entries:
     version: 1.0.5
   helm-release-max-history:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Max History
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.7
+    created: "2026-11-24T17:55:17.210674121Z"
+    description: HelmRelease maxHistory cannot exceed the specified value.
+    digest: bd04895c2e509dc705b11576018c8acdf809266d3cf9ea2728b2d182b417b969
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: helm-release-max-history
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/helm-release-max-history:v1.0.7
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-max-history-1.0.7/helm-release-max-history-1.0.7.tgz
+    version: 1.0.7
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -2550,6 +2581,37 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-namespace-match-1.0.5/helm-release-namespace-match-1.0.5.tgz
     version: 1.0.5
   helm-release-post-renderer:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Post Renderer
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:55:17.45995753Z"
+    description: HelmRelease must not have post-renderers enabled.
+    digest: d26df6a1cbacb140b74ed16e3c62f8d9202554a6a16509cd9073c627f5e4e490
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: helm-release-post-renderer
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/helm-release-post-renderer:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-post-renderer-1.0.6/helm-release-post-renderer-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -7189,4 +7251,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:55:00.475772857Z"
+generated: "2026-11-24T17:55:17.46005081Z"
