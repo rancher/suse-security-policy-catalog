@@ -1,6 +1,6 @@
 global:
   cattle:
-    systemDefaultRegistry: ghcr.io
+    systemDefaultRegistry: registry.rancher.com
 module:
-  repository: kubewarden/policies/disallow-service-nodeport
-  tag: v1.0.9
+  repository: rancher/suse-security-policies/disallow-service-nodeport
+  tag: v1.0.10
