@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -174,13 +173,14 @@ annotations:
       - '*'
       operations:
       - CREATE
-appVersion: 1.0.13
+apiVersion: v2
+appVersion: 1.0.14
 description: Find deprecated and removed Kubernetes resources
-home: https://github.com/kubewarden/policies
+home: https://github.com/rancher/suse-security-policies
 keywords:
 - compliance
 - deprecated API
 name: deprecated-api-versions
 sources:
-- ghcr.io/kubewarden/policies/deprecated-api-versions:v1.0.13
-version: 1.0.13
+- oci://registry.rancher.com/rancher/suse-security-policies/deprecated-api-versions:v1.0.14
+version: 1.0.14
