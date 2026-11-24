@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -18,15 +17,16 @@ annotations:
       - namespace
       operations:
       - CREATE
-appVersion: 1.0.15
+apiVersion: v2
+appVersion: 1.0.16
 description: Prevent the creation of Namespace under a Rancher Project that doesn't
   have any resource quota left
-home: https://github.com/kubewarden/policies
+home: https://github.com/rancher/suse-security-policies
 keywords:
 - rancher
 - project
 - quotas
 name: rancher-project-quotas-namespace-validator
 sources:
-- ghcr.io/kubewarden/policies/rancher-project-quotas-namespace-validator:v1.0.15
-version: 1.0.15
+- oci://registry.rancher.com/rancher/suse-security-policies/rancher-project-quotas-namespace-validator:v1.0.16
+version: 1.0.16
