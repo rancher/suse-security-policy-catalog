@@ -2807,6 +2807,37 @@ entries:
     version: 1.0.5
   helm-release-service-account-name:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Service Account Name
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:56:25.044776223Z"
+    description: HelmRelease serviceAccountName must contain a value from parameters.service_account_names
+    digest: 09b532525dd244db6aba267b2b4f5a6982655f193b382672ce2d74acff1b9841
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: helm-release-service-account-name
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/helm-release-service-account-name:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-service-account-name-1.0.6/helm-release-service-account-name-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -2969,6 +3000,37 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-target-namespace-1.0.5/helm-release-target-namespace-1.0.5.tgz
     version: 1.0.5
   helm-release-values-from-configmaps:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Helm Release Values From
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmRelease
+      kubewarden/rules: |
+        - apiGroups:
+          - helm.toolkit.fluxcd.io
+          apiVersions:
+          - v2
+          resources:
+          - helmreleases
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:56:25.179260009Z"
+    description: HelmRelease valuesFrom must use correctly configured ConfigMaps.
+    digest: c6ecc1190e82f9d46dfa74cc855d0befca59e9277928df2071a0e28b9fd0aacb
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: helm-release-values-from-configmaps
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/helm-release-values-from-configmaps:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-release-values-from-configmaps-1.0.6/helm-release-values-from-configmaps-1.0.6.tgz
+    version: 1.0.6
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -7408,4 +7470,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:56:09.150286061Z"
+generated: "2026-11-24T17:56:25.179388701Z"
