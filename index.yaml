@@ -4419,6 +4419,34 @@ entries:
     version: 1.1.9
   probes-policy:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Probes validator policy
+      kubewarden/mutation: "false"
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+    apiVersion: v2
+    appVersion: 1.0.10
+    created: "2026-11-24T16:38:56.96484769Z"
+    description: This policy validates that all containers have livenessProbe and
+      readinessProbe defined.
+    digest: ca3fb6a894baef67db6fc10ae64919af238d33af56582469e5341fcb3ba74be0
+    home: https://github.com/rancher/suse-security-policies
+    name: probes-policy
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/probes:v1.0.10
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/probes-policy-1.0.10/probes-policy-1.0.10.tgz
+    version: 1.0.10
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -5932,4 +5960,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T16:38:29.794547118Z"
+generated: "2026-11-24T16:38:56.964911469Z"
