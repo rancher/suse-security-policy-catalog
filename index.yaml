@@ -5663,6 +5663,38 @@ entries:
     version: 0.1.5
   ocirepository-cosign-verification:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: OCIRepository Cosign Verification
+      kubewarden/mutation: "false"
+      kubewarden/resources: OCIRepository
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1beta2
+          resources:
+          - ocirepositories
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:57:54.438231411Z"
+    description: OCIRepository resources must provide Cosign verification and reference
+      a specific key.
+    digest: 1c2891bccb72db4c043710fde6ec94831728d0b4bba57cb0e73b01b3dbb06665
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: ocirepository-cosign-verification
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/ocirepository-cosign-verification:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/ocirepository-cosign-verification-1.0.6/ocirepository-cosign-verification-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -7722,4 +7754,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:57:40.171584749Z"
+generated: "2026-11-24T17:57:54.438398549Z"
