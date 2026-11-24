@@ -3885,6 +3885,70 @@ entries:
     version: 1.0.5
   high-risk-service-account:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: High Risk Service Account
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 0.1.12
+    created: "2026-11-24T18:04:01.781312076Z"
+    description: Policy to prevent the usage of serviceaccount with too many permissions
+    digest: 6840d7e12d33aabfe50e2f45477be369fecdff22513e294b27a57702b50c598b
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - pod
+    - security
+    - serviceaccount
+    name: high-risk-service-account
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/high-risk-service-account:v0.1.12
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/high-risk-service-account-0.1.12/high-risk-service-account-0.1.12.tgz
+    version: 0.1.12
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -4080,6 +4144,70 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/host-namespaces-psp-1.1.13/host-namespaces-psp-1.1.13.tgz
     version: 1.1.13
   hostpaths-psp:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Hostpaths PSP
+      kubewarden/mutation: "false"
+      kubewarden/resources: Pod
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - pods
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - replicationcontrollers
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - apps
+          apiVersions:
+          - v1
+          resources:
+          - deployments
+          - replicasets
+          - statefulsets
+          - daemonsets
+          operations:
+          - CREATE
+          - UPDATE
+        - apiGroups:
+          - batch
+          apiVersions:
+          - v1
+          resources:
+          - jobs
+          - cronjobs
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.1.13
+    created: "2026-11-24T18:04:01.926606493Z"
+    description: A Pod Security Policy that controls usage of hostPath volumes
+    digest: c6573b558c874c7d28953fbcd0f3ed2feee39008153b3a879163e2e1f2337787
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - psp
+    - hostpaths
+    - pod
+    name: hostpaths-psp
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/hostpaths-psp:v1.1.13
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/hostpaths-psp-1.1.13/hostpaths-psp-1.1.13.tgz
+    version: 1.1.13
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -9272,4 +9400,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:03:45.140990341Z"
+generated: "2026-11-24T18:04:01.926711248Z"
