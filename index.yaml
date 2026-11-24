@@ -2254,6 +2254,38 @@ entries:
     version: 1.0.13
   disallow-service-loadbalancer:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Disallow Service Loadbalancer
+      kubewarden/mutation: "false"
+      kubewarden/resources: Service
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - services
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.17
+    created: "2026-11-24T18:03:10.981709607Z"
+    description: A policy that prevents the creation of Service resources of type
+      `LoadBalancer`
+    digest: 09670c475bf4c245bd859f2448923d91ad17f59bda2f0fbbb81f55e6e18f8eec
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - service
+    name: disallow-service-loadbalancer
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/disallow-service-loadbalancer:v1.0.17
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/disallow-service-loadbalancer-1.0.17/disallow-service-loadbalancer-1.0.17.tgz
+    version: 1.0.17
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -2287,6 +2319,38 @@ entries:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/disallow-service-loadbalancer-1.0.16/disallow-service-loadbalancer-1.0.16.tgz
     version: 1.0.16
   disallow-service-nodeport:
+  - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Disallow Service Nodeport
+      kubewarden/mutation: "false"
+      kubewarden/resources: Service
+      kubewarden/rules: |
+        - apiGroups:
+          - ''
+          apiVersions:
+          - v1
+          resources:
+          - services
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.10
+    created: "2026-11-24T18:03:11.263256975Z"
+    description: A policy that prevents the creation of Service resources of type
+      `NodePort`
+    digest: c93523648fdb753dc80544b216095a9f80c103596e5739f5b74daca534b2815a
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - service
+    name: disallow-service-nodeport
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/disallow-service-nodeport:v1.0.10
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/disallow-service-nodeport-1.0.10/disallow-service-nodeport-1.0.10.tgz
+    version: 1.0.10
   - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
@@ -9070,4 +9134,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:02:54.163166404Z"
+generated: "2026-11-24T18:03:11.263410173Z"
