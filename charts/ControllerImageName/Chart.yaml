@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -37,11 +36,12 @@ annotations:
       operations:
       - CREATE
       - UPDATE
-appVersion: 1.0.5
-description: "This Policy prohibits images with certain image names from being deployed
-  by specifying a list of unapproved names. \n"
-home: https://github.com/kubewarden/policies
+apiVersion: v2
+appVersion: 1.0.6
+description: This Policy prohibits images with certain image names from being deployed
+  by specifying a list of unapproved names.
+home: https://github.com/rancher/suse-security-policies
 name: containers-block-specific-image-names
 sources:
-- ghcr.io/kubewarden/policies/containers-block-specific-image-names:v1.0.5
-version: 1.0.5
+- oci://registry.rancher.com/rancher/suse-security-policies/containers-block-specific-image-names:v1.0.6
+version: 1.0.6
