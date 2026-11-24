@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -16,12 +15,13 @@ annotations:
       operations:
       - CREATE
       - UPDATE
-appVersion: 1.0.6
+apiVersion: v2
+appVersion: 1.0.7
 description: HelmRelease maxHistory cannot exceed the specified value.
-home: https://github.com/kubewarden/policies
+home: https://github.com/rancher/suse-security-policies
 keywords:
 - flux
 name: helm-release-max-history
 sources:
-- ghcr.io/kubewarden/policies/helm-release-max-history:v1.0.6
-version: 1.0.6
+- oci://registry.rancher.com/rancher/suse-security-policies/helm-release-max-history:v1.0.7
+version: 1.0.7
