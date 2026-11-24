@@ -5102,6 +5102,37 @@ entries:
     version: 1.0.9
   safe-labels:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Safe Labels
+      kubewarden/mutation: "false"
+      kubewarden/resources: '*'
+      kubewarden/rules: |
+        - apiGroups:
+          - '*'
+          apiVersions:
+          - '*'
+          resources:
+          - '*'
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.15
+    created: "2026-11-24T16:37:36.544226767Z"
+    description: A policy that validates Kubernetes' resource labels
+    digest: 9447696718e4b8b8c13484fd5237f0f4d8bb8720ebecd94bf890dc0b6b9d6d8a
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - labels
+    name: safe-labels
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/safe-labels:v1.0.15
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/safe-labels-1.0.15/safe-labels-1.0.15.tgz
+    version: 1.0.15
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -5797,4 +5828,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T16:35:44.551411214Z"
+generated: "2026-11-24T16:37:36.544271974Z"
