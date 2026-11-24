@@ -7033,6 +7033,37 @@ entries:
     version: 1.0.5
   rbac-prohibit-watch-secrets:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: Rbac Prohibit Watch On Secrets
+      kubewarden/mutation: "false"
+      kubewarden/resources: Role, ClusterRole
+      kubewarden/rules: |
+        - apiGroups:
+          - rbac.authorization.k8s.io
+          apiVersions:
+          - v1
+          resources:
+          - roles
+          - clusterroles
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T18:01:06.599985564Z"
+    description: This Policy will violate if any RBAC ClusterRoles or Roles are designated
+      with 'watch' verb on 'secrets' resource.
+    digest: c07b6a49482eb19284d438bba104333c2ab4f96e486ba29f475c2337ecf5b86f
+    home: https://github.com/rancher/suse-security-policies
+    name: rbac-prohibit-watch-secrets
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/rbac-prohibit-watch-secrets:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/rbac-prohibit-watch-secrets-1.0.6/rbac-prohibit-watch-secrets-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -8405,4 +8436,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T18:00:53.888037306Z"
+generated: "2026-11-24T18:01:06.600118111Z"
