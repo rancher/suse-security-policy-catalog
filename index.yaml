@@ -2355,6 +2355,38 @@ entries:
     version: 1.0.5
   helm-chart-cosign-verification:
   - annotations:
+      catalog.cattle.io/hidden: "true"
+      catalog.cattle.io/type: kubewarden-policy
+      catalog.cattle.io/ui-component: kubewarden
+      kubewarden/displayName: HelmChart Cosign Verification
+      kubewarden/mutation: "false"
+      kubewarden/resources: HelmChart
+      kubewarden/rules: |
+        - apiGroups:
+          - source.toolkit.fluxcd.io
+          apiVersions:
+          - v1
+          resources:
+          - helmcharts
+          operations:
+          - CREATE
+          - UPDATE
+    apiVersion: v2
+    appVersion: 1.0.6
+    created: "2026-11-24T17:54:48.191212852Z"
+    description: HelmChart objects must provide cosign verification and reference
+      a secret containing the Cosign public keys of trusted authors
+    digest: 5d722197aa7d7cc5c7ecc3fc70e46c83c98b00a9ebf2fa7d786c97c8d7c1b3cf
+    home: https://github.com/rancher/suse-security-policies
+    keywords:
+    - flux
+    name: helm-chart-cosign-verification
+    sources:
+    - oci://registry.rancher.com/rancher/suse-security-policies/helm-chart-cosign-verification:v1.0.6
+    urls:
+    - https://github.com/rancher/suse-security-policy-catalog/releases/download/helm-chart-cosign-verification-1.0.6/helm-chart-cosign-verification-1.0.6.tgz
+    version: 1.0.6
+  - annotations:
       artifacthub.io/repository: kubewarden-policy-library
       catalog.cattle.io/hidden: "true"
       catalog.cattle.io/type: kubewarden-policy
@@ -7126,4 +7158,4 @@ entries:
     urls:
     - https://github.com/rancher/suse-security-policy-catalog/releases/download/volumes-psp-1.1.12/volumes-psp-1.1.12.tgz
     version: 1.1.12
-generated: "2026-11-24T17:54:36.245507302Z"
+generated: "2026-11-24T17:54:48.191310036Z"
