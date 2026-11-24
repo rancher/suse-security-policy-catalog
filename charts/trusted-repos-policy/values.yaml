@@ -1,6 +1,6 @@
 global:
   cattle:
-    systemDefaultRegistry: ghcr.io
+    systemDefaultRegistry: registry.rancher.com
 module:
-  repository: kubewarden/policies/trusted-repos
-  tag: v2.1.6
+  repository: rancher/suse-security-policies/trusted-repos
+  tag: v2.1.7

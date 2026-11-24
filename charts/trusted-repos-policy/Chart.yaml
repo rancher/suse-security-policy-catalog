@@ -1,5 +1,4 @@
 annotations:
-  artifacthub.io/repository: kubewarden-policy-library
   catalog.cattle.io/hidden: "true"
   catalog.cattle.io/type: kubewarden-policy
   catalog.cattle.io/ui-component: kubewarden
@@ -47,10 +46,11 @@ annotations:
       operations:
       - CREATE
       - UPDATE
-appVersion: 2.1.6
+apiVersion: v2
+appVersion: 2.1.7
 description: Kubewarden policy that restricts which registries, tags, and images pods
   in your cluster can refer to, with wildcard pattern support
-home: https://github.com/kubewarden/policies
+home: https://github.com/rancher/suse-security-policies
 keywords:
 - image
 - registry
@@ -58,5 +58,5 @@ keywords:
 - wildcard
 name: trusted-repos
 sources:
-- ghcr.io/kubewarden/policies/trusted-repos:v2.1.6
-version: 2.1.6
+- oci://registry.rancher.com/rancher/suse-security-policies/trusted-repos:v2.1.7
+version: 2.1.7
